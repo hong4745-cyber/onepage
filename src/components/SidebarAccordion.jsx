@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
-import { Toolbar } from '@base-ui/react/toolbar'
 import logoImg from '../assets/images/0_logo.png'
 import SignupPopup from './SignupPopup'
 import VerticalAccordion from './VerticalAccordion'
@@ -59,14 +58,14 @@ export default function SidebarAccordion() {
           onClick={() => navigate('/')}
         />
         <p className="sidebar-tagline">특별하고 다양한 혜택 받으세요!</p>
-        <Toolbar.Root className="sidebar-auth-toolbar" aria-label="회원 메뉴">
-          <Toolbar.Button className="sidebar-auth-btn" onClick={() => setSignupOpen(true)}>
+        <div className="sidebar-auth-toolbar" role="toolbar" aria-label="회원 메뉴">
+          <button className="sidebar-auth-btn" onClick={() => setSignupOpen(true)}>
             회원가입
-          </Toolbar.Button>
-          <Toolbar.Button className="sidebar-auth-btn" onClick={() => navigate('/login')}>
+          </button>
+          <button className="sidebar-auth-btn" onClick={() => navigate('/login')}>
             로그인
-          </Toolbar.Button>
-        </Toolbar.Root>
+          </button>
+        </div>
       </div>
 
       <VerticalAccordion />
