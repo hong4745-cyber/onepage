@@ -117,10 +117,10 @@
 
 .sidebar-logo-area {
   position: relative;
-  padding: 14px 30px;
-  height: 200px;
+  padding: 19px 30px;
   flex-shrink: 0;
   box-sizing: border-box;
+  border-bottom: 1px solid var(--c-line);
 }
 
 .sidebar-logo-img {

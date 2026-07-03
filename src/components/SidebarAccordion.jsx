@@ -13,6 +13,27 @@ import imgMy      from '../assets/images/Product/Product_Earbud_01.png'
 const ACCORDION_ITEMS = [
   {
     id: 1,
+    title: '고객지원',
+    imageUrl: imgSupport,
+    items: [
+      { label: '공지사항', path: '/notice' },
+      { label: '리뷰',     path: '/reviews' },
+      { label: '상품문의', path: '/qna' },
+      { label: '이벤트',   path: '/events' },
+    ],
+  },
+  {
+    id: 2,
+    title: '나의쇼핑',
+    imageUrl: imgMy,
+    items: [
+      { label: '로그인',   path: '/login' },
+      { label: '회원가입', path: '/signup' },
+      { label: '나의쇼핑', path: '/mypage' },
+    ],
+  },
+  {
+    id: 3,
     title: '제품구매하기',
     imageUrl: imgProduct,
     items: [
@@ -24,27 +45,6 @@ const ACCORDION_ITEMS = [
       { label: '스피커',        path: '/products?category=라우드스피커' },
       { label: '액세서리',      path: '/products?category=액세서리' },
       { label: '프로모션',      path: '/promotions' },
-    ],
-  },
-  {
-    id: 2,
-    title: '고객지원',
-    imageUrl: imgSupport,
-    items: [
-      { label: '공지사항', path: '/notice' },
-      { label: '리뷰',     path: '/reviews' },
-      { label: '상품문의', path: '/qna' },
-      { label: '이벤트',   path: '/events' },
-    ],
-  },
-  {
-    id: 3,
-    title: '나의쇼핑',
-    imageUrl: imgMy,
-    items: [
-      { label: '로그인',   path: '/login' },
-      { label: '회원가입', path: '/signup' },
-      { label: '나의쇼핑', path: '/mypage' },
     ],
   },
   {
@@ -97,7 +97,7 @@ export default function SidebarAccordion() {
         </div>
       </div>
 
-      <div style={{ padding: '35px 30px' }}>
+      <div style={{ padding: '12px 30px 35px' }}>
         <InteractiveImageAccordion items={ACCORDION_ITEMS} />
       </div>
 
