@@ -55,12 +55,6 @@ export default function Layout({ children }) {
           />
         </div>
 
-        {overlayOpen && (
-          <div
-            className="menu-overlay"
-            onClick={() => setOverlayOpen(false)}
-          />
-        )}
         <div className="layout-right" style={{ position: 'relative', zIndex: 1 }}>
           <SearchOverlay />
           {!hideChrome && <TopBanner />}

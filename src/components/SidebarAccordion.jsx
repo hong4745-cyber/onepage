@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useMenu } from '../context/MenuContext'
 import logoImg from '../assets/images/0_logo.png'
 import SignupPopup from './SignupPopup'
 import { InteractiveImageAccordion } from './ui/interactive-image-accordion'
@@ -60,10 +61,25 @@ const ACCORDION_ITEMS = [
 export default function SidebarAccordion() {
   const navigate = useNavigate()
   const [signupOpen, setSignupOpen] = useState(false)
+  const { overlayOpen, setOverlayOpen } = useMenu()
 
   return (
-    <aside className="sidebar">
+    <aside className={`sidebar${overlayOpen ? ' sidebar--open' : ''}`}>
       <div className="sidebar-logo-area">
+        {/* X 닫기 버튼 */}
+        <button
+          onClick={() => setOverlayOpen(false)}
+          style={{
+            position: 'absolute', top: '14px', right: '16px',
+            width: '32px', height: '32px', borderRadius: '50%',
+            background: 'none', border: 'none',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            fontSize: '20px', color: '#888', cursor: 'pointer', lineHeight: 1,
+          }}
+          aria-label="메뉴 닫기"
+        >
+          ✕
+        </button>
         <img
           src={logoImg}
           alt="Bowers & Wilkins"
@@ -81,7 +97,7 @@ export default function SidebarAccordion() {
         </div>
       </div>
 
-      <div style={{ padding: '14px 12px', borderTop: '1px solid #ebebeb' }}>
+      <div style={{ padding: '35px 30px' }}>
         <InteractiveImageAccordion items={ACCORDION_ITEMS} />
       </div>
 

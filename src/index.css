@@ -45,6 +45,17 @@
   --shadow-sm: 0 1px 4px rgba(0,0,0,0.06);
 }
 
+/* ===== 반응형 루트 폰트 ===== */
+@media (max-width: 900px) {
+  html { font-size: 15px; }
+}
+@media (max-width: 768px) {
+  html { font-size: 14px; }
+}
+@media (max-width: 480px) {
+  html { font-size: 13px; }
+}
+
 /* ===== RESET ===== */
 *, *::before, *::after {
   box-sizing: border-box;

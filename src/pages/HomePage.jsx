@@ -56,16 +56,18 @@ function BestCard({ product, hasDragged }) {
         />
         <div style={{ position: 'absolute', bottom: '8px', right: '8px', display: 'flex', flexDirection: 'column', gap: '5px' }}>
           <button
-            onClick={e => { e.stopPropagation(); toggleWishlist(product) }}
-            style={{ width: '30px', height: '30px', borderRadius: '7px', background: 'rgba(255,255,255,0.92)', border: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '13px', color: liked ? '#e53e3e' : '#aaa', cursor: 'pointer' }}
-          >
-            <FontAwesomeIcon icon={liked ? faHeartSolid : faHeart} />
-          </button>
-          <button
+            className="card-action-btn"
             onClick={e => { e.stopPropagation(); setPopupOpen(true) }}
-            style={{ width: '30px', height: '30px', borderRadius: '7px', background: 'rgba(255,255,255,0.92)', border: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}
+            style={{ borderRadius: '7px' }}
           >
             <img src={iconCart} alt="장바구니" style={{ width: '15px', height: '15px', objectFit: 'contain' }} />
+          </button>
+          <button
+            className="card-action-btn"
+            onClick={e => { e.stopPropagation(); toggleWishlist(product) }}
+            style={{ borderRadius: '7px', color: liked ? 'var(--c-accent)' : undefined }}
+          >
+            <FontAwesomeIcon icon={liked ? faHeartSolid : faHeart} />
           </button>
         </div>
       </div>
@@ -441,27 +443,25 @@ export default function HomePage() {
         </div>
 
         {/* Category Icons */}
-        <div style={{ display: 'flex', justifyContent: 'center', paddingTop: '36px' }}>
-          <div style={{ display: 'flex', gap: '20px' }}>
-            {CATEGORIES.map(cat => (
-              <button
-                key={cat.value}
-                onClick={() => navigate(`/products?category=${cat.value}`)}
-                style={{
-                  display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '10px',
-                  background: 'none', border: 'none', cursor: 'pointer', minWidth: '90px',
-                }}
-              >
-                <div style={{
-                  width: '88px', height: '88px', borderRadius: '50%', background: '#f5f5f5',
-                  overflow: 'hidden',
-                }}>
-                  <img src={cat.img} alt={cat.label} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                </div>
-                <span style={{ fontSize: '13px', color: '#444', whiteSpace: 'nowrap' }}>{cat.label}</span>
-              </button>
-            ))}
-          </div>
+        <div style={{ display: 'flex', justifyContent: 'space-evenly', alignItems: 'flex-start', padding: '36px 12px 0' }}>
+          {CATEGORIES.map(cat => (
+            <button
+              key={cat.value}
+              onClick={() => navigate(`/products?category=${cat.value}`)}
+              style={{
+                display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px',
+                background: 'none', border: 'none', cursor: 'pointer', flex: '1',
+              }}
+            >
+              <div style={{
+                width: '62px', height: '62px', borderRadius: '50%', background: '#f5f5f5',
+                overflow: 'hidden',
+              }}>
+                <img src={cat.img} alt={cat.label} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+              </div>
+              <span style={{ fontSize: '11px', color: '#444', whiteSpace: 'nowrap' }}>{cat.label}</span>
+            </button>
+          ))}
         </div>
 
         {/* 브랜드 태그라인 */}
@@ -475,12 +475,11 @@ export default function HomePage() {
 
         {/* section02 비디오 */}
         <section style={{ position: 'relative', overflow: 'hidden', background: '#000' }}>
-          <video
-            autoPlay muted loop playsInline
-            style={{ width: '100%', minHeight: '600px', display: 'block', objectFit: 'cover', pointerEvents: 'none', border: 'none', outline: 'none' }}
-          >
-            <source src="/videos/main_video.mp4" type="video/mp4" />
-          </video>
+          <img
+            src="/videos/main_video_01.gif"
+            alt=""
+            style={{ width: '100%', minHeight: '300px', display: 'block', objectFit: 'cover', pointerEvents: 'none' }}
+          />
         </section>
 
         {/* section03 추천상품 */}
@@ -619,7 +618,7 @@ export default function HomePage() {
                       width: '30px', height: '30px', borderRadius: '50%',
                       background: 'rgba(255,255,255,0.9)', border: 'none',
                       display: 'flex', alignItems: 'center', justifyContent: 'center',
-                      fontSize: '13px', color: isWished(p.id) ? '#e53e3e' : '#aaa', cursor: 'pointer',
+                      fontSize: '13px', color: isWished(p.id) ? 'var(--c-accent)' : '#aaa', cursor: 'pointer',
                     }}>
                       <FontAwesomeIcon icon={isWished(p.id) ? faHeartSolid : faHeart} />
                     </button>
@@ -869,19 +868,24 @@ export default function HomePage() {
       {/* GoTop 버튼 */}
       {showGoTop && (
         <div style={{
-          position: 'fixed', bottom: '76px', left: 0, right: 0,
+          position: 'fixed', bottom: '80px', left: 0, right: 0,
           display: 'flex', justifyContent: 'center',
           pointerEvents: 'none', zIndex: 200,
         }}>
           <div style={{ width: '600px', maxWidth: '100%', position: 'relative' }}>
             <button onClick={scrollToTop} style={{
-              position: 'absolute', right: '20px', bottom: 0,
+              position: 'absolute', right: '16px', bottom: 0,
               pointerEvents: 'auto',
-              width: '44px', height: '44px', borderRadius: '50%',
-              background: '#111', border: 'none', cursor: 'pointer',
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              color: '#fff', fontSize: '14px',
-            }}><FontAwesomeIcon icon={faArrowUp} /></button>
+              width: '52px', height: '52px', borderRadius: '50%',
+              background: '#fff',
+              border: 'none', cursor: 'pointer',
+              display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '2px',
+              boxShadow: '0 4px 16px rgba(0,0,0,0.13)',
+              color: '#222',
+            }}>
+              <div style={{ width: '16px', height: '2px', background: '#222', borderRadius: '1px' }} />
+              <FontAwesomeIcon icon={faArrowUp} style={{ fontSize: '14px' }} />
+            </button>
           </div>
         </div>
       )}
