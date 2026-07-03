@@ -9,6 +9,7 @@ export default defineConfig(({ mode }) => {
     : 'https://sandbox-api.polar.sh'
 
   return {
+    base: process.env.GITHUB_PAGES ? '/onepage/' : '/',
     plugins: [react()],
     server: {
       watch: {
