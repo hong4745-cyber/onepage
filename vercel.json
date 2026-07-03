@@ -1,0 +1,6 @@
+{
+  "rewrites": [
+    { "source": "/polar-api/(.*)", "destination": "/api/polar-api?rest=$1" },
+    { "source": "/((?!api/|polar-api/).*)", "destination": "/" }
+  ]
+}

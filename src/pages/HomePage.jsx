@@ -476,7 +476,7 @@ export default function HomePage() {
         {/* section02 비디오 */}
         <section style={{ position: 'relative', overflow: 'hidden', background: '#000' }}>
           <img
-            src="/videos/main_video_01.gif"
+            src={import.meta.env.VITE_HERO_GIF_URL || '/videos/main_video_01.gif'}
             alt=""
             style={{ width: '100%', minHeight: '300px', display: 'block', objectFit: 'cover', pointerEvents: 'none' }}
           />
