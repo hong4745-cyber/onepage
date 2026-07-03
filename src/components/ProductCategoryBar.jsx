@@ -55,7 +55,8 @@ export default function ProductCategoryBar() {
       style={{
         overflowX: 'auto', scrollbarWidth: 'none', msOverflowStyle: 'none',
         borderBottom: '1px solid #f0f0f0', background: '#fff',
-        position: 'sticky', top: 0, zIndex: 100, cursor: 'grab',
+        /* 고정 헤더(64px) 바로 아래에 붙도록 */
+        position: 'sticky', top: '64px', zIndex: 100, cursor: 'grab',
       }}
     >
       <div style={{ display: 'flex', width: 'max-content', padding: '0 16px' }}>

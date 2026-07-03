@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import SidebarAccordion from './SidebarAccordion'
 import BottomNav from './BottomNav'
+import TargetCursor from './ui/TargetCursor'
 import TopBanner from './TopBanner'
 import SearchOverlay from './SearchOverlay'
 import MagicRings from './MagicRings'
@@ -24,6 +25,7 @@ export default function Layout({ children }) {
 
   return (
     <div className="layout-wrapper">
+      <TargetCursor targetSelector=".cursor-target" spinDuration={2} cursorColor="#ffffff" />
       <SidebarAccordion />
       <div className="layout-right-area">
         {/* MagicRings 배경 */}

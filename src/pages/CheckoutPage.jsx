@@ -5,6 +5,7 @@ import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons'
 import Header from '../components/Header'
 import { useCart } from '../context/CartContext'
 import { resolveImage } from '../utils/imageMap'
+import { findPolarProduct, createCheckout } from '../utils/polar'
 
 const PAYMENT_METHODS = [
   { id: 'card',    label: '신용/체크카드' },
@@ -43,12 +44,14 @@ const inputStyle = (err) => ({
 
 export default function CheckoutPage() {
   const navigate = useNavigate()
-  const { cart, totalPrice, clearCart } = useCart()
+  const { cart, totalPrice } = useCart()
 
   const [form, setForm] = useState({ name: '', phone: '', address: '', addressDetail: '', memo: DELIVERY_MEMOS[0], memoCustom: '' })
   const [payment, setPayment] = useState('card')
   const [errors, setErrors] = useState({})
   const [orderOpen, setOrderOpen] = useState(false)
+  const [paying, setPaying] = useState(false)
+  const [payError, setPayError] = useState('')
 
   if (cart.length === 0) {
     navigate('/cart', { replace: true })
@@ -68,12 +71,40 @@ export default function CheckoutPage() {
     return e
   }
 
-  function handleSubmit() {
+  async function handleSubmit() {
     const e = validate()
     if (Object.keys(e).length) { setErrors(e); return }
-    const orderNum = 'BW-' + Date.now().toString().slice(-8)
-    clearCart()
-    navigate('/order-complete', { state: { orderNum, totalPrice, itemCount: cart.reduce((s, i) => s + i.qty, 0) } })
+
+    setPaying(true)
+    setPayError('')
+    try {
+      // 장바구니 상품을 Polar 상품과 이름으로 매칭 (Polar API 실시간 조회)
+      const matches = await Promise.all(cart.map(item => findPolarProduct(item.name)))
+      const productIds = [...new Set(matches.filter(Boolean).map(m => m.id))]
+
+      if (productIds.length === 0) {
+        setPayError('결제 가능한 상품이 없습니다. (Polar에 등록되지 않은 상품)')
+        return
+      }
+
+      const unmatched = cart.filter((_, i) => !matches[i])
+      if (unmatched.length > 0) {
+        setPayError(`일부 상품은 아직 결제 등록 전입니다: ${unmatched.map(u => u.name).join(', ')}`)
+        return
+      }
+
+      const checkout = await createCheckout(productIds, {
+        buyer_name: form.name,
+        buyer_phone: form.phone,
+        address: `${form.address} ${form.addressDetail}`.trim(),
+      })
+      // Polar 결제 페이지로 이동 (결제 완료 시 /success로 복귀)
+      window.location.href = checkout.url
+    } catch (err) {
+      setPayError(err.message || '결제 페이지 연결에 실패했습니다.')
+    } finally {
+      setPaying(false)
+    }
   }
 
   const deliveryFee = totalPrice >= 100000 ? 0 : 3000
@@ -201,15 +232,19 @@ export default function CheckoutPage() {
 
       {/* 결제 버튼 */}
       <div style={{ padding: '12px 16px 16px', borderTop: '1px solid #f0f0f0', background: '#fff', flexShrink: 0 }}>
+        {payError && (
+          <p style={{ fontSize: '12px', color: '#e03131', marginBottom: '8px', textAlign: 'center' }}>{payError}</p>
+        )}
         <button
           onClick={handleSubmit}
+          disabled={paying}
           style={{
-            width: '100%', padding: '15px', background: 'var(--gradient-brand)',
+            width: '100%', padding: '15px', background: paying ? '#999' : 'var(--gradient-brand)',
             color: '#fff', border: 'none', borderRadius: '10px',
-            fontSize: '15px', fontWeight: '700', cursor: 'pointer',
+            fontSize: '15px', fontWeight: '700', cursor: paying ? 'wait' : 'pointer',
           }}
         >
-          {finalPrice.toLocaleString()}원 결제하기
+          {paying ? '결제 페이지 연결 중...' : `${finalPrice.toLocaleString()}원 결제하기`}
         </button>
       </div>
     </div>

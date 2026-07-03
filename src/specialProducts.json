@@ -1,0 +1,962 @@
+[
+  {
+    "id": 101,
+    "name": "Pi8 맥라렌 에디션 트루와이어리스 이어버드",
+    "price": 599000,
+    "salePrice": 539100,
+    "discountRate": 10,
+    "image": "/images/product/Product_mcLaren edition_01.jpg",
+    "category": "맥라렌 에디션",
+    "color": "갤버나이즈드 그레이/파파야 오렌지",
+    "connectivity": "블루투스",
+    "description": "맥라렌과의 협업으로 탄생한 Pi8 맥라렌 에디션 이어버드입니다. 레이스카에서 영감을 받은 컬러와 디테일, 그리고 플래그십 사운드를 그대로 담았습니다.",
+    "stock": 15,
+    "rating": 4.8,
+    "reviewCount": 12,
+    "reviewKeywords": [
+      "음질좋아요",
+      "디자인예뻐요",
+      "한정판",
+      "착용감좋아요"
+    ],
+    "isBest": true,
+    "isSale": true,
+    "isNew": true,
+    "reviews": [
+      {
+        "id": 1,
+        "user": "고객1",
+        "rating": 5,
+        "date": "2026-06-22",
+        "content": "맥라렌 팬이라면 무조건입니다. 디테일이 정말 살아있어요."
+      },
+      {
+        "id": 2,
+        "user": "고객2",
+        "rating": 5,
+        "date": "2026-06-19",
+        "content": "오렌지 포인트 컬러가 실물로 보면 더 고급스럽습니다."
+      },
+      {
+        "id": 3,
+        "user": "고객3",
+        "rating": 4,
+        "date": "2026-06-14",
+        "content": "음질은 역시 B&W. 가격이 조금 있지만 만족합니다."
+      }
+    ],
+    "detailFolder": "Product_Earbud_03"
+  },
+  {
+    "id": 102,
+    "name": "Px8 맥라렌 에디션 파파야 오렌지",
+    "price": 990000,
+    "salePrice": 891000,
+    "discountRate": 10,
+    "image": "/images/product/Product_mcLaren edition_02.jpg",
+    "category": "맥라렌 에디션",
+    "color": "파파야 오렌지",
+    "connectivity": "블루투스",
+    "description": "맥라렌의 상징적인 파파야 오렌지 컬러를 입은 Px8 맥라렌 에디션 헤드폰입니다. 나파 가죽과 알루미늄 마감, 카본 콘 드라이버로 플래그십의 품격을 완성했습니다.",
+    "stock": 8,
+    "rating": 4.9,
+    "reviewCount": 17,
+    "reviewKeywords": [
+      "음질좋아요",
+      "한정판",
+      "고급스러워요",
+      "노이즈캔슬링"
+    ],
+    "isBest": true,
+    "isSale": true,
+    "isNew": true,
+    "reviews": [
+      {
+        "id": 1,
+        "user": "고객1",
+        "rating": 5,
+        "date": "2026-06-25",
+        "content": "파파야 오렌지 실물 깡패입니다. 소장 가치 충분해요."
+      },
+      {
+        "id": 2,
+        "user": "고객2",
+        "rating": 5,
+        "date": "2026-06-17",
+        "content": "노이즈캔슬링과 음질 모두 최상급이에요."
+      },
+      {
+        "id": 3,
+        "user": "고객3",
+        "rating": 5,
+        "date": "2026-06-11",
+        "content": "한정판이라 고민했는데 사길 잘했습니다."
+      }
+    ],
+    "detailFolder": "Product_Headphone_01"
+  },
+  {
+    "id": 103,
+    "name": "Px8 맥라렌 에디션 갤버나이즈드 그레이",
+    "price": 990000,
+    "salePrice": 891000,
+    "discountRate": 10,
+    "image": "/images/product/Product_mcLaren edition_03.jpg",
+    "category": "맥라렌 에디션",
+    "color": "갤버나이즈드 그레이",
+    "connectivity": "블루투스",
+    "description": "차분한 갤버나이즈드 그레이 바디에 파파야 오렌지 포인트를 더한 Px8 맥라렌 에디션입니다. 절제된 레이싱 감성과 플래그십 사운드를 동시에 즐길 수 있습니다.",
+    "stock": 10,
+    "rating": 4.8,
+    "reviewCount": 14,
+    "reviewKeywords": [
+      "음질좋아요",
+      "디자인예뻐요",
+      "한정판",
+      "착용감좋아요"
+    ],
+    "isBest": false,
+    "isSale": true,
+    "isNew": true,
+    "reviews": [
+      {
+        "id": 1,
+        "user": "고객1",
+        "rating": 5,
+        "date": "2026-06-23",
+        "content": "그레이에 오렌지 포인트가 은근히 튀지 않아 데일리로 좋아요."
+      },
+      {
+        "id": 2,
+        "user": "고객2",
+        "rating": 5,
+        "date": "2026-06-16",
+        "content": "착용감이 정말 편하고 소리는 말할 것도 없네요."
+      },
+      {
+        "id": 3,
+        "user": "고객3",
+        "rating": 4,
+        "date": "2026-06-10",
+        "content": "고급스러운 마감이 마음에 듭니다."
+      }
+    ],
+    "detailFolder": "Product_mcLaren edition_03"
+  },
+  {
+    "id": 111,
+    "name": "Px8 프리미엄 헤드폰 소프트 골드",
+    "price": 899000,
+    "salePrice": 719200,
+    "discountRate": 20,
+    "image": "/images/product/Product_promotions_01.jpg",
+    "category": "프로모션",
+    "color": "소프트 골드",
+    "connectivity": "블루투스",
+    "description": "Px8의 우아한 소프트 골드 컬러 프로모션 상품입니다. 나파 가죽 헤드밴드와 카본 콘 드라이버가 선사하는 플래그십 사운드를 특별한 가격에 만나보세요.",
+    "stock": 12,
+    "rating": 4.8,
+    "reviewCount": 21,
+    "reviewKeywords": [
+      "음질좋아요",
+      "고급스러워요",
+      "할인특가",
+      "노이즈캔슬링"
+    ],
+    "isBest": true,
+    "isSale": true,
+    "isNew": false,
+    "reviews": [
+      {
+        "id": 1,
+        "user": "고객1",
+        "rating": 5,
+        "date": "2026-06-24",
+        "content": "골드 컬러가 사진보다 실물이 훨씬 고급스러워요."
+      },
+      {
+        "id": 2,
+        "user": "고객2",
+        "rating": 5,
+        "date": "2026-06-18",
+        "content": "할인가에 플래그십을 살 수 있어서 바로 결제했습니다."
+      },
+      {
+        "id": 3,
+        "user": "고객3",
+        "rating": 4,
+        "date": "2026-06-12",
+        "content": "음질, 착용감 모두 만족스럽습니다."
+      }
+    ],
+    "detailFolder": "Product_Headphone_02"
+  },
+  {
+    "id": 112,
+    "name": "Px8 맥라렌 에디션 파파야 오렌지 (프로모션)",
+    "price": 990000,
+    "salePrice": 841500,
+    "discountRate": 15,
+    "image": "/images/product/Product_promotions_02.jpg",
+    "category": "프로모션",
+    "color": "파파야 오렌지",
+    "connectivity": "블루투스",
+    "description": "맥라렌 컬러가 돋보이는 Px8 맥라렌 에디션을 프로모션 특가로 제공합니다. 한정 수량으로 조기 품절될 수 있습니다.",
+    "stock": 5,
+    "rating": 4.9,
+    "reviewCount": 17,
+    "reviewKeywords": [
+      "한정판",
+      "음질좋아요",
+      "할인특가",
+      "고급스러워요"
+    ],
+    "isBest": true,
+    "isSale": true,
+    "isNew": false,
+    "reviews": [
+      {
+        "id": 1,
+        "user": "고객1",
+        "rating": 5,
+        "date": "2026-06-25",
+        "content": "한정판을 할인가에 구할 수 있어서 행운이었어요."
+      },
+      {
+        "id": 2,
+        "user": "고객2",
+        "rating": 5,
+        "date": "2026-06-15",
+        "content": "레이싱 감성 제대로입니다. 강력 추천해요."
+      },
+      {
+        "id": 3,
+        "user": "고객3",
+        "rating": 5,
+        "date": "2026-06-09",
+        "content": "포장부터 마감까지 흠잡을 곳이 없네요."
+      }
+    ],
+    "detailFolder": "Product_Headphone_01"
+  },
+  {
+    "id": 113,
+    "name": "Px7 S2e 클라우드 그레이",
+    "price": 549000,
+    "salePrice": 411750,
+    "discountRate": 25,
+    "image": "/images/product/Product_promotions_03.jpg",
+    "category": "프로모션",
+    "color": "클라우드 그레이",
+    "connectivity": "블루투스",
+    "description": "밝고 부드러운 클라우드 그레이 컬러의 Px7 S2e입니다. 업그레이드된 DSP 튜닝과 뛰어난 노이즈캔슬링을 합리적인 프로모션 가격에 만나보세요.",
+    "stock": 25,
+    "rating": 4.6,
+    "reviewCount": 28,
+    "reviewKeywords": [
+      "가성비좋아요",
+      "음질좋아요",
+      "디자인예뻐요",
+      "노이즈캔슬링"
+    ],
+    "isBest": false,
+    "isSale": true,
+    "isNew": false,
+    "reviews": [
+      {
+        "id": 1,
+        "user": "고객1",
+        "rating": 5,
+        "date": "2026-06-21",
+        "content": "밝은 컬러 헤드폰 찾기 어려운데 정말 예뻐요."
+      },
+      {
+        "id": 2,
+        "user": "고객2",
+        "rating": 4,
+        "date": "2026-06-16",
+        "content": "25% 할인에 이 음질이면 최고의 가성비입니다."
+      },
+      {
+        "id": 3,
+        "user": "고객3",
+        "rating": 5,
+        "date": "2026-06-08",
+        "content": "출퇴근용으로 매일 쓰고 있어요. 만족합니다."
+      }
+    ],
+    "detailFolder": "Product_Headphone_03"
+  },
+  {
+    "id": 114,
+    "name": "Px7 S2e 버건디",
+    "price": 549000,
+    "salePrice": 411750,
+    "discountRate": 25,
+    "image": "/images/product/Product_promotions_04.jpg",
+    "category": "프로모션",
+    "color": "버건디",
+    "connectivity": "블루투스",
+    "description": "깊고 세련된 버건디 컬러의 Px7 S2e 프로모션 상품입니다. 패브릭 마감의 질감과 풍부한 사운드가 조화를 이룹니다.",
+    "stock": 22,
+    "rating": 4.7,
+    "reviewCount": 24,
+    "reviewKeywords": [
+      "디자인예뻐요",
+      "음질좋아요",
+      "할인특가",
+      "착용감좋아요"
+    ],
+    "isBest": false,
+    "isSale": true,
+    "isNew": false,
+    "reviews": [
+      {
+        "id": 1,
+        "user": "고객1",
+        "rating": 5,
+        "date": "2026-06-22",
+        "content": "버건디 색감이 진짜 유니크하고 고급스러워요."
+      },
+      {
+        "id": 2,
+        "user": "고객2",
+        "rating": 5,
+        "date": "2026-06-14",
+        "content": "여자친구 선물로 샀는데 너무 좋아하네요."
+      },
+      {
+        "id": 3,
+        "user": "고객3",
+        "rating": 4,
+        "date": "2026-06-07",
+        "content": "음질과 디자인 모두 만족스러운 제품입니다."
+      }
+    ],
+    "detailFolder": "Product_Headphone_05"
+  },
+  {
+    "id": 115,
+    "name": "Px8 프리미엄 헤드폰 블랙",
+    "price": 899000,
+    "salePrice": 719200,
+    "discountRate": 20,
+    "image": "/images/product/Product_promotions_05.jpg",
+    "category": "프로모션",
+    "color": "블랙",
+    "connectivity": "블루투스",
+    "description": "클래식한 블랙 컬러의 Px8 프로모션 상품입니다. 어떤 스타일에도 어울리는 정통 플래그십 헤드폰을 특가로 만나보세요.",
+    "stock": 18,
+    "rating": 4.8,
+    "reviewCount": 31,
+    "reviewKeywords": [
+      "음질좋아요",
+      "노이즈캔슬링",
+      "할인특가",
+      "착용감좋아요"
+    ],
+    "isBest": true,
+    "isSale": true,
+    "isNew": false,
+    "reviews": [
+      {
+        "id": 1,
+        "user": "고객1",
+        "rating": 5,
+        "date": "2026-06-23",
+        "content": "역시 블랙이 제일 무난하고 고급스럽습니다."
+      },
+      {
+        "id": 2,
+        "user": "고객2",
+        "rating": 5,
+        "date": "2026-06-17",
+        "content": "플래그십 음질을 이 가격에! 대만족입니다."
+      },
+      {
+        "id": 3,
+        "user": "고객3",
+        "rating": 4,
+        "date": "2026-06-10",
+        "content": "노이즈캔슬링 성능이 기대 이상이에요."
+      }
+    ],
+    "detailFolder": "Product_Headphone_04"
+  },
+  {
+    "id": 116,
+    "name": "Px8 맥라렌 에디션 갤버나이즈드 그레이 (프로모션)",
+    "price": 990000,
+    "salePrice": 841500,
+    "discountRate": 15,
+    "image": "/images/product/Product_promotions_06.jpg",
+    "category": "프로모션",
+    "color": "갤버나이즈드 그레이",
+    "connectivity": "블루투스",
+    "description": "Px8 맥라렌 에디션 갤버나이즈드 그레이를 프로모션 특가로 제공합니다. 절제된 레이싱 감성의 한정판 모델입니다.",
+    "stock": 6,
+    "rating": 4.8,
+    "reviewCount": 14,
+    "reviewKeywords": [
+      "한정판",
+      "음질좋아요",
+      "할인특가",
+      "디자인예뻐요"
+    ],
+    "isBest": false,
+    "isSale": true,
+    "isNew": false,
+    "reviews": [
+      {
+        "id": 1,
+        "user": "고객1",
+        "rating": 5,
+        "date": "2026-06-20",
+        "content": "그레이 톤이 정말 세련됐습니다. 할인까지 받으니 최고예요."
+      },
+      {
+        "id": 2,
+        "user": "고객2",
+        "rating": 5,
+        "date": "2026-06-13",
+        "content": "맥라렌 에디션인데 이 가격이면 안 살 이유가 없죠."
+      },
+      {
+        "id": 3,
+        "user": "고객3",
+        "rating": 4,
+        "date": "2026-06-06",
+        "content": "마감 품질이 일반판보다 확실히 좋아요."
+      }
+    ],
+    "detailFolder": "Product_mcLaren edition_03"
+  },
+  {
+    "id": 117,
+    "name": "Pi8 트루와이어리스 이어버드 더스티 핑크",
+    "price": 599000,
+    "salePrice": 479200,
+    "discountRate": 20,
+    "image": "/images/product/Product_promotions_07.jpg",
+    "category": "프로모션",
+    "color": "더스티 핑크",
+    "connectivity": "블루투스",
+    "description": "부드러운 더스티 핑크 컬러의 Pi8 트루와이어리스 이어버드입니다. 프리미엄 사운드와 사랑스러운 컬러를 프로모션 가격에 만나보세요.",
+    "stock": 20,
+    "rating": 4.7,
+    "reviewCount": 19,
+    "reviewKeywords": [
+      "디자인예뻐요",
+      "음질좋아요",
+      "착용감좋아요",
+      "할인특가"
+    ],
+    "isBest": false,
+    "isSale": true,
+    "isNew": false,
+    "reviews": [
+      {
+        "id": 1,
+        "user": "고객1",
+        "rating": 5,
+        "date": "2026-06-21",
+        "content": "핑크 색감이 과하지 않고 정말 예뻐요."
+      },
+      {
+        "id": 2,
+        "user": "고객2",
+        "rating": 5,
+        "date": "2026-06-15",
+        "content": "귀에 쏙 들어가는 착용감에 음질도 훌륭합니다."
+      },
+      {
+        "id": 3,
+        "user": "고객3",
+        "rating": 4,
+        "date": "2026-06-09",
+        "content": "선물용으로 최고입니다. 포장도 고급스러워요."
+      }
+    ],
+    "detailFolder": "Product_Earbud_01"
+  },
+  {
+    "id": 118,
+    "name": "Pi8 맥라렌 에디션 이어버드 (프로모션)",
+    "price": 599000,
+    "salePrice": 509150,
+    "discountRate": 15,
+    "image": "/images/product/Product_promotions_08.jpg",
+    "category": "프로모션",
+    "color": "갤버나이즈드 그레이/파파야 오렌지",
+    "connectivity": "블루투스",
+    "description": "Pi8 맥라렌 에디션 이어버드를 프로모션 특가로 제공합니다. 레이스카 감성의 디테일과 플래그십 사운드를 담은 한정판입니다.",
+    "stock": 9,
+    "rating": 4.8,
+    "reviewCount": 12,
+    "reviewKeywords": [
+      "한정판",
+      "음질좋아요",
+      "할인특가",
+      "디자인예뻐요"
+    ],
+    "isBest": false,
+    "isSale": true,
+    "isNew": false,
+    "reviews": [
+      {
+        "id": 1,
+        "user": "고객1",
+        "rating": 5,
+        "date": "2026-06-19",
+        "content": "맥라렌 에디션 특유의 오렌지 링이 포인트예요."
+      },
+      {
+        "id": 2,
+        "user": "고객2",
+        "rating": 5,
+        "date": "2026-06-12",
+        "content": "할인 기간에 겟했습니다. 음질 최고!"
+      },
+      {
+        "id": 3,
+        "user": "고객3",
+        "rating": 4,
+        "date": "2026-06-05",
+        "content": "케이스 마감까지 신경 쓴 게 느껴집니다."
+      }
+    ],
+    "detailFolder": "Product_Earbud_03"
+  },
+  {
+    "id": 119,
+    "name": "Pi6 트루와이어리스 이어버드 블랙",
+    "price": 379000,
+    "salePrice": 303200,
+    "discountRate": 20,
+    "image": "/images/product/Product_promotions_09.jpg",
+    "category": "프로모션",
+    "color": "블랙",
+    "connectivity": "블루투스",
+    "description": "합리적인 가격으로 B&W 사운드를 경험할 수 있는 Pi6 이어버드 블랙입니다. 프로모션 기간 한정 특가로 제공됩니다.",
+    "stock": 30,
+    "rating": 4.5,
+    "reviewCount": 26,
+    "reviewKeywords": [
+      "가성비좋아요",
+      "음질좋아요",
+      "착용감좋아요",
+      "배송빨라요"
+    ],
+    "isBest": false,
+    "isSale": true,
+    "isNew": false,
+    "reviews": [
+      {
+        "id": 1,
+        "user": "고객1",
+        "rating": 5,
+        "date": "2026-06-20",
+        "content": "입문용으로 이만한 이어버드가 없습니다."
+      },
+      {
+        "id": 2,
+        "user": "고객2",
+        "rating": 4,
+        "date": "2026-06-14",
+        "content": "가격 대비 음질이 정말 훌륭해요."
+      },
+      {
+        "id": 3,
+        "user": "고객3",
+        "rating": 4,
+        "date": "2026-06-08",
+        "content": "무난한 블랙 컬러에 착용감도 편합니다."
+      }
+    ],
+    "detailFolder": "Product_Earbud_02"
+  },
+  {
+    "id": 120,
+    "name": "제플린 무선 스피커 골드 베이지",
+    "price": 899000,
+    "salePrice": 719200,
+    "discountRate": 20,
+    "image": "/images/product/Product_promotions_10.jpg",
+    "category": "프로모션",
+    "color": "골드 베이지",
+    "connectivity": "블루투스/Wi-Fi",
+    "description": "아이코닉한 디자인의 제플린 무선 스피커 골드 베이지 컬러입니다. 공간을 채우는 스테레오 사운드를 프로모션 특가로 만나보세요.",
+    "stock": 14,
+    "rating": 4.7,
+    "reviewCount": 22,
+    "reviewKeywords": [
+      "디자인예뻐요",
+      "음질좋아요",
+      "인테리어",
+      "할인특가"
+    ],
+    "isBest": true,
+    "isSale": true,
+    "isNew": false,
+    "reviews": [
+      {
+        "id": 1,
+        "user": "고객1",
+        "rating": 5,
+        "date": "2026-06-24",
+        "content": "거실 인테리어의 완성입니다. 소리도 웅장해요."
+      },
+      {
+        "id": 2,
+        "user": "고객2",
+        "rating": 5,
+        "date": "2026-06-16",
+        "content": "베이지 컬러가 어디에나 잘 어울립니다."
+      },
+      {
+        "id": 3,
+        "user": "고객3",
+        "rating": 4,
+        "date": "2026-06-11",
+        "content": "하나로 방 전체가 꽉 차는 사운드예요."
+      }
+    ],
+    "detailFolder": "Product_Wireless-Speaker_01"
+  },
+  {
+    "id": 121,
+    "name": "포메이션 플렉스 컴팩트 스피커",
+    "price": 459000,
+    "salePrice": 390150,
+    "discountRate": 15,
+    "image": "/images/product/Product_promotions_11.jpg",
+    "category": "프로모션",
+    "color": "블랙",
+    "connectivity": "블루투스/Wi-Fi",
+    "description": "작은 크기에 놀라운 사운드를 담은 포메이션 플렉스입니다. 멀티룸 연결을 지원하며 프로모션 기간 특가로 제공됩니다.",
+    "stock": 20,
+    "rating": 4.5,
+    "reviewCount": 18,
+    "reviewKeywords": [
+      "가성비좋아요",
+      "음질좋아요",
+      "컴팩트",
+      "멀티룸"
+    ],
+    "isBest": false,
+    "isSale": true,
+    "isNew": false,
+    "reviews": [
+      {
+        "id": 1,
+        "user": "고객1",
+        "rating": 5,
+        "date": "2026-06-18",
+        "content": "책상 위에 두기 딱 좋은 크기인데 소리는 대형급이에요."
+      },
+      {
+        "id": 2,
+        "user": "고객2",
+        "rating": 4,
+        "date": "2026-06-13",
+        "content": "멀티룸으로 두 대 연결해서 쓰는데 만족합니다."
+      },
+      {
+        "id": 3,
+        "user": "고객3",
+        "rating": 4,
+        "date": "2026-06-06",
+        "content": "심플한 디자인이라 어디든 잘 어울려요."
+      }
+    ],
+    "detailFolder": "Product_Wireless-Speaker_02"
+  },
+  {
+    "id": 122,
+    "name": "607 S3 북쉘프 스피커 블랙",
+    "price": 740000,
+    "salePrice": 592000,
+    "discountRate": 20,
+    "image": "/images/product/Product_promotions_12.jpg",
+    "category": "프로모션",
+    "color": "블랙",
+    "connectivity": "유선",
+    "description": "600 시리즈의 막내지만 실력은 진짜인 607 S3 북쉘프 스피커입니다. 티타늄 돔 트위터로 한층 선명해진 고음을 특가에 경험해보세요.",
+    "stock": 16,
+    "rating": 4.6,
+    "reviewCount": 20,
+    "reviewKeywords": [
+      "가성비좋아요",
+      "음질좋아요",
+      "입문추천",
+      "할인특가"
+    ],
+    "isBest": false,
+    "isSale": true,
+    "isNew": false,
+    "reviews": [
+      {
+        "id": 1,
+        "user": "고객1",
+        "rating": 5,
+        "date": "2026-06-22",
+        "content": "하이파이 입문으로 최고의 선택이었습니다."
+      },
+      {
+        "id": 2,
+        "user": "고객2",
+        "rating": 4,
+        "date": "2026-06-15",
+        "content": "작은 방에서 쓰기 딱 좋은 사이즈와 음량이에요."
+      },
+      {
+        "id": 3,
+        "user": "고객3",
+        "rating": 5,
+        "date": "2026-06-07",
+        "content": "고음이 정말 깨끗하게 들립니다."
+      }
+    ],
+    "detailFolder": "Product_Loudspeaker_02"
+  },
+  {
+    "id": 123,
+    "name": "606 S3 북쉘프 스피커 블랙",
+    "price": 990000,
+    "salePrice": 792000,
+    "discountRate": 20,
+    "image": "/images/product/Product_promotions_13.jpg",
+    "category": "프로모션",
+    "color": "블랙",
+    "connectivity": "유선",
+    "description": "더 큰 우퍼로 여유로운 저음을 들려주는 606 S3 북쉘프 스피커입니다. 거실 규모의 공간에서도 충분한 스케일의 사운드를 제공합니다.",
+    "stock": 12,
+    "rating": 4.7,
+    "reviewCount": 17,
+    "reviewKeywords": [
+      "음질좋아요",
+      "저음좋아요",
+      "가성비좋아요",
+      "할인특가"
+    ],
+    "isBest": false,
+    "isSale": true,
+    "isNew": false,
+    "reviews": [
+      {
+        "id": 1,
+        "user": "고객1",
+        "rating": 5,
+        "date": "2026-06-21",
+        "content": "607이랑 고민하다 606으로 왔는데 저음 차이가 확실해요."
+      },
+      {
+        "id": 2,
+        "user": "고객2",
+        "rating": 5,
+        "date": "2026-06-12",
+        "content": "거실에서 쓰기에 부족함이 없는 사운드입니다."
+      },
+      {
+        "id": 3,
+        "user": "고객3",
+        "rating": 4,
+        "date": "2026-06-05",
+        "content": "클래식 감상용으로 구입했는데 대만족입니다."
+      }
+    ],
+    "detailFolder": "Product_Loudspeaker_06"
+  },
+  {
+    "id": 124,
+    "name": "707 S3 북쉘프 스피커 모카",
+    "price": 1590000,
+    "salePrice": 1351500,
+    "discountRate": 15,
+    "image": "/images/product/Product_promotions_14.jpg",
+    "category": "프로모션",
+    "color": "모카",
+    "connectivity": "유선",
+    "description": "700 시리즈의 컴팩트한 실력자 707 S3입니다. 따뜻한 모카 우드 마감과 카본 돔 트위터의 정교한 사운드가 조화를 이룹니다.",
+    "stock": 10,
+    "rating": 4.8,
+    "reviewCount": 15,
+    "reviewKeywords": [
+      "음질좋아요",
+      "디자인예뻐요",
+      "우드마감",
+      "고급스러워요"
+    ],
+    "isBest": false,
+    "isSale": true,
+    "isNew": false,
+    "reviews": [
+      {
+        "id": 1,
+        "user": "고객1",
+        "rating": 5,
+        "date": "2026-06-23",
+        "content": "모카 우드 마감이 가구처럼 아름답습니다."
+      },
+      {
+        "id": 2,
+        "user": "고객2",
+        "rating": 5,
+        "date": "2026-06-14",
+        "content": "작지만 해상도가 정말 뛰어난 스피커예요."
+      },
+      {
+        "id": 3,
+        "user": "고객3",
+        "rating": 4,
+        "date": "2026-06-08",
+        "content": "보컬 표현력이 특히 인상적입니다."
+      }
+    ],
+    "detailFolder": "Product_Loudspeaker_04"
+  },
+  {
+    "id": 125,
+    "name": "705 S3 북쉘프 스피커 글로스 블랙",
+    "price": 3190000,
+    "salePrice": 2711500,
+    "discountRate": 15,
+    "image": "/images/product/Product_promotions_15.jpg",
+    "category": "프로모션",
+    "color": "글로스 블랙",
+    "connectivity": "유선",
+    "description": "캐비닛 위에 독립된 트위터를 얹은 705 S3입니다. 800 시리즈에서 물려받은 기술로 한 차원 높은 개방감과 스테이징을 선사합니다.",
+    "stock": 7,
+    "rating": 4.9,
+    "reviewCount": 11,
+    "reviewKeywords": [
+      "음질좋아요",
+      "하이엔드",
+      "고급스러워요",
+      "스테이징"
+    ],
+    "isBest": true,
+    "isSale": true,
+    "isNew": false,
+    "reviews": [
+      {
+        "id": 1,
+        "user": "고객1",
+        "rating": 5,
+        "date": "2026-06-24",
+        "content": "트위터 온 탑의 개방감은 들어봐야 압니다."
+      },
+      {
+        "id": 2,
+        "user": "고객2",
+        "rating": 5,
+        "date": "2026-06-17",
+        "content": "글로스 블랙 마감이 피아노처럼 아름다워요."
+      },
+      {
+        "id": 3,
+        "user": "고객3",
+        "rating": 5,
+        "date": "2026-06-09",
+        "content": "북쉘프의 끝판왕이라 불릴 만합니다."
+      }
+    ],
+    "detailFolder": "Product_Loudspeaker_01"
+  },
+  {
+    "id": 126,
+    "name": "705 S3 시그니처 미드나잇 블루 메탈릭",
+    "price": 3890000,
+    "salePrice": 3501000,
+    "discountRate": 10,
+    "image": "/images/product/Product_promotions_16.jpg",
+    "category": "프로모션",
+    "color": "미드나잇 블루 메탈릭",
+    "connectivity": "유선",
+    "description": "705 S3의 시그니처 스페셜 에디션입니다. 깊은 미드나잇 블루 메탈릭 마감과 골드 디테일, 업그레이드된 크로스오버로 완성도를 높였습니다.",
+    "stock": 4,
+    "rating": 5,
+    "reviewCount": 8,
+    "reviewKeywords": [
+      "한정판",
+      "하이엔드",
+      "음질좋아요",
+      "고급스러워요"
+    ],
+    "isBest": true,
+    "isSale": true,
+    "isNew": true,
+    "reviews": [
+      {
+        "id": 1,
+        "user": "고객1",
+        "rating": 5,
+        "date": "2026-06-25",
+        "content": "블루 메탈릭에 골드 트림, 예술품 그 자체입니다."
+      },
+      {
+        "id": 2,
+        "user": "고객2",
+        "rating": 5,
+        "date": "2026-06-18",
+        "content": "시그니처는 소리부터 다릅니다. 후회 없는 선택."
+      },
+      {
+        "id": 3,
+        "user": "고객3",
+        "rating": 5,
+        "date": "2026-06-10",
+        "content": "한정판 수량이 얼마 없다니 서두르세요."
+      }
+    ],
+    "detailFolder": "Product_Loudspeaker_05"
+  },
+  {
+    "id": 127,
+    "name": "805 D4 다이아몬드 시리즈 글로스 블랙",
+    "price": 9900000,
+    "salePrice": 8910000,
+    "discountRate": 10,
+    "image": "/images/product/Product_promotions_17.jpg",
+    "category": "프로모션",
+    "color": "글로스 블랙",
+    "connectivity": "유선",
+    "description": "다이아몬드 돔 트위터를 탑재한 800 시리즈의 북쉘프 805 D4입니다. 스튜디오 레퍼런스급 해상도와 정확성을 집에서 경험할 수 있습니다.",
+    "stock": 3,
+    "rating": 5,
+    "reviewCount": 9,
+    "reviewKeywords": [
+      "하이엔드",
+      "음질좋아요",
+      "레퍼런스",
+      "고급스러워요"
+    ],
+    "isBest": true,
+    "isSale": true,
+    "isNew": false,
+    "reviews": [
+      {
+        "id": 1,
+        "user": "고객1",
+        "rating": 5,
+        "date": "2026-06-22",
+        "content": "다이아몬드 트위터의 해상도는 차원이 다릅니다."
+      },
+      {
+        "id": 2,
+        "user": "고객2",
+        "rating": 5,
+        "date": "2026-06-13",
+        "content": "평생 쓸 스피커로 장만했습니다. 최고예요."
+      },
+      {
+        "id": 3,
+        "user": "고객3",
+        "rating": 5,
+        "date": "2026-06-04",
+        "content": "곡선형 캐비닛의 만듦새가 경이롭습니다."
+      }
+    ],
+    "detailFolder": "Product_Loudspeaker_03"
+  }
+]

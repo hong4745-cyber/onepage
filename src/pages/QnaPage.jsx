@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faAnglesLeft, faAnglesRight, faLock, faThumbtack } from '@fortawesome/free-solid-svg-icons'
+import { faLock, faThumbtack } from '@fortawesome/free-solid-svg-icons'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import BoardTabs from '../components/BoardTabs'
@@ -73,16 +73,8 @@ export default function QnaPage() {
 
         {/* 페이지네이션 */}
         <div style={{ padding: '40px 20px 8px' }}>
-          <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '20px' }}>
+          <div style={{ display: 'flex', justifyContent: 'center' }}>
             <span style={{ fontSize: '12px', fontWeight: '700', color: '#111', border: '1px solid #111', borderRadius: '4px', padding: '6px 14px' }}>1</span>
-          </div>
-          <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-            <button style={{ background: 'none', border: 'none', fontSize: '13px', color: '#bbb', cursor: 'pointer' }}>
-              <FontAwesomeIcon icon={faAnglesLeft} />
-            </button>
-            <button style={{ background: 'none', border: 'none', fontSize: '13px', color: '#bbb', cursor: 'pointer' }}>
-              <FontAwesomeIcon icon={faAnglesRight} />
-            </button>
           </div>
         </div>
 

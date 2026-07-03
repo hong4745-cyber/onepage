@@ -1,51 +1,64 @@
 import { useState } from 'react'
-import { useNavigate, useLocation } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import logoImg from '../assets/images/0_logo.png'
 import SignupPopup from './SignupPopup'
-import VerticalAccordion from './VerticalAccordion'
+import { InteractiveImageAccordion } from './ui/interactive-image-accordion'
 
-const MENU = [
+import imgBrand   from '../assets/images/bg/main_Background.png'
+import imgProduct from '../assets/images/Product/Product_Headphone_01.jpg'
+import imgSupport from '../assets/images/Product/Product_Wireless-Speaker_01.jpg'
+import imgMy      from '../assets/images/Product/Product_Earbud_01.png'
+
+const ACCORDION_ITEMS = [
   {
-    section: '바워스앤윌킨스',
+    id: 1,
+    title: '제품구매하기',
+    imageUrl: imgProduct,
     items: [
-      { label: '회사소개', path: '/company' },
-      { label: 'FAQ', path: '/faq' },
+      { label: '신제품',        path: '/products?filter=new' },
+      { label: '맥라렌 에디션',  path: '/special' },
+      { label: '헤드폰',        path: '/products?category=헤드폰' },
+      { label: '이어버드',      path: '/products?category=이어버드' },
+      { label: '무선 스피커',   path: '/products?category=무선스피커' },
+      { label: '스피커',        path: '/products?category=라우드스피커' },
+      { label: '액세서리',      path: '/products?category=액세서리' },
+      { label: '프로모션',      path: '/promotions' },
     ],
   },
   {
-    section: '제품구매하기',
-    items: [
-      { label: '신제품', path: '/products?filter=new' },
-      { label: '맥라렌 에디션', path: '/special' },
-      { label: '헤드폰', path: '/products?category=헤드폰' },
-      { label: '이어버드', path: '/products?category=이어버드' },
-      { label: '무선 스피커', path: '/products?category=무선스피커' },
-      { label: '스피커', path: '/products?category=라우드스피커' },
-      { label: '액세서리', path: '/products?category=액세서리' },
-      { label: '프로모션', path: '/promotions' },
-    ],
-  },
-  {
-    section: '고객지원',
+    id: 2,
+    title: '고객지원',
+    imageUrl: imgSupport,
     items: [
       { label: '공지사항', path: '/notice' },
-      { label: '리뷰', path: '/reviews' },
+      { label: '리뷰',     path: '/reviews' },
       { label: '상품문의', path: '/qna' },
-      { label: '이벤트', path: '/events' },
+      { label: '이벤트',   path: '/events' },
     ],
   },
   {
-    section: '나의쇼핑',
+    id: 3,
+    title: '나의쇼핑',
+    imageUrl: imgMy,
     items: [
-      { label: '로그인', path: '/login' },
+      { label: '로그인',   path: '/login' },
       { label: '회원가입', path: '/signup' },
+      { label: '나의쇼핑', path: '/mypage' },
+    ],
+  },
+  {
+    id: 4,
+    title: 'B&W 소개',
+    imageUrl: imgBrand,
+    items: [
+      { label: '회사소개', path: '/company' },
+      { label: 'FAQ',     path: '/faq' },
     ],
   },
 ]
 
 export default function SidebarAccordion() {
   const navigate = useNavigate()
-  const { pathname } = useLocation()
   const [signupOpen, setSignupOpen] = useState(false)
 
   return (
@@ -59,16 +72,18 @@ export default function SidebarAccordion() {
         />
         <p className="sidebar-tagline">특별하고 다양한 혜택 받으세요!</p>
         <div className="sidebar-auth-toolbar" role="toolbar" aria-label="회원 메뉴">
-          <button className="sidebar-auth-btn" onClick={() => setSignupOpen(true)}>
+          <button className="sidebar-auth-btn cursor-target" onClick={() => setSignupOpen(true)}>
             회원가입
           </button>
-          <button className="sidebar-auth-btn" onClick={() => navigate('/login')}>
+          <button className="sidebar-auth-btn cursor-target" onClick={() => navigate('/login')}>
             로그인
           </button>
         </div>
       </div>
 
-      <VerticalAccordion />
+      <div style={{ padding: '14px 12px', borderTop: '1px solid #ebebeb' }}>
+        <InteractiveImageAccordion items={ACCORDION_ITEMS} />
+      </div>
 
       {signupOpen && (
         <SignupPopup

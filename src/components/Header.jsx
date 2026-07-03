@@ -141,18 +141,16 @@ export default function Header({ showBack = false, title }) {
           </button>
           <button className="icon-btn" onClick={() => navigate('/cart')} style={{ position: 'relative' }}>
             <img src={iconCart} alt="장바구니" style={{ width: '28px', height: '32px', objectFit: 'contain', filter: transparent ? 'brightness(0) invert(1)' : 'none' }} />
-            {totalCount > 0 && (
-              <span style={{
-                position: 'absolute', top: '-1px', right: '-4px',
-                minWidth: '20px', height: '20px', borderRadius: '10px',
-                background: 'var(--c-accent)', color: '#fff',
-                fontSize: '9px', fontWeight: '700', display: 'flex',
-                alignItems: 'center', justifyContent: 'center', padding: '0 3px',
-                lineHeight: 1,
-              }}>
-                {totalCount > 99 ? '99+' : totalCount}
-              </span>
-            )}
+            <span style={{
+              position: 'absolute', top: '-1px', right: '-4px',
+              minWidth: '20px', height: '20px', borderRadius: '10px',
+              background: 'var(--c-accent)', color: '#fff',
+              fontSize: '9px', fontWeight: '700', display: 'flex',
+              alignItems: 'center', justifyContent: 'center', padding: '0 3px',
+              lineHeight: 1,
+            }}>
+              {totalCount > 99 ? '99+' : totalCount}
+            </span>
           </button>
         </div>
       </div>

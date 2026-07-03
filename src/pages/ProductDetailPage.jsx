@@ -2,24 +2,41 @@ import { useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { useCart } from '../context/CartContext'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faStar, faHeart as faHeartSolid, faPlus, faMinus } from '@fortawesome/free-solid-svg-icons'
+import { faStar, faHeart as faHeartSolid, faPlus, faMinus, faXmark } from '@fortawesome/free-solid-svg-icons'
 import { faStar as faStarEmpty, faHeart } from '@fortawesome/free-regular-svg-icons'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import FilterChipsBar from '../components/FilterChipsBar'
 import ProductCard from '../components/ProductCard'
 import products from '../products.json'
+import specialProducts from '../specialProducts.json'
 import { resolveImage, resolveDetailImages } from '../utils/imageMap'
+
+const allProducts = [...products, ...specialProducts]
 
 export default function ProductDetailPage() {
   const { id } = useParams()
   const navigate = useNavigate()
-  const product = products.find(p => p.id === Number(id))
+  const product = allProducts.find(p => p.id === Number(id))
 
   const { addToCart } = useCart()
   const [activeImg, setActiveImg] = useState(0)
   const [openReview, setOpenReview] = useState(false)
   const [added, setAdded] = useState(false)
+  const [imgPopup, setImgPopup] = useState(false)
+  const [zoom, setZoom] = useState({ active: false, x: 50, y: 50 })
+
+  function handleZoomMove(e) {
+    const rect = e.currentTarget.getBoundingClientRect()
+    const x = ((e.clientX - rect.left) / rect.width) * 100
+    const y = ((e.clientY - rect.top) / rect.height) * 100
+    setZoom({ active: true, x, y })
+  }
+
+  function closeImgPopup() {
+    setImgPopup(false)
+    setZoom({ active: false, x: 50, y: 50 })
+  }
 
   function handleAddCart() {
     addToCart(product)
@@ -47,8 +64,10 @@ export default function ProductDetailPage() {
   }
 
   const mainImgSrc = resolveImage(product.image)
-  const imgSlides = [mainImgSrc, ...resolveDetailImages(product.image).slice(0, 3)]
-  const related = products.filter(p => p.category === product.category && p.id !== product.id).slice(0, 4)
+  const detailImgs = resolveDetailImages(product.image, product.detailFolder)
+  // detail 폴더에 메인 컷 포함 슬라이드 전체가 들어 있으므로 그대로 사용, 없으면 메인 이미지만 표시
+  const imgSlides = detailImgs.length > 0 ? detailImgs.slice(0, 4) : [mainImgSrc]
+  const related = allProducts.filter(p => p.category === product.category && p.id !== product.id).slice(0, 4)
 
   return (
     <div className="page-root">
@@ -58,7 +77,10 @@ export default function ProductDetailPage() {
 
         {/* Image Slider */}
         <div style={{ position: 'relative', background: '#f5f5f5' }}>
-          <div style={{ height: '360px', overflow: 'hidden' }}>
+          <div
+            style={{ height: '360px', overflow: 'hidden', cursor: 'zoom-in' }}
+            onClick={() => setImgPopup(true)}
+          >
             <img
               src={imgSlides[activeImg]}
               alt={product.name}
@@ -215,6 +237,54 @@ export default function ProductDetailPage() {
           {added ? '✓ 담겼습니다' : '장바구니 담기'}
         </button>
       </div>
+      {/* Image Popup */}
+      {imgPopup && (
+        <div
+          onClick={closeImgPopup}
+          style={{
+            position: 'fixed', inset: 0, zIndex: 1000,
+            background: 'rgba(0, 0, 0, 0.85)',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            cursor: 'zoom-out', overflow: 'hidden',
+          }}
+        >
+          <button
+            onClick={closeImgPopup}
+            style={{
+              position: 'absolute', top: '16px', right: '16px', zIndex: 1,
+              width: '40px', height: '40px', borderRadius: '50%',
+              border: 'none', background: 'rgba(255, 255, 255, 0.15)',
+              color: '#fff', fontSize: '20px', cursor: 'pointer',
+            }}
+          >
+            <FontAwesomeIcon icon={faXmark} />
+          </button>
+          {/* 확대 시 이미지가 프레임 밖으로 넘치지 않도록 감싸는 래퍼 */}
+          <div
+            onClick={e => e.stopPropagation()}
+            onMouseMove={handleZoomMove}
+            onMouseLeave={() => setZoom({ active: false, x: 50, y: 50 })}
+            style={{
+              maxWidth: '92%', maxHeight: '88%',
+              borderRadius: '8px', overflow: 'hidden',
+              cursor: 'zoom-in',
+            }}
+          >
+            <img
+              src={imgSlides[activeImg]}
+              alt={product.name}
+              style={{
+                display: 'block', maxWidth: '100%', maxHeight: '88vh',
+                objectFit: 'contain', background: '#f5f5f5',
+                transform: zoom.active ? 'scale(2.5)' : 'scale(1)',
+                transformOrigin: `${zoom.x}% ${zoom.y}%`,
+                transition: 'transform 0.25s ease',
+              }}
+            />
+          </div>
+        </div>
+      )}
+
       <Footer />
     </div>
   )

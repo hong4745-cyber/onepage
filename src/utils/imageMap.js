@@ -8,11 +8,17 @@ for (const [path, mod] of Object.entries(modules)) {
 
 const detailModules = import.meta.glob('../assets/images/Product/detail/*/*.{jpg,png,JPG,PNG}', { eager: true })
 
-export function resolveDetailImages(jsonPath) {
-  if (!jsonPath) return []
-  const folder = jsonPath.split('/').pop().replace(/\.[^.]+$/, '')
+export function resolveDetailImages(jsonPath, folderOverride) {
+  if (!jsonPath && !folderOverride) return []
+  // detailFolder가 지정된 제품(맥라렌/프로모션 등)은 기존 폴더를 재사용
+  const folder = folderOverride || jsonPath.split('/').pop().replace(/\.[^.]+$/, '')
   return Object.entries(detailModules)
-    .filter(([path]) => path.includes(`/detail/${folder}/`))
+    .filter(([path]) => {
+      if (!path.includes(`/detail/${folder}/`)) return false
+      // 메인 사진과 동일한 파일(폴더명과 같은 이름)은 상세 컷에서 제외
+      const name = path.split('/').pop().replace(/\.[^.]+$/, '')
+      return name !== folder
+    })
     .sort(([a], [b]) => a.localeCompare(b, undefined, { numeric: true }))
     .map(([, mod]) => mod.default)
 }

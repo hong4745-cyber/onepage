@@ -23,6 +23,9 @@ import WishlistPage from './pages/WishlistPage'
 import CartPage from './pages/CartPage'
 import CheckoutPage from './pages/CheckoutPage'
 import OrderCompletePage from './pages/OrderCompletePage'
+import SuccessPage from './pages/SuccessPage'
+import MyOrdersPage from './pages/MyOrdersPage'
+import CouponsPage from './pages/CouponsPage'
 import './App.css'
 
 export default function App() {
@@ -52,7 +55,10 @@ export default function App() {
           <Route path="/cart" element={<CartPage />} />
           <Route path="/checkout" element={<CheckoutPage />} />
           <Route path="/order-complete" element={<OrderCompletePage />} />
+          <Route path="/success" element={<SuccessPage />} />
           <Route path="/mypage" element={<MyPage />} />
+          <Route path="/orders" element={<MyOrdersPage />} />
+          <Route path="/coupons" element={<CouponsPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Layout>
