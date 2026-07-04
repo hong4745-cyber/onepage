@@ -7,7 +7,12 @@
     "discountRate": 10,
     "image": "/images/product/Product_Headphone_01.jpg",
     "category": "헤드폰",
-    "color": "블랙",
+    "colors": [
+      {
+        "name": "블랙",
+        "hex": "#1a1a1a"
+      }
+    ],
     "connectivity": "블루투스",
     "description": "오버이어 헤드폰 클래식 블랙 상품입니다. 정교한 사운드 튜닝과 견고한 마감으로 일상과 작업 모두에서 만족스러운 청음 경험을 제공합니다.",
     "stock": 30,
@@ -54,7 +59,12 @@
     "discountRate": 10,
     "image": "/images/product/Product_Headphone_02.png",
     "category": "헤드폰",
-    "color": "화이트",
+    "colors": [
+      {
+        "name": "화이트",
+        "hex": "#f0efeb"
+      }
+    ],
     "connectivity": "블루투스",
     "description": "노이즈캔슬링 헤드폰 PX9 상품입니다. 정교한 사운드 튜닝과 견고한 마감으로 일상과 작업 모두에서 만족스러운 청음 경험을 제공합니다.",
     "stock": 33,
@@ -107,7 +117,12 @@
     "discountRate": 10,
     "image": "/images/product/Product_Headphone_03.png",
     "category": "헤드폰",
-    "color": "그레이",
+    "colors": [
+      {
+        "name": "그레이",
+        "hex": "#9a9a9a"
+      }
+    ],
     "connectivity": "블루투스",
     "description": "무선 헤드폰 토프 X10 상품입니다. 정교한 사운드 튜닝과 견고한 마감으로 일상과 작업 모두에서 만족스러운 청음 경험을 제공합니다.",
     "stock": 36,
@@ -154,7 +169,12 @@
     "discountRate": 0,
     "image": "/images/product/Product_Headphone_04.png",
     "category": "헤드폰",
-    "color": "탄(브라운)",
+    "colors": [
+      {
+        "name": "탄(브라운)",
+        "hex": "#8a6a4a"
+      }
+    ],
     "connectivity": "블루투스",
     "description": "스튜디오 모니터 헤드폰 D9 상품입니다. 정교한 사운드 튜닝과 견고한 마감으로 일상과 작업 모두에서 만족스러운 청음 경험을 제공합니다.",
     "stock": 39,
@@ -201,7 +221,12 @@
     "discountRate": 10,
     "image": "/images/product/Product_Headphone_05.png",
     "category": "헤드폰",
-    "color": "네이비",
+    "colors": [
+      {
+        "name": "네이비",
+        "hex": "#1e2a4a"
+      }
+    ],
     "connectivity": "블루투스",
     "description": "휴대용 폴딩 헤드폰 컴팩트 상품입니다. 정교한 사운드 튜닝과 견고한 마감으로 일상과 작업 모두에서 만족스러운 청음 경험을 제공합니다.",
     "stock": 42,
@@ -248,7 +273,12 @@
     "discountRate": 10,
     "image": "/images/product/Product_Earbud_01.png",
     "category": "이어버드",
-    "color": "블랙",
+    "colors": [
+      {
+        "name": "블랙",
+        "hex": "#1a1a1a"
+      }
+    ],
     "connectivity": "블루투스",
     "description": "트루 와이어리스 이어버드 핏 상품입니다. 정교한 사운드 튜닝과 견고한 마감으로 일상과 작업 모두에서 만족스러운 청음 경험을 제공합니다.",
     "stock": 45,
@@ -295,7 +325,12 @@
     "discountRate": 10,
     "image": "/images/product/Product_Earbud_02.png",
     "category": "이어버드",
-    "color": "화이트",
+    "colors": [
+      {
+        "name": "화이트",
+        "hex": "#f0efeb"
+      }
+    ],
     "connectivity": "블루투스",
     "description": "노이즈캔슬링 이어버드 프로 상품입니다. 정교한 사운드 튜닝과 견고한 마감으로 일상과 작업 모두에서 만족스러운 청음 경험을 제공합니다.",
     "stock": 48,
@@ -342,7 +377,12 @@
     "discountRate": 10,
     "image": "/images/product/Product_Earbud_03.jpg",
     "category": "이어버드",
-    "color": "그레이",
+    "colors": [
+      {
+        "name": "그레이",
+        "hex": "#9a9a9a"
+      }
+    ],
     "connectivity": "블루투스",
     "description": "스포츠 핸드 이어버드 상품입니다. 정교한 사운드 튜닝과 견고한 마감으로 일상과 작업 모두에서 만족스러운 청음 경험을 제공합니다.",
     "stock": 51,
@@ -389,7 +429,12 @@
     "discountRate": 0,
     "image": "/images/product/Product_Earbud_04.png",
     "category": "이어버드",
-    "color": "탄(브라운)",
+    "colors": [
+      {
+        "name": "탄(브라운)",
+        "hex": "#8a6a4a"
+      }
+    ],
     "connectivity": "블루투스",
     "description": "프리미엄 이어버드 누드펄 상품입니다. 정교한 사운드 튜닝과 견고한 마감으로 일상과 작업 모두에서 만족스러운 청음 경험을 제공합니다.",
     "stock": 54,
@@ -436,7 +481,12 @@
     "discountRate": 10,
     "image": "/images/product/Product_Wireless-Speaker_01.jpg",
     "category": "무선스피커",
-    "color": "네이비",
+    "colors": [
+      {
+        "name": "네이비",
+        "hex": "#1e2a4a"
+      }
+    ],
     "connectivity": "블루투스/Wi-Fi",
     "description": "베로 블루투스 룸 Y5 상품입니다. 정교한 사운드 튜닝과 견고한 마감으로 일상과 작업 모두에서 만족스러운 청음 경험을 제공합니다.",
     "stock": 57,
@@ -483,7 +533,12 @@
     "discountRate": 10,
     "image": "/images/product/Product_Wireless-Speaker_02.jpg",
     "category": "무선스피커",
-    "color": "블랙",
+    "colors": [
+      {
+        "name": "블랙",
+        "hex": "#1a1a1a"
+      }
+    ],
     "connectivity": "블루투스/Wi-Fi",
     "description": "포터블 무선 스피커 미니 상품입니다. 정교한 사운드 튜닝과 견고한 마감으로 일상과 작업 모두에서 만족스러운 청음 경험을 제공합니다.",
     "stock": 60,
@@ -530,7 +585,12 @@
     "discountRate": 0,
     "image": "/images/product/Product_Loudspeaker_01.jpg",
     "category": "라우드스피커",
-    "color": "화이트",
+    "colors": [
+      {
+        "name": "화이트",
+        "hex": "#f0efeb"
+      }
+    ],
     "connectivity": "유선",
     "description": "북셀프 라우드스피커 클래식 상품입니다. 정교한 사운드 튜닝과 견고한 마감으로 일상과 작업 모두에서 만족스러운 청음 경험을 제공합니다.",
     "stock": 63,
@@ -577,7 +637,12 @@
     "discountRate": 0,
     "image": "/images/product/Product_Loudspeaker_02.jpg",
     "category": "라우드스피커",
-    "color": "그레이",
+    "colors": [
+      {
+        "name": "그레이",
+        "hex": "#9a9a9a"
+      }
+    ],
     "connectivity": "유선",
     "description": "플로어스탠딩 스피커 702 상품입니다. 정교한 사운드 튜닝과 견고한 마감으로 일상과 작업 모두에서 만족스러운 청음 경험을 제공합니다.",
     "stock": 66,
@@ -624,7 +689,12 @@
     "discountRate": 0,
     "image": "/images/product/Product_Loudspeaker_03.jpg",
     "category": "라우드스피커",
-    "color": "탄(브라운)",
+    "colors": [
+      {
+        "name": "탄(브라운)",
+        "hex": "#8a6a4a"
+      }
+    ],
     "connectivity": "유선",
     "description": "센터 채널 스피커 HTM 상품입니다. 정교한 사운드 튜닝과 견고한 마감으로 일상과 작업 모두에서 만족스러운 청음 경험을 제공합니다.",
     "stock": 69,
@@ -671,7 +741,12 @@
     "discountRate": 10,
     "image": "/images/product/Product_Loudspeaker_04.jpg",
     "category": "라우드스피커",
-    "color": "네이비",
+    "colors": [
+      {
+        "name": "네이비",
+        "hex": "#1e2a4a"
+      }
+    ],
     "connectivity": "유선",
     "description": "북셀프 라우드 브라이트 상품입니다. 정교한 사운드 튜닝과 견고한 마감으로 일상과 작업 모두에서 만족스러운 청음 경험을 제공합니다.",
     "stock": 72,
@@ -718,7 +793,12 @@
     "discountRate": 0,
     "image": "/images/product/Product_Loudspeaker_05.jpg",
     "category": "라우드스피커",
-    "color": "블랙",
+    "colors": [
+      {
+        "name": "블랙",
+        "hex": "#1a1a1a"
+      }
+    ],
     "connectivity": "유선",
     "description": "홈시네마 5.1채널 패키지 상품입니다. 정교한 사운드 튜닝과 견고한 마감으로 일상과 작업 모두에서 만족스러운 청음 경험을 제공합니다.",
     "stock": 75,
@@ -765,7 +845,12 @@
     "discountRate": 0,
     "image": "/images/product/Product_Loudspeaker_06.jpg",
     "category": "라우드스피커",
-    "color": "화이트",
+    "colors": [
+      {
+        "name": "화이트",
+        "hex": "#f0efeb"
+      }
+    ],
     "connectivity": "유선",
     "description": "컴팩트 스탠드 스피커 상품입니다. 정교한 사운드 튜닝과 견고한 마감으로 일상과 작업 모두에서 만족스러운 청음 경험을 제공합니다.",
     "stock": 78,
@@ -812,7 +897,12 @@
     "discountRate": 0,
     "image": "/images/product/Product_Loudspeaker_07.jpg",
     "category": "라우드스피커",
-    "color": "그레이",
+    "colors": [
+      {
+        "name": "그레이",
+        "hex": "#9a9a9a"
+      }
+    ],
     "connectivity": "유선",
     "description": "스튜디오 모니터 스피커 페어 상품입니다. 정교한 사운드 튜닝과 견고한 마감으로 일상과 작업 모두에서 만족스러운 청음 경험을 제공합니다.",
     "stock": 81,
@@ -859,7 +949,12 @@
     "discountRate": 0,
     "image": "/images/product/Product_Speaker-stands_01.jpg",
     "category": "액세서리",
-    "color": "탄(브라운)",
+    "colors": [
+      {
+        "name": "탄(브라운)",
+        "hex": "#8a6a4a"
+      }
+    ],
     "connectivity": "-",
     "description": "스피커 스탠드 FS-700 상품입니다. 정교한 사운드 튜닝과 견고한 마감으로 일상과 작업 모두에서 만족스러운 청음 경험을 제공합니다.",
     "stock": 84,
@@ -906,7 +1001,12 @@
     "discountRate": 10,
     "image": "/images/product/Product_Speaker-stands_02.jpg",
     "category": "액세서리",
-    "color": "네이비",
+    "colors": [
+      {
+        "name": "네이비",
+        "hex": "#1e2a4a"
+      }
+    ],
     "connectivity": "-",
     "description": "스피커 스탠드 컴팩트형 상품입니다. 정교한 사운드 튜닝과 견고한 마감으로 일상과 작업 모두에서 만족스러운 청음 경험을 제공합니다.",
     "stock": 87,
@@ -953,7 +1053,12 @@
     "discountRate": 0,
     "image": "/images/product/Product_Speaker-stands_03.jpg",
     "category": "액세서리",
-    "color": "블랙",
+    "colors": [
+      {
+        "name": "블랙",
+        "hex": "#1a1a1a"
+      }
+    ],
     "connectivity": "-",
     "description": "스피커 스탠드 헤비듀티 상품입니다. 정교한 사운드 튜닝과 견고한 마감으로 일상과 작업 모두에서 만족스러운 청음 경험을 제공합니다.",
     "stock": 90,
@@ -1000,7 +1105,12 @@
     "discountRate": 0,
     "image": "/images/product/Product_Speaker-stands_04.jpg",
     "category": "액세서리",
-    "color": "화이트",
+    "colors": [
+      {
+        "name": "화이트",
+        "hex": "#f0efeb"
+      }
+    ],
     "connectivity": "-",
     "description": "스피커 스탠드 미니멀 상품입니다. 정교한 사운드 튜닝과 견고한 마감으로 일상과 작업 모두에서 만족스러운 청음 경험을 제공합니다.",
     "stock": 93,

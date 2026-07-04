@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import SidebarAccordion from './SidebarAccordion'
 import BottomNav from './BottomNav'
@@ -9,27 +9,49 @@ import MagicRings from './MagicRings'
 import ThemeCompareSlider from './ThemeCompareSlider'
 import { useMenu } from '../context/MenuContext'
 
+const SIDEBAR_WIDTH = 400
+const RING_BASE_OFFSET_X = 0.1
+
 export default function Layout({ children }) {
   const { overlayOpen, setOverlayOpen } = useMenu()
   const { pathname } = useLocation()
+  const [viewportWidth, setViewportWidth] = useState(() => window.innerWidth)
 
   useEffect(() => {
     setOverlayOpen(false)
   }, [pathname])
 
   useEffect(() => {
+    const onResize = () => setViewportWidth(window.innerWidth)
+    window.addEventListener('resize', onResize)
+    return () => window.removeEventListener('resize', onResize)
+  }, [])
+
+  const handleBgClick = () => {
+    setOverlayOpen(o => !o)
+  }
+
+  useEffect(() => {
     document.body.style.backgroundImage = ''
   }, [])
 
+  useEffect(() => {
+    document.body.classList.toggle('sidebar-open', overlayOpen)
+    return () => document.body.classList.remove('sidebar-open')
+  }, [overlayOpen])
+
   const hideChrome = pathname === '/login'
+  const isDesktop = viewportWidth > 600
+  const sidebarShiftFrac = overlayOpen && isDesktop ? (SIDEBAR_WIDTH / 2) / viewportWidth : 0
+  const ringOffsetX = RING_BASE_OFFSET_X + sidebarShiftFrac
 
   return (
     <div className="layout-wrapper">
       <TargetCursor targetSelector=".cursor-target" spinDuration={2} cursorColor="#ffffff" />
       <SidebarAccordion />
       <div className="layout-right-area">
-        {/* MagicRings 배경 */}
-        <div className="magic-rings-bg">
+        {/* MagicRings 배경 — 클릭하면 사이드바가 열림 */}
+        <div className="magic-rings-bg" onClick={handleBgClick}>
           <MagicRings
             color="#cccccc"
             colorTwo="#f0f0f0"
@@ -52,6 +74,7 @@ export default function Layout({ children }) {
             hoverScale={1.15}
             parallax={0.04}
             clickBurst={true}
+            centerOffsetX={ringOffsetX}
           />
         </div>
 

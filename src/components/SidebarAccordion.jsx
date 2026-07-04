@@ -97,7 +97,7 @@ export default function SidebarAccordion() {
         </div>
       </div>
 
-      <div style={{ padding: '12px 30px 35px' }}>
+      <div style={{ padding: '36px 30px 35px' }}>
         <InteractiveImageAccordion items={ACCORDION_ITEMS} />
       </div>
 

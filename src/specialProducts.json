@@ -7,7 +7,16 @@
     "discountRate": 10,
     "image": "/images/product/Product_mcLaren edition_01.jpg",
     "category": "맥라렌 에디션",
-    "color": "갤버나이즈드 그레이/파파야 오렌지",
+    "colors": [
+      {
+        "name": "갤버나이즈드 그레이",
+        "hex": "#8a8a8a"
+      },
+      {
+        "name": "파파야 오렌지",
+        "hex": "#e87722"
+      }
+    ],
     "connectivity": "블루투스",
     "description": "맥라렌과의 협업으로 탄생한 Pi8 맥라렌 에디션 이어버드입니다. 레이스카에서 영감을 받은 컬러와 디테일, 그리고 플래그십 사운드를 그대로 담았습니다.",
     "stock": 15,
@@ -55,7 +64,12 @@
     "discountRate": 10,
     "image": "/images/product/Product_mcLaren edition_02.jpg",
     "category": "맥라렌 에디션",
-    "color": "파파야 오렌지",
+    "colors": [
+      {
+        "name": "파파야 오렌지",
+        "hex": "#e87722"
+      }
+    ],
     "connectivity": "블루투스",
     "description": "맥라렌의 상징적인 파파야 오렌지 컬러를 입은 Px8 맥라렌 에디션 헤드폰입니다. 나파 가죽과 알루미늄 마감, 카본 콘 드라이버로 플래그십의 품격을 완성했습니다.",
     "stock": 8,
@@ -103,7 +117,12 @@
     "discountRate": 10,
     "image": "/images/product/Product_mcLaren edition_03.jpg",
     "category": "맥라렌 에디션",
-    "color": "갤버나이즈드 그레이",
+    "colors": [
+      {
+        "name": "갤버나이즈드 그레이",
+        "hex": "#8a8a8a"
+      }
+    ],
     "connectivity": "블루투스",
     "description": "차분한 갤버나이즈드 그레이 바디에 파파야 오렌지 포인트를 더한 Px8 맥라렌 에디션입니다. 절제된 레이싱 감성과 플래그십 사운드를 동시에 즐길 수 있습니다.",
     "stock": 10,
@@ -151,7 +170,12 @@
     "discountRate": 20,
     "image": "/images/product/Product_promotions_01.jpg",
     "category": "프로모션",
-    "color": "소프트 골드",
+    "colors": [
+      {
+        "name": "소프트 골드",
+        "hex": "#c9a86a"
+      }
+    ],
     "connectivity": "블루투스",
     "description": "Px8의 우아한 소프트 골드 컬러 프로모션 상품입니다. 나파 가죽 헤드밴드와 카본 콘 드라이버가 선사하는 플래그십 사운드를 특별한 가격에 만나보세요.",
     "stock": 12,
@@ -199,7 +223,12 @@
     "discountRate": 15,
     "image": "/images/product/Product_promotions_02.jpg",
     "category": "프로모션",
-    "color": "파파야 오렌지",
+    "colors": [
+      {
+        "name": "파파야 오렌지",
+        "hex": "#e87722"
+      }
+    ],
     "connectivity": "블루투스",
     "description": "맥라렌 컬러가 돋보이는 Px8 맥라렌 에디션을 프로모션 특가로 제공합니다. 한정 수량으로 조기 품절될 수 있습니다.",
     "stock": 5,
@@ -247,7 +276,12 @@
     "discountRate": 25,
     "image": "/images/product/Product_promotions_03.jpg",
     "category": "프로모션",
-    "color": "클라우드 그레이",
+    "colors": [
+      {
+        "name": "클라우드 그레이",
+        "hex": "#cfd2d4"
+      }
+    ],
     "connectivity": "블루투스",
     "description": "밝고 부드러운 클라우드 그레이 컬러의 Px7 S2e입니다. 업그레이드된 DSP 튜닝과 뛰어난 노이즈캔슬링을 합리적인 프로모션 가격에 만나보세요.",
     "stock": 25,
@@ -295,7 +329,12 @@
     "discountRate": 25,
     "image": "/images/product/Product_promotions_04.jpg",
     "category": "프로모션",
-    "color": "버건디",
+    "colors": [
+      {
+        "name": "버건디",
+        "hex": "#7a2e3e"
+      }
+    ],
     "connectivity": "블루투스",
     "description": "깊고 세련된 버건디 컬러의 Px7 S2e 프로모션 상품입니다. 패브릭 마감의 질감과 풍부한 사운드가 조화를 이룹니다.",
     "stock": 22,
@@ -343,7 +382,12 @@
     "discountRate": 20,
     "image": "/images/product/Product_promotions_05.jpg",
     "category": "프로모션",
-    "color": "블랙",
+    "colors": [
+      {
+        "name": "블랙",
+        "hex": "#1a1a1a"
+      }
+    ],
     "connectivity": "블루투스",
     "description": "클래식한 블랙 컬러의 Px8 프로모션 상품입니다. 어떤 스타일에도 어울리는 정통 플래그십 헤드폰을 특가로 만나보세요.",
     "stock": 18,
@@ -391,7 +435,12 @@
     "discountRate": 15,
     "image": "/images/product/Product_promotions_06.jpg",
     "category": "프로모션",
-    "color": "갤버나이즈드 그레이",
+    "colors": [
+      {
+        "name": "갤버나이즈드 그레이",
+        "hex": "#8a8a8a"
+      }
+    ],
     "connectivity": "블루투스",
     "description": "Px8 맥라렌 에디션 갤버나이즈드 그레이를 프로모션 특가로 제공합니다. 절제된 레이싱 감성의 한정판 모델입니다.",
     "stock": 6,
@@ -439,7 +488,12 @@
     "discountRate": 20,
     "image": "/images/product/Product_promotions_07.jpg",
     "category": "프로모션",
-    "color": "더스티 핑크",
+    "colors": [
+      {
+        "name": "더스티 핑크",
+        "hex": "#c8a2a8"
+      }
+    ],
     "connectivity": "블루투스",
     "description": "부드러운 더스티 핑크 컬러의 Pi8 트루와이어리스 이어버드입니다. 프리미엄 사운드와 사랑스러운 컬러를 프로모션 가격에 만나보세요.",
     "stock": 20,
@@ -487,7 +541,16 @@
     "discountRate": 15,
     "image": "/images/product/Product_promotions_08.jpg",
     "category": "프로모션",
-    "color": "갤버나이즈드 그레이/파파야 오렌지",
+    "colors": [
+      {
+        "name": "갤버나이즈드 그레이",
+        "hex": "#8a8a8a"
+      },
+      {
+        "name": "파파야 오렌지",
+        "hex": "#e87722"
+      }
+    ],
     "connectivity": "블루투스",
     "description": "Pi8 맥라렌 에디션 이어버드를 프로모션 특가로 제공합니다. 레이스카 감성의 디테일과 플래그십 사운드를 담은 한정판입니다.",
     "stock": 9,
@@ -535,7 +598,12 @@
     "discountRate": 20,
     "image": "/images/product/Product_promotions_09.jpg",
     "category": "프로모션",
-    "color": "블랙",
+    "colors": [
+      {
+        "name": "블랙",
+        "hex": "#1a1a1a"
+      }
+    ],
     "connectivity": "블루투스",
     "description": "합리적인 가격으로 B&W 사운드를 경험할 수 있는 Pi6 이어버드 블랙입니다. 프로모션 기간 한정 특가로 제공됩니다.",
     "stock": 30,
@@ -583,7 +651,12 @@
     "discountRate": 20,
     "image": "/images/product/Product_promotions_10.jpg",
     "category": "프로모션",
-    "color": "골드 베이지",
+    "colors": [
+      {
+        "name": "골드 베이지",
+        "hex": "#d8c9a8"
+      }
+    ],
     "connectivity": "블루투스/Wi-Fi",
     "description": "아이코닉한 디자인의 제플린 무선 스피커 골드 베이지 컬러입니다. 공간을 채우는 스테레오 사운드를 프로모션 특가로 만나보세요.",
     "stock": 14,
@@ -631,7 +704,12 @@
     "discountRate": 15,
     "image": "/images/product/Product_promotions_11.jpg",
     "category": "프로모션",
-    "color": "블랙",
+    "colors": [
+      {
+        "name": "블랙",
+        "hex": "#1a1a1a"
+      }
+    ],
     "connectivity": "블루투스/Wi-Fi",
     "description": "작은 크기에 놀라운 사운드를 담은 포메이션 플렉스입니다. 멀티룸 연결을 지원하며 프로모션 기간 특가로 제공됩니다.",
     "stock": 20,
@@ -679,7 +757,12 @@
     "discountRate": 20,
     "image": "/images/product/Product_promotions_12.jpg",
     "category": "프로모션",
-    "color": "블랙",
+    "colors": [
+      {
+        "name": "블랙",
+        "hex": "#1a1a1a"
+      }
+    ],
     "connectivity": "유선",
     "description": "600 시리즈의 막내지만 실력은 진짜인 607 S3 북쉘프 스피커입니다. 티타늄 돔 트위터로 한층 선명해진 고음을 특가에 경험해보세요.",
     "stock": 16,
@@ -727,7 +810,12 @@
     "discountRate": 20,
     "image": "/images/product/Product_promotions_13.jpg",
     "category": "프로모션",
-    "color": "블랙",
+    "colors": [
+      {
+        "name": "블랙",
+        "hex": "#1a1a1a"
+      }
+    ],
     "connectivity": "유선",
     "description": "더 큰 우퍼로 여유로운 저음을 들려주는 606 S3 북쉘프 스피커입니다. 거실 규모의 공간에서도 충분한 스케일의 사운드를 제공합니다.",
     "stock": 12,
@@ -775,7 +863,12 @@
     "discountRate": 15,
     "image": "/images/product/Product_promotions_14.jpg",
     "category": "프로모션",
-    "color": "모카",
+    "colors": [
+      {
+        "name": "모카",
+        "hex": "#6b4f3a"
+      }
+    ],
     "connectivity": "유선",
     "description": "700 시리즈의 컴팩트한 실력자 707 S3입니다. 따뜻한 모카 우드 마감과 카본 돔 트위터의 정교한 사운드가 조화를 이룹니다.",
     "stock": 10,
@@ -823,7 +916,12 @@
     "discountRate": 15,
     "image": "/images/product/Product_promotions_15.jpg",
     "category": "프로모션",
-    "color": "글로스 블랙",
+    "colors": [
+      {
+        "name": "글로스 블랙",
+        "hex": "#101010"
+      }
+    ],
     "connectivity": "유선",
     "description": "캐비닛 위에 독립된 트위터를 얹은 705 S3입니다. 800 시리즈에서 물려받은 기술로 한 차원 높은 개방감과 스테이징을 선사합니다.",
     "stock": 7,
@@ -871,7 +969,12 @@
     "discountRate": 10,
     "image": "/images/product/Product_promotions_16.jpg",
     "category": "프로모션",
-    "color": "미드나잇 블루 메탈릭",
+    "colors": [
+      {
+        "name": "미드나잇 블루 메탈릭",
+        "hex": "#22314f"
+      }
+    ],
     "connectivity": "유선",
     "description": "705 S3의 시그니처 스페셜 에디션입니다. 깊은 미드나잇 블루 메탈릭 마감과 골드 디테일, 업그레이드된 크로스오버로 완성도를 높였습니다.",
     "stock": 4,
@@ -919,7 +1022,12 @@
     "discountRate": 10,
     "image": "/images/product/Product_promotions_17.jpg",
     "category": "프로모션",
-    "color": "글로스 블랙",
+    "colors": [
+      {
+        "name": "글로스 블랙",
+        "hex": "#101010"
+      }
+    ],
     "connectivity": "유선",
     "description": "다이아몬드 돔 트위터를 탑재한 800 시리즈의 북쉘프 805 D4입니다. 스튜디오 레퍼런스급 해상도와 정확성을 집에서 경험할 수 있습니다.",
     "stock": 3,

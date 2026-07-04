@@ -2,9 +2,9 @@ import { useEffect, useRef, useState } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars, faArrowLeft } from '@fortawesome/free-solid-svg-icons'
+import { LuShoppingCart } from 'react-icons/lu'
+import { MdSearch } from 'react-icons/md'
 import logoImg from '../assets/images/0_logo.png'
-import iconCart from '../assets/images/icon_cart.png'
-import iconSearch from '../assets/images/icon_search.png'
 import { useMenu } from '../context/MenuContext'
 import { useSearch } from '../context/SearchContext'
 import { useCart } from '../context/CartContext'
@@ -137,10 +137,10 @@ export default function Header({ showBack = false, title }) {
 
         <div className="header-right">
           <button className="icon-btn" onClick={() => setSearchOpen(true)}>
-            <img src={iconSearch} alt="검색" style={{ width: '28px', height: '32px', objectFit: 'contain', filter: transparent ? 'brightness(0) invert(1)' : 'none' }} />
+            <MdSearch style={{ color: iconColor, fontSize: '23px' }} />
           </button>
           <button className="icon-btn" onClick={() => navigate('/cart')} style={{ position: 'relative' }}>
-            <img src={iconCart} alt="장바구니" style={{ width: '28px', height: '32px', objectFit: 'contain', filter: transparent ? 'brightness(0) invert(1)' : 'none' }} />
+            <LuShoppingCart style={{ color: iconColor, fontSize: '22px' }} />
             <span style={{
               position: 'absolute', top: '-1px', right: '-4px',
               minWidth: '20px', height: '20px', borderRadius: '10px',

@@ -3,28 +3,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faXmark, faPlus, faMinus } from '@fortawesome/free-solid-svg-icons'
 import { resolveImage } from '../utils/imageMap'
 import { useCart } from '../context/CartContext'
-
-const COLOR_OPTIONS = {
-  '헤드폰':      ['블랙', '화이트', '실버'],
-  '이어버드':    ['블랙', '화이트', '베이지'],
-  '무선스피커':  ['블랙', '화이트'],
-  '라우드스피커':['블랙', '실버'],
-  '액세서리':    ['블랙', '화이트', '실버'],
-}
-
-const COLOR_MAP = {
-  '블랙':  '#1a1a1a',
-  '화이트': '#f0f0f0',
-  '실버':  '#b0b8c1',
-  '베이지': '#d4b896',
-  '네이비': '#1b2d5e',
-  '골드':  '#c9a84c',
-}
+import { isLightColor } from '../utils/colorPalette'
 
 export default function CartOptionPopup({ product, onClose }) {
   const { addToCart } = useCart()
-  const colors = COLOR_OPTIONS[product.category] || ['블랙', '화이트']
-  const [selectedColor, setSelectedColor] = useState(product.color || colors[0])
+  const colors = product.colors
+  const [selectedColor, setSelectedColor] = useState(colors[0].name)
   const [qty, setQty] = useState(1)
 
   function handleAdd() {
@@ -68,7 +52,7 @@ export default function CartOptionPopup({ product, onClose }) {
             style={{ width: '56px', height: '56px', objectFit: 'cover', borderRadius: '8px', background: '#f5f5f5', flexShrink: 0 }}
           />
           <div style={{ minWidth: 0 }}>
-            <p style={{ fontSize: '11px', color: '#aaa', marginBottom: '2px' }}>{product.category}</p>
+            <p className="product-category">{product.category}</p>
             <p style={{ fontSize: '13px', fontWeight: '600', color: '#111', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
               {product.name}
             </p>
@@ -80,17 +64,16 @@ export default function CartOptionPopup({ product, onClose }) {
           <p style={{ fontSize: '12px', color: '#888', marginBottom: '10px' }}>색상 선택</p>
           <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', alignItems: 'center' }}>
             {colors.map(c => {
-              const hex = COLOR_MAP[c] || '#ccc'
-              const isSelected = selectedColor === c
-              const isLight = ['화이트', '베이지', '실버'].includes(c)
+              const isSelected = selectedColor === c.name
+              const isLight = isLightColor(c.hex)
               return (
                 <button
-                  key={c}
-                  onClick={() => setSelectedColor(c)}
-                  title={c}
+                  key={c.name}
+                  onClick={() => setSelectedColor(c.name)}
+                  title={c.name}
                   style={{
                     width: '28px', height: '28px', borderRadius: '50%',
-                    background: hex,
+                    background: c.hex,
                     border: isSelected
                       ? '3px solid var(--c-accent)'
                       : isLight ? '2px solid #ddd' : '2px solid transparent',

@@ -1,8 +1,10 @@
 import { useState, useEffect, useRef } from 'react'
+import { createPortal } from 'react-dom'
 import { useNavigate } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faStar, faArrowUp, faChevronRight, faPlus, faMinus, faHeart as faHeartSolid } from '@fortawesome/free-solid-svg-icons'
-import { faHeart } from '@fortawesome/free-regular-svg-icons'
+import { faStar, faArrowUp, faChevronRight, faPlus, faHeart as faHeartSolid } from '@fortawesome/free-solid-svg-icons'
+import { LuShoppingCart } from 'react-icons/lu'
+import { FaRegHeart } from 'react-icons/fa'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import DigitalPetalsShader from '../components/DigitalPetalsShader'
@@ -12,7 +14,6 @@ import products from '../products.json'
 import { resolveImage, resolvePlainImage } from '../utils/imageMap'
 import { useCart } from '../context/CartContext'
 import { useWishlist } from '../context/WishlistContext'
-import iconCart from '../assets/images/icon_cart.png'
 
 import hero1 from '../assets/images/main/main_change/1_main_1.png'
 import hero2 from '../assets/images/main/main_change/1_main_2.png'
@@ -60,14 +61,14 @@ function BestCard({ product, hasDragged }) {
             onClick={e => { e.stopPropagation(); setPopupOpen(true) }}
             style={{ borderRadius: '7px' }}
           >
-            <img src={iconCart} alt="장바구니" style={{ width: '15px', height: '15px', objectFit: 'contain' }} />
+            <LuShoppingCart style={{ fontSize: '15px' }} />
           </button>
           <button
             className="card-action-btn"
             onClick={e => { e.stopPropagation(); toggleWishlist(product) }}
             style={{ borderRadius: '7px', color: liked ? 'var(--c-accent)' : undefined }}
           >
-            <FontAwesomeIcon icon={liked ? faHeartSolid : faHeart} />
+            {liked ? <FontAwesomeIcon icon={faHeartSolid} /> : <FaRegHeart />}
           </button>
         </div>
       </div>
@@ -115,7 +116,6 @@ export default function HomePage() {
   const dragStartRef = useRef(0)
   const timerRef = useRef(null)
   const [openFaq, setOpenFaq] = useState(null)
-  const [showGoTop, setShowGoTop] = useState(false)
   const [activeTab, setActiveTab] = useState('추천')
   const [timeLeft, setTimeLeft] = useState('')
   const [saleTimers, setSaleTimers] = useState([])
@@ -179,14 +179,6 @@ export default function HomePage() {
   useEffect(() => {
     startTimer()
     return () => clearInterval(timerRef.current)
-  }, [])
-
-  useEffect(() => {
-    const el = document.querySelector('.page-scroll')
-    if (!el) return
-    const onScroll = () => setShowGoTop(el.scrollTop > 400)
-    el.addEventListener('scroll', onScroll)
-    return () => el.removeEventListener('scroll', onScroll)
   }, [])
 
   function scrollToTop() {
@@ -387,6 +379,7 @@ export default function HomePage() {
       <div className="page-scroll">
 
         {/* Hero Slider */}
+        <div style={{ position: 'relative' }}>
         <div
           style={{ background: 'rgb(17,17,17)', position: 'relative', height: '816px', overflow: 'hidden', cursor: 'grab', userSelect: 'none' }}
           onMouseDown={e => { e.preventDefault(); onDragStart(e.clientX) }}
@@ -399,6 +392,7 @@ export default function HomePage() {
             return (
               <div
                 key={i}
+                className="bw-photo-block"
                 style={{
                   position: 'absolute', inset: 0,
                   transform: `translateX(calc(${pos * 100}% + ${dragOffset}px))`,
@@ -425,7 +419,7 @@ export default function HomePage() {
             )
           })}
           {/* 연결된 선 인디케이터 — gap 없이 한 줄, 활성만 두껍게 */}
-          <div style={{ position: 'absolute', bottom: '16px', left: '16px', right: '16px', display: 'flex', alignItems: 'center', height: '4px', zIndex: 10, pointerEvents: 'auto' }}>
+          <div className="bw-photo-block" style={{ position: 'absolute', bottom: '16px', left: '16px', right: '16px', display: 'flex', alignItems: 'center', height: '4px', zIndex: 10, pointerEvents: 'auto' }}>
             {HERO_SLIDES.map((_, i) => (
               <div
                 key={i}
@@ -441,6 +435,33 @@ export default function HomePage() {
             ))}
           </div>
         </div>
+
+        </div>
+
+        {/* 플로팅 버튼: 장바구니 / GoTop — .layout-right 바깥(document.body)에 렌더링해
+            블랙 버전 필터가 fixed 위치 기준을 바꿔버리는 문제를 피한다 */}
+        {createPortal(
+          <div className="hero-float-btns">
+            <button onClick={() => navigate('/cart')} style={{
+              width: '52px', height: '52px', borderRadius: '50%',
+              background: '#fff', border: 'none', cursor: 'pointer',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              boxShadow: '0 4px 16px rgba(0,0,0,0.18)', color: '#222',
+            }}>
+              <LuShoppingCart style={{ fontSize: '20px' }} />
+            </button>
+            <button onClick={scrollToTop} style={{
+              width: '52px', height: '52px', borderRadius: '50%',
+              background: '#fff', border: 'none', cursor: 'pointer',
+              display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '2px',
+              boxShadow: '0 4px 16px rgba(0,0,0,0.18)', color: '#222',
+            }}>
+              <div style={{ width: '16px', height: '2px', background: '#222', borderRadius: '1px' }} />
+              <FontAwesomeIcon icon={faArrowUp} style={{ fontSize: '14px' }} />
+            </button>
+          </div>,
+          document.body
+        )}
 
         {/* Category Icons */}
         <div style={{ display: 'flex', justifyContent: 'space-evenly', alignItems: 'flex-start', padding: '36px 12px 0' }}>
@@ -620,13 +641,13 @@ export default function HomePage() {
                       display: 'flex', alignItems: 'center', justifyContent: 'center',
                       fontSize: '13px', color: isWished(p.id) ? 'var(--c-accent)' : '#aaa', cursor: 'pointer',
                     }}>
-                      <FontAwesomeIcon icon={isWished(p.id) ? faHeartSolid : faHeart} />
+                      {isWished(p.id) ? <FontAwesomeIcon icon={faHeartSolid} /> : <FaRegHeart />}
                     </button>
                   </div>
 
                   {/* 상품 정보 */}
                   <div style={{ padding: '14px 16px 18px' }}>
-                    <p style={{ fontSize: '11px', color: '#bbb', marginBottom: '5px', letterSpacing: '0.2px' }}>{p.category}</p>
+                    <p className="product-category" style={{ marginBottom: '5px' }}>{p.category}</p>
                     <p style={{
                       fontSize: '14px', fontWeight: '500', color: '#111', lineHeight: 1.4, marginBottom: '10px',
                       display: '-webkit-box', WebkitLineClamp: 1, WebkitBoxOrient: 'vertical', overflow: 'hidden',
@@ -802,8 +823,8 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* 전시 절전 배너 (START WITH US) */}
-        <div style={{
+        {/* 전시 절전 배너 (START WITH US) — 화이트/블랙 버전 반전 영향을 받지 않도록 통째로 제외 */}
+        <div className="bw-photo-block" style={{
           position: 'relative', height: '900px', overflow: 'hidden',
           clipPath: 'polygon(0 0, 100% 6%, 100% 100%, 0 100%)',
         }}>
@@ -814,7 +835,8 @@ export default function HomePage() {
             padding: '90px 40px 0',
           }}>
             <h2 style={{
-              color: '#fff', fontSize: '40px', fontWeight: '300',
+              color: '#fff', fontSize: '58px', fontWeight: '400',
+              fontFamily: "'Stick No Bills', sans-serif",
               lineHeight: 1.25, letterSpacing: '1px', marginBottom: '28px',
             }}>
               START<br />WITH US.
@@ -841,21 +863,28 @@ export default function HomePage() {
 
         {/* FAQ */}
         <section style={{ padding: '32px 28px', borderTop: '1px solid #ebebeb' }}>
-          <div className="section-header">
-            <span className="section-title">자주 묻는 질문</span>
-          </div>
+          <h2 style={{
+            fontFamily: "'Stick No Bills', sans-serif", fontWeight: '400',
+            fontSize: '52px', color: '#111', lineHeight: 1, marginBottom: '10px',
+          }}>
+            FAQ
+          </h2>
+          <p style={{ fontSize: '14px', color: '#094089', fontWeight: '600', marginBottom: '20px' }}>
+            궁금하신 점이 있으신가요?
+          </p>
+          <div style={{ borderTop: '1px solid #ddd' }} />
           {FAQ_LIST.map((item, i) => (
-            <div key={i} style={{ borderTop: '1px solid #f0f0f0' }}>
+            <div key={i} style={{ borderTop: i === 0 ? 'none' : '1px solid #f0f0f0' }}>
               <button onClick={() => setOpenFaq(openFaq === i ? null : i)} style={{
-                width: '100%', display: 'flex', justifyContent: 'space-between',
-                alignItems: 'center', padding: '13px 0', background: 'none', border: 'none',
-                fontSize: '13px', fontWeight: '400', color: '#111', textAlign: 'left', cursor: 'pointer',
+                width: '100%', display: 'flex', alignItems: 'baseline', gap: '10px',
+                padding: '16px 0', background: 'none', border: 'none',
+                fontSize: '14px', fontWeight: '400', color: '#111', textAlign: 'left', cursor: 'pointer',
               }}>
+                <span style={{ color: '#094089', fontWeight: '700' }}>Q.</span>
                 {item.q}
-                <FontAwesomeIcon icon={openFaq === i ? faMinus : faPlus} style={{ color: '#bbb', fontSize: '12px', marginLeft: '8px', flexShrink: 0 }} />
               </button>
               {openFaq === i && (
-                <p style={{ fontSize: '12px', color: '#777', lineHeight: '1.75', padding: '0 0 14px' }}>{item.a}</p>
+                <p style={{ fontSize: '12px', color: '#777', lineHeight: '1.75', padding: '0 0 16px 24px' }}>{item.a}</p>
               )}
             </div>
           ))}
@@ -864,31 +893,6 @@ export default function HomePage() {
 
         <Footer />
       </div>
-
-      {/* GoTop 버튼 */}
-      {showGoTop && (
-        <div style={{
-          position: 'fixed', bottom: '80px', left: 0, right: 0,
-          display: 'flex', justifyContent: 'center',
-          pointerEvents: 'none', zIndex: 200,
-        }}>
-          <div style={{ width: '600px', maxWidth: '100%', position: 'relative' }}>
-            <button onClick={scrollToTop} style={{
-              position: 'absolute', right: '16px', bottom: 0,
-              pointerEvents: 'auto',
-              width: '52px', height: '52px', borderRadius: '50%',
-              background: '#fff',
-              border: 'none', cursor: 'pointer',
-              display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '2px',
-              boxShadow: '0 4px 16px rgba(0,0,0,0.13)',
-              color: '#222',
-            }}>
-              <div style={{ width: '16px', height: '2px', background: '#222', borderRadius: '1px' }} />
-              <FontAwesomeIcon icon={faArrowUp} style={{ fontSize: '14px' }} />
-            </button>
-          </div>
-        </div>
-      )}
     </div>
   )
 }

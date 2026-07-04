@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faXmark } from '@fortawesome/free-solid-svg-icons'
-import iconSearch from '../assets/images/icon_search.png'
+import { MdSearch } from 'react-icons/md'
 import { useSearch } from '../context/SearchContext'
 import { resolveImage } from '../utils/imageMap'
 import products from '../products.json'
@@ -40,7 +40,7 @@ export default function SearchOverlay() {
         display: 'flex', alignItems: 'center', gap: '10px',
         padding: '14px 16px', borderBottom: '1px solid #ebebeb',
       }}>
-        <img src={iconSearch} alt="검색" style={{ width: '18px', height: '18px', objectFit: 'contain', opacity: 0.5, flexShrink: 0 }} />
+        <MdSearch style={{ fontSize: '18px', opacity: 0.5, flexShrink: 0 }} />
         <input
           autoFocus
           value={query}
@@ -81,7 +81,7 @@ export default function SearchOverlay() {
               style={{ width: '56px', height: '56px', objectFit: 'cover', borderRadius: '8px', background: '#f5f5f5', flexShrink: 0 }}
             />
             <div style={{ flex: 1, minWidth: 0 }}>
-              <p style={{ fontSize: '11px', color: '#aaa', marginBottom: '2px' }}>{p.category}</p>
+              <p className="product-category">{p.category}</p>
               <p style={{ fontSize: '13px', fontWeight: '600', color: '#111', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
                 {p.name}
               </p>

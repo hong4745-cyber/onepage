@@ -28,6 +28,7 @@
   justify-content: center;
   align-items: flex-start;
   position: relative;
+  transition: padding-left 0.3s ease;
 }
 
 .layout-right {
@@ -52,17 +53,52 @@
   right: 0;
   height: 100vh;
   z-index: 0;
-  pointer-events: none;
+  pointer-events: auto;
+  cursor: pointer;
 }
 
-.theme-compare-overlay {
+
+/* 화이트/블랙 버전 전환 — 콘텐츠 페이지(.layout-right)에만 적용, 사이드바/배경/토글버튼 등은 영향 없음.
+   img/video는 같은 필터를 한 번 더 걸어 상쇄시켜 원래 색을 유지.
+   invert()는 amount가 정확히 1(100%)이어야 두 번 적용 시 완전히 상쇄된다 (1보다 작으면 색이 뜨게 됨) */
+.layout-right.bw-invert {
+  filter: invert(1) hue-rotate(180deg);
+}
+
+.layout-right.bw-invert img,
+.layout-right.bw-invert video {
+  filter: invert(1) hue-rotate(180deg);
+}
+
+/* 사진 위에 반투명 틴트 오버레이 + 텍스트를 얹은 배너 블록은 통째로 상쇄시켜
+   틴트 색만 따로 뒤집혀 뿌옇게 보이는 것을 방지 (오버레이는 img가 아니라 개별 상쇄가 안 됨) */
+.layout-right.bw-invert .bw-photo-block {
+  filter: invert(1) hue-rotate(180deg);
+}
+
+/* 하단 탭바는 블랙 버전에서만 검정이 아니라 밝은 그레이 유리 재질로 — 낮(화이트 버전)은 기존 불투명 흰색 그대로 유지 */
+.layout-right.bw-invert .bottom-nav {
+  background: rgba(236, 236, 236, 0.75);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  filter: invert(1) hue-rotate(180deg) drop-shadow(0 -6px 16px rgba(4, 9, 34, 0.15));
+}
+
+/* 블록 전체가 이미 상쇄됐으므로, 그 안의 img까지 또 상쇄하면 다시 반전돼 버린다 */
+.layout-right.bw-invert .bw-photo-block img,
+.layout-right.bw-invert .bw-photo-block video {
+  filter: none;
+}
+
+/* 장바구니 / GoTop 플로팅 버튼 — 스크롤해도 화면에 고정, 모바일은 화면 안쪽, 데스크톱은 콘텐츠 프레임 바깥 여백 */
+.hero-float-btns {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 350;
-  pointer-events: none;
+  right: 16px;
+  bottom: 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  z-index: 200;
 }
 
 /* ===== 반응형 ===== */
@@ -72,6 +108,22 @@
     --text-xl: 18px;
     --text-lg: 15px;
     --text-md: 13px;
+  }
+}
+
+@media (min-width: 601px) {
+  .hero-float-btns {
+    right: calc((100vw - 600px) / 2 - 72px);
+    transition: right 0.3s ease;
+  }
+
+  /* 사이드바가 열려 있을 때: 왼쪽 사이드바(400px)만큼 콘텐츠와 버튼을 오른쪽으로 재중앙 정렬 */
+  .sidebar.sidebar--open ~ .layout-right-area {
+    padding-left: 400px;
+  }
+
+  body.sidebar-open .hero-float-btns {
+    right: calc((100vw - 600px) / 2 - 72px - 200px);
   }
 }
 
@@ -109,15 +161,15 @@
   box-shadow: 4px 0 24px rgba(0,0,0,0.12);
 }
 
-@media (max-width: 480px) {
-  .sidebar { width: 320px; }
+@media (max-width: 600px) {
+  .sidebar { width: 100vw; border-right: none; }
 }
 
 .sidebar::-webkit-scrollbar { display: none; }
 
 .sidebar-logo-area {
   position: relative;
-  padding: 19px 30px;
+  padding: 28px 30px 36px;
   flex-shrink: 0;
   box-sizing: border-box;
   border-bottom: 1px solid var(--c-line);
@@ -451,9 +503,15 @@
 
 .bottom-nav {
   height: 96px;
-  background-image: url('./assets/images/bottom-nav.png');
-  background-size: 100% 100%;
-  background-color: transparent;
+  background: #fff;
+  mask-image: url('./assets/images/bottom-nav.png');
+  mask-size: auto 100%;
+  mask-position: center;
+  mask-repeat: no-repeat;
+  -webkit-mask-image: url('./assets/images/bottom-nav.png');
+  -webkit-mask-size: auto 100%;
+  -webkit-mask-position: center;
+  -webkit-mask-repeat: no-repeat;
   display: flex;
   align-items: center;
   filter: drop-shadow(0 -6px 16px rgba(4, 9, 34, 0.15));
@@ -586,6 +644,12 @@
   color: var(--c-light);
   margin-bottom: 2px;
   letter-spacing: 0.2px;
+}
+
+/* 블랙 버전에서 카테고리 라벨이 반전된 어두운 회색이 되어 안 보이는 문제 — 흰색으로 고정.
+   반전 전 색을 검정으로 지정해두면, 상위 필터가 한 번 더 반전시켜 최종적으로 흰색으로 보인다 */
+.layout-right.bw-invert .product-category {
+  color: #000;
 }
 
 .product-name {

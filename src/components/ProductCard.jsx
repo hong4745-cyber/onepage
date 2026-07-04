@@ -2,11 +2,11 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar, faHeart as faHeartSolid } from '@fortawesome/free-solid-svg-icons'
-import { faHeart } from '@fortawesome/free-regular-svg-icons'
+import { LuShoppingCart } from 'react-icons/lu'
+import { FaRegHeart } from 'react-icons/fa'
 import { resolveImage } from '../utils/imageMap'
 import { useCart } from '../context/CartContext'
 import { useWishlist } from '../context/WishlistContext'
-import iconCart from '../assets/images/icon_cart.png'
 import CartOptionPopup from './CartOptionPopup'
 
 export default function ProductCard({ product }) {
@@ -39,7 +39,7 @@ export default function ProductCard({ product }) {
             onClick={handleCartClick}
             style={{ background: 'rgba(255,255,255,0.9)', outline: cartActive ? '2px solid var(--c-accent)' : 'none' }}
           >
-            <img src={iconCart} alt="장바구니" style={{ width: '16px', height: '16px', objectFit: 'contain' }} />
+            <LuShoppingCart style={{ fontSize: '16px' }} />
           </button>
           <button
             className="card-action-btn"
@@ -51,10 +51,10 @@ export default function ProductCard({ product }) {
             }}
             style={{ color: liked ? 'var(--c-accent)' : undefined }}
           >
-            <FontAwesomeIcon
-              icon={liked ? faHeartSolid : faHeart}
-              className={heartAnim ? 'heart-pop' : ''}
-            />
+            {liked
+              ? <FontAwesomeIcon icon={faHeartSolid} className={heartAnim ? 'heart-pop' : ''} />
+              : <FaRegHeart className={heartAnim ? 'heart-pop' : ''} />
+            }
           </button>
         </div>
       </div>

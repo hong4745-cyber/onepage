@@ -4,8 +4,10 @@ import { useCart } from '../context/CartContext'
 import { useWishlist } from '../context/WishlistContext'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar, faXmark, faTruckFast, faChevronDown, faChevronUp, faHeart as faHeartSolid } from '@fortawesome/free-solid-svg-icons'
-import { faStar as faStarEmpty, faHeart } from '@fortawesome/free-regular-svg-icons'
+import { faStar as faStarEmpty } from '@fortawesome/free-regular-svg-icons'
 import { RiKakaoTalkFill } from 'react-icons/ri'
+import { LuShoppingCart } from 'react-icons/lu'
+import { FaRegHeart } from 'react-icons/fa'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import products from '../products.json'
@@ -14,32 +16,8 @@ import { resolveImage, resolveDetailImages } from '../utils/imageMap'
 
 const allProducts = [...products, ...specialProducts]
 
-// 색상명 → 스와치 컬러
-const COLOR_HEX = [
-  ['미드나잇 블루', '#1e2a4a'],
-  ['클라우드 그레이', '#cfd2d4'],
-  ['갤버나이즈드 그레이', '#8a8a8a'],
-  ['파파야 오렌지', '#e87722'],
-  ['더스티 핑크', '#c8a2a8'],
-  ['소프트 골드', '#c9a86a'],
-  ['골드 베이지', '#d8c9a8'],
-  ['글로스 블랙', '#101010'],
-  ['버건디', '#7a2e3e'],
-  ['모카', '#6b4f3a'],
-  ['베이지', '#d8c9a8'],
-  ['화이트', '#f0efeb'],
-  ['그레이', '#9a9a9a'],
-  ['실버', '#c0c0c0'],
-  ['네이비', '#1e2a4a'],
-  ['블루', '#2a4a7a'],
-  ['골드', '#c9a86a'],
-  ['블랙', '#1a1a1a'],
-]
-
-function colorToHex(name) {
-  const found = COLOR_HEX.find(([key]) => name.includes(key))
-  return found ? found[1] : '#999'
-}
+// TODO: 실제 B&W 카카오톡 채널 ID로 교체
+const KAKAO_CHANNEL_URL = 'https://pf.kakao.com/_XXXXX'
 
 const INFO_ACCORDIONS = [
   {
@@ -109,7 +87,7 @@ export default function ProductDetailPage() {
   const detailImgs = resolveDetailImages(product.image, product.detailFolder)
   const imgSlides = detailImgs.length > 0 ? detailImgs.slice(0, 4) : [mainImgSrc]
   const related = allProducts.filter(p => p.category === product.category && p.id !== product.id).slice(0, 6)
-  const colors = product.color.split('/').map(c => c.trim())
+  const colors = product.colors
   const totalPrice = selectedColor ? product.salePrice : 0
   const productCode = `P${String(product.id).padStart(6, '0')}M`
   const wished = isWished(product.id)
@@ -257,14 +235,14 @@ export default function ProductDetailPage() {
             <div style={{ display: 'flex', gap: '10px' }}>
               {colors.map(c => (
                 <button
-                  key={c}
-                  title={c}
-                  onClick={() => { setSelectedColor(c); setMsg('') }}
+                  key={c.name}
+                  title={c.name}
+                  onClick={() => { setSelectedColor(c.name); setMsg('') }}
                   style={{
                     width: '28px', height: '28px', borderRadius: '6px',
-                    background: colorToHex(c), cursor: 'pointer',
-                    border: selectedColor === c ? '2px solid var(--c-accent)' : '2px solid #e0e0e0',
-                    outline: selectedColor === c ? '2px solid rgba(9,64,137,0.25)' : 'none',
+                    background: c.hex, cursor: 'pointer',
+                    border: selectedColor === c.name ? '2px solid var(--c-accent)' : '2px solid #e0e0e0',
+                    outline: selectedColor === c.name ? '2px solid rgba(9,64,137,0.25)' : 'none',
                   }}
                 />
               ))}
@@ -291,7 +269,10 @@ export default function ProductDetailPage() {
                 color: wished ? '#e03131' : '#333', cursor: 'pointer',
               }}
             >
-              <FontAwesomeIcon icon={wished ? faHeartSolid : faHeart} style={{ marginRight: '6px' }} />
+              {wished
+                ? <FontAwesomeIcon icon={faHeartSolid} style={{ marginRight: '6px' }} />
+                : <FaRegHeart style={{ marginRight: '6px' }} />
+              }
               관심상품
             </button>
             <button
@@ -316,10 +297,14 @@ export default function ProductDetailPage() {
           </div>
 
           {/* 카카오 채널 */}
-          <div style={{
-            display: 'flex', alignItems: 'center', gap: '10px',
-            background: '#f4f5f7', borderRadius: '8px', padding: '13px 16px', marginTop: '12px',
-          }}>
+          <button
+            onClick={() => window.open(KAKAO_CHANNEL_URL, '_blank', 'noopener,noreferrer')}
+            style={{
+              display: 'flex', alignItems: 'center', gap: '10px', width: '100%',
+              background: '#f4f5f7', border: 'none', borderRadius: '8px', padding: '13px 16px', marginTop: '12px',
+              cursor: 'pointer', textAlign: 'left',
+            }}
+          >
             <span style={{
               width: '26px', height: '26px', borderRadius: '50%', background: '#FEE500', flexShrink: 0,
               display: 'flex', alignItems: 'center', justifyContent: 'center',
@@ -329,7 +314,7 @@ export default function ProductDetailPage() {
             <p style={{ fontSize: '13px', color: '#333' }}>
               카카오톡 채널 추가하고 <b>추가 할인</b> 받기
             </p>
-          </div>
+          </button>
         </div>
 
         {/* ===== 탭 ===== */}
@@ -386,17 +371,17 @@ export default function ProductDetailPage() {
                               onClick={() => addToCart(p)}
                               style={{ boxShadow: '0 1px 4px rgba(0,0,0,0.15)', fontSize: '13px' }}
                             >
-                              🛒
+                              <LuShoppingCart />
                             </button>
                             <button
                               className="card-action-btn"
                               onClick={() => toggleWishlist(p)}
                               style={{ boxShadow: '0 1px 4px rgba(0,0,0,0.15)', color: pWished ? 'var(--c-accent)' : undefined }}
                             >
-                              <FontAwesomeIcon
-                                icon={pWished ? faHeartSolid : faHeart}
-                                style={{ fontSize: '13px' }}
-                              />
+                              {pWished
+                                ? <FontAwesomeIcon icon={faHeartSolid} style={{ fontSize: '13px' }} />
+                                : <FaRegHeart style={{ fontSize: '13px' }} />
+                              }
                             </button>
                           </div>
                         </div>

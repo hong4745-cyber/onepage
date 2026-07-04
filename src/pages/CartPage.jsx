@@ -43,7 +43,7 @@ export default function CartPage() {
                   style={{ width: '72px', height: '72px', objectFit: 'cover', borderRadius: '8px', background: '#f5f5f5', flexShrink: 0, cursor: 'pointer' }}
                 />
                 <div style={{ flex: 1, minWidth: 0 }}>
-                  <p style={{ fontSize: '11px', color: '#aaa', marginBottom: '2px' }}>{item.category}</p>
+                  <p className="product-category">{item.category}</p>
                   <p style={{ fontSize: '13px', fontWeight: '600', color: '#111', lineHeight: '1.4', marginBottom: '6px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
                     {item.name}
                   </p>
