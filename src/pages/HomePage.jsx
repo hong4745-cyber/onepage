@@ -1,8 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
-import { createPortal } from 'react-dom'
 import { useNavigate } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faStar, faArrowUp, faChevronRight, faPlus, faHeart as faHeartSolid } from '@fortawesome/free-solid-svg-icons'
+import { faStar, faChevronRight, faPlus, faHeart as faHeartSolid } from '@fortawesome/free-solid-svg-icons'
 import { LuShoppingCart } from 'react-icons/lu'
 import { FaRegHeart } from 'react-icons/fa'
 import Header from '../components/Header'
@@ -10,6 +9,7 @@ import Footer from '../components/Footer'
 import DigitalPetalsShader from '../components/DigitalPetalsShader'
 import ProductCard from '../components/ProductCard'
 import CartOptionPopup from '../components/CartOptionPopup'
+import { CATEGORIES } from '../components/FloatingActions'
 import products from '../products.json'
 import { resolveImage, resolvePlainImage } from '../utils/imageMap'
 import { useCart } from '../context/CartContext'
@@ -22,11 +22,6 @@ import hero4 from '../assets/images/main/main_change/1_main_4.png'
 import hero5 from '../assets/images/main/main_change/1_main_5.png'
 import hero6 from '../assets/images/main/main_change/1_main_6.png'
 import bgParticle from '../assets/images/bg/bg_1.png'
-import catHeadphone from '../assets/images/Product/Product_Headphone_01.jpg'
-import catEarbud from '../assets/images/Product/Product_Earbud_01.png'
-import catWireless from '../assets/images/Product/Product_Wireless-Speaker_01.jpg'
-import catLoud from '../assets/images/Product/Product_Loudspeaker_01.jpg'
-import catStands from '../assets/images/Product/Product_Speaker-stands_01.jpg'
 import sale1 from '../assets/images/Sale/Sale_1.png'
 import sale2 from '../assets/images/Sale/Sale_2.png'
 import sale3 from '../assets/images/Sale/Sale_3.png'
@@ -90,14 +85,6 @@ const HERO_SLIDES = [
   { img: hero4, objPos: '5%',    title: '공간을 완성하는 오브제.',         sub: '세련된 디자인과 풍부한 사운드.\n어떤 인테리어도 특별하게 만드는 스피커.' },
   { img: hero5, objPos: '55% 70%', title: '사운드의 정점에 서다.',           sub: '깊은 저음과 선명한 고음의 완벽한 균형.\n공간 전체를 채우는 라우드스피커.' },
   { img: hero6, objPos: '50% 60%', title: '나만의 공간, 나만의 음악.',       sub: '창가의 햇살 아래 흐르는 음악.\n데스크 위 프리미엄 사운드로 하루를 완성하세요.' },
-]
-
-const CATEGORIES = [
-  { label: '헤드폰',     img: catHeadphone, value: '헤드폰' },
-  { label: '이어버드',   img: catEarbud,    value: '이어버드' },
-  { label: '무선스피커', img: catWireless,  value: '무선스피커' },
-  { label: '라우드스피커', img: catLoud,    value: '라우드스피커' },
-  { label: '액세서리',   img: catStands,    value: '액세서리' },
 ]
 
 const FAQ_LIST = [
@@ -180,10 +167,6 @@ export default function HomePage() {
     startTimer()
     return () => clearInterval(timerRef.current)
   }, [])
-
-  function scrollToTop() {
-    document.querySelector('.page-scroll')?.scrollTo({ top: 0, behavior: 'smooth' })
-  }
 
   useEffect(() => {
     const target = new Date()
@@ -437,31 +420,6 @@ export default function HomePage() {
         </div>
 
         </div>
-
-        {/* 플로팅 버튼: 장바구니 / GoTop — .layout-right 바깥(document.body)에 렌더링해
-            블랙 버전 필터가 fixed 위치 기준을 바꿔버리는 문제를 피한다 */}
-        {createPortal(
-          <div className="hero-float-btns">
-            <button onClick={() => navigate('/cart')} style={{
-              width: '52px', height: '52px', borderRadius: '50%',
-              background: '#fff', border: 'none', cursor: 'pointer',
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              boxShadow: '0 4px 16px rgba(0,0,0,0.18)', color: '#222',
-            }}>
-              <LuShoppingCart style={{ fontSize: '20px' }} />
-            </button>
-            <button onClick={scrollToTop} style={{
-              width: '52px', height: '52px', borderRadius: '50%',
-              background: '#fff', border: 'none', cursor: 'pointer',
-              display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '2px',
-              boxShadow: '0 4px 16px rgba(0,0,0,0.18)', color: '#222',
-            }}>
-              <div style={{ width: '16px', height: '2px', background: '#222', borderRadius: '1px' }} />
-              <FontAwesomeIcon icon={faArrowUp} style={{ fontSize: '14px' }} />
-            </button>
-          </div>,
-          document.body
-        )}
 
         {/* Category Icons */}
         <div style={{ display: 'flex', justifyContent: 'space-evenly', alignItems: 'flex-start', padding: '36px 12px 0' }}>

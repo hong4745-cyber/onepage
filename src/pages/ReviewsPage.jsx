@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar, faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons'
@@ -6,23 +6,39 @@ import Header from '../components/Header'
 import Footer from '../components/Footer'
 import BoardTabs from '../components/BoardTabs'
 import FilterChipsBar from '../components/FilterChipsBar'
-import products from '../products.json'
+import { useAuth } from '../context/AuthContext'
+import { subscribeBoardPosts } from '../firebase/board'
 import { resolvePlainImage } from '../utils/imageMap'
-
-// 상품별 리뷰를 카드 목록으로 펼침
-const REVIEW_CARDS = products
-  .filter(p => p.reviews && p.reviews.length > 0)
-  .slice(0, 8)
-  .map(p => ({
-    product: p,
-    review: p.reviews[0],
-  }))
 
 export default function ReviewsPage() {
   const navigate = useNavigate()
+  const { user } = useAuth()
+  const [reviews, setReviews] = useState([])
   const [type, setType] = useState('photo')
   const [keyword, setKeyword] = useState('')
-  const [searchBy, setSearchBy] = useState('제목')
+  const [searchBy, setSearchBy] = useState('내용')
+
+  useEffect(() => {
+    return subscribeBoardPosts('reviews', setReviews, err => console.error('reviews load failed', err))
+  }, [])
+
+  const visibleReviews = useMemo(() => {
+    let result = type === 'photo'
+      ? reviews.filter(r => r.imageUrl)
+      : reviews.filter(r => !r.imageUrl)
+
+    const needle = keyword.trim().toLowerCase()
+    if (needle) {
+      result = result.filter(r => {
+        const haystack =
+          searchBy === '작성자' ? (r.authorEmail || '') :
+          searchBy === '상품명' ? (r.productName || '') :
+          (r.content || '')
+        return haystack.toLowerCase().includes(needle)
+      })
+    }
+    return result
+  }, [reviews, type, keyword, searchBy])
 
   return (
     <div className="page-root">
@@ -67,13 +83,19 @@ export default function ReviewsPage() {
           })}
         </div>
 
+        {visibleReviews.length === 0 && (
+          <p style={{ textAlign: 'center', padding: '20px 20px 0', fontSize: '13px', color: '#bbb' }}>
+            등록된 리뷰가 없습니다.
+          </p>
+        )}
+
         {/* 포토리뷰 그리드 */}
         {type === 'photo' && (
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '14px', padding: '0 20px' }}>
-            {REVIEW_CARDS.map(({ product: p, review: r }, i) => (
+            {visibleReviews.map(r => (
               <div
-                key={i}
-                onClick={() => navigate(`/products/${p.id}`)}
+                key={r.id}
+                onClick={() => navigate(`/products/${r.productId}`)}
                 style={{
                   background: '#fff', border: '1px solid #eee', borderRadius: '10px',
                   overflow: 'hidden', cursor: 'pointer',
@@ -81,7 +103,7 @@ export default function ReviewsPage() {
               >
                 <div style={{ aspectRatio: '1/1', background: '#f7f7f7' }}>
                   <img
-                    src={resolvePlainImage(p.image)} alt={p.name}
+                    src={r.imageUrl} alt={r.productName}
                     style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                     loading="lazy"
                   />
@@ -90,27 +112,27 @@ export default function ReviewsPage() {
                   <p style={{
                     fontSize: '12px', fontWeight: '600', color: '#111', marginBottom: '8px',
                     display: '-webkit-box', WebkitLineClamp: 1, WebkitBoxOrient: 'vertical', overflow: 'hidden',
-                  }}>{r.text || '만족스러운 제품이에요'}</p>
+                  }}>{r.content}</p>
                   <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '10px' }}>
                     <span style={{ display: 'flex', gap: '1px' }}>
                       {Array.from({ length: 5 }).map((_, j) => (
                         <FontAwesomeIcon key={j} icon={faStar} style={{ color: j < r.rating ? '#f5a623' : '#e8e8e8', fontSize: '10px' }} />
                       ))}
                     </span>
-                    <span style={{ fontSize: '10px', color: '#bbb' }}>{r.user}</span>
+                    <span style={{ fontSize: '10px', color: '#bbb' }}>{r.authorEmail}</span>
                   </div>
                   <div style={{
                     display: 'flex', alignItems: 'center', gap: '8px',
                     border: '1px solid #f0f0f0', borderRadius: '6px', padding: '7px 9px',
                   }}>
                     <img
-                      src={resolvePlainImage(p.image)} alt=""
+                      src={resolvePlainImage(r.productImage)} alt=""
                       style={{ width: '30px', height: '30px', objectFit: 'cover', borderRadius: '4px', flexShrink: 0 }}
                     />
                     <span style={{
                       fontSize: '10px', color: '#999', lineHeight: 1.4,
                       display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden',
-                    }}>{p.name}</span>
+                    }}>{r.productName}</span>
                   </div>
                 </div>
               </div>
@@ -121,14 +143,14 @@ export default function ReviewsPage() {
         {/* 일반리뷰 리스트 */}
         {type === 'normal' && (
           <div style={{ padding: '0 20px' }}>
-            {REVIEW_CARDS.map(({ product: p, review: r }, i) => (
+            {visibleReviews.map(r => (
               <div
-                key={i}
-                onClick={() => navigate(`/products/${p.id}`)}
+                key={r.id}
+                onClick={() => navigate(`/products/${r.productId}`)}
                 style={{ borderBottom: '1px solid #f0f0f0', padding: '16px 4px', cursor: 'pointer' }}
               >
                 <p style={{ fontSize: '13px', fontWeight: '600', color: '#111', marginBottom: '6px' }}>
-                  {r.text || '만족스러운 제품이에요'}
+                  {r.content}
                 </p>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '4px' }}>
                   <span style={{ display: 'flex', gap: '1px' }}>
@@ -136,10 +158,10 @@ export default function ReviewsPage() {
                       <FontAwesomeIcon key={j} icon={faStar} style={{ color: j < r.rating ? '#f5a623' : '#e8e8e8', fontSize: '10px' }} />
                     ))}
                   </span>
-                  <span style={{ fontSize: '11px', color: '#bbb' }}>{r.user}</span>
-                  <span style={{ fontSize: '11px', color: '#ccc' }}>{r.date}</span>
+                  <span style={{ fontSize: '11px', color: '#bbb' }}>{r.authorEmail}</span>
+                  <span style={{ fontSize: '11px', color: '#ccc' }}>{r.date.toISOString().slice(0, 10)}</span>
                 </div>
-                <p style={{ fontSize: '11px', color: '#aaa' }}>{p.name}</p>
+                <p style={{ fontSize: '11px', color: '#aaa' }}>{r.productName}</p>
               </div>
             ))}
           </div>
@@ -169,9 +191,9 @@ export default function ReviewsPage() {
                 fontSize: '12px', color: '#555', background: '#fff', outline: 'none',
               }}
             >
-              <option>제목</option>
               <option>내용</option>
               <option>작성자</option>
+              <option>상품명</option>
             </select>
             <input
               value={keyword}
@@ -182,18 +204,15 @@ export default function ReviewsPage() {
                 fontSize: '12px', outline: 'none',
               }}
             />
-            <button style={{
-              padding: '10px 18px', background: '#fff', border: '1px solid #ddd',
-              borderRadius: '4px', fontSize: '12px', color: '#333', cursor: 'pointer', flexShrink: 0,
-            }}>
-              검색
-            </button>
           </div>
-          <button style={{
-            width: '100%', padding: '13px 0',
-            background: '#f5f5f5', border: '1px solid #e5e5e5', borderRadius: '4px',
-            fontSize: '13px', color: '#333', cursor: 'pointer',
-          }}>
+          <button
+            onClick={() => navigate(user ? '/reviews/write' : '/login')}
+            style={{
+              width: '100%', padding: '13px 0',
+              background: '#f5f5f5', border: '1px solid #e5e5e5', borderRadius: '4px',
+              fontSize: '13px', color: '#333', cursor: 'pointer',
+            }}
+          >
             글쓰기
           </button>
         </div>

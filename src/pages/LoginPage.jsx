@@ -2,6 +2,24 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
+import { setPersistence, browserLocalPersistence, browserSessionPersistence } from 'firebase/auth'
+import { auth, firebaseReady } from '../firebase'
+import { useAuth } from '../context/AuthContext'
+
+function firebaseAuthErrorMessage(err) {
+  console.error('[login]', err)
+  switch (err?.code) {
+    case 'auth/invalid-email': return '이메일 형식이 올바르지 않습니다.'
+    case 'auth/user-not-found':
+    case 'auth/invalid-credential': return '아이디 또는 비밀번호가 일치하지 않습니다.'
+    case 'auth/wrong-password': return '아이디 또는 비밀번호가 일치하지 않습니다.'
+    case 'auth/too-many-requests': return '잠시 후 다시 시도해주세요.'
+    case 'auth/popup-closed-by-user': return '로그인 창이 닫혔습니다. 다시 시도해주세요.'
+    case 'auth/unauthorized-domain': return `이 도메인은 Firebase에 승인되지 않았습니다. (${window.location.hostname})`
+    case 'auth/operation-not-allowed': return 'Google 로그인이 아직 활성화되지 않았습니다.'
+    default: return `로그인에 실패했습니다. (${err?.code || err?.message})`
+  }
+}
 
 const inputStyle = {
   width: '100%', padding: '14px 16px',
@@ -12,30 +30,40 @@ const inputStyle = {
 
 export default function LoginPage() {
   const navigate = useNavigate()
+  const { login, loginWithGoogle } = useAuth()
   const [userId, setUserId] = useState('')
   const [password, setPassword] = useState('')
   const [autoLogin, setAutoLogin] = useState(false)
   const [error, setError] = useState('')
+  const [submitting, setSubmitting] = useState(false)
 
-  function saveSession(user) {
-    const storage = autoLogin ? localStorage : sessionStorage
-    storage.setItem('bw_user', JSON.stringify(user))
-  }
-
-  function handleLogin(e) {
+  async function handleLogin(e) {
     e.preventDefault()
     if (!userId.trim()) { setError('아이디(이메일)를 입력해주세요.'); return }
     if (!password) { setError('비밀번호를 입력해주세요.'); return }
-    if (password.length < 4) { setError('비밀번호는 4자 이상이어야 합니다.'); return }
     setError('')
-    saveSession({ id: userId.trim(), provider: 'email' })
-    navigate('/')
+    setSubmitting(true)
+    try {
+      if (firebaseReady) {
+        await setPersistence(auth, autoLogin ? browserLocalPersistence : browserSessionPersistence)
+      }
+      await login(userId.trim(), password)
+      navigate('/')
+    } catch (err) {
+      setError(firebaseAuthErrorMessage(err))
+    } finally {
+      setSubmitting(false)
+    }
   }
 
-  function handleGoogleLogin() {
-    // 실제 서비스 연동 전까지는 데모 계정으로 로그인 처리
-    saveSession({ id: 'google_user@gmail.com', provider: 'google' })
-    navigate('/')
+  async function handleGoogleLogin() {
+    setError('')
+    try {
+      await loginWithGoogle()
+      navigate('/')
+    } catch (err) {
+      setError(firebaseAuthErrorMessage(err))
+    }
   }
 
   return (
@@ -95,13 +123,16 @@ export default function LoginPage() {
 
             <button
               type="submit"
+              disabled={submitting}
               style={{
                 width: '100%', padding: '15px', borderRadius: '6px',
                 background: '#111', color: '#fff', border: 'none',
-                fontSize: '15px', fontWeight: '600', cursor: 'pointer',
+                fontSize: '15px', fontWeight: '600',
+                cursor: submitting ? 'default' : 'pointer',
+                opacity: submitting ? 0.6 : 1,
               }}
             >
-              로그인
+              {submitting ? '로그인 중...' : '로그인'}
             </button>
           </form>
 

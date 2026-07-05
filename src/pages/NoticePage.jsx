@@ -1,19 +1,12 @@
-import { useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import BoardTabs from '../components/BoardTabs'
-
-const NOTICE_LIST = [
-  { badge: '공지', title: '고객 만족도 조사 참여 안내', date: '2026-06-05' },
-  { badge: '공지', title: '개인정보 처리방침 개정 안내', date: '2026-06-05' },
-  { badge: '공지', title: '서비스 이용약관 변경 공지', date: '2026-05-28' },
-  { badge: '공지', title: '정기 시스템 점검 안내 (7월 10일)', date: '2026-05-20' },
-  { title: '신규 헤드폰 라인업 출시 안내', date: '2026-05-12' },
-  { title: '여름맞이 무선 스피커 프로모션 안내', date: '2026-05-02' },
-  { title: '공식 앱 최신 버전 업데이트 안내', date: '2026-04-25' },
-]
+import { useAuth } from '../context/AuthContext'
+import { subscribeBoardPosts, filterPosts, PERIOD_DAYS } from '../firebase/board'
 
 const selectStyle = {
   padding: '11px 10px',
@@ -26,10 +19,22 @@ const selectStyle = {
 }
 
 export default function NoticePage() {
+  const navigate = useNavigate()
+  const { user } = useAuth()
+  const [posts, setPosts] = useState([])
   const [category, setCategory] = useState('전체')
-  const [period, setPeriod] = useState('일주일')
+  const [period, setPeriod] = useState('전체')
   const [searchBy, setSearchBy] = useState('제목')
   const [keyword, setKeyword] = useState('')
+
+  useEffect(() => {
+    return subscribeBoardPosts('notices', setPosts, err => console.error('notices load failed', err))
+  }, [])
+
+  const visiblePosts = useMemo(
+    () => filterPosts(posts, { category, periodDays: PERIOD_DAYS[period], keyword, searchBy }),
+    [posts, category, period, keyword, searchBy],
+  )
 
   return (
     <div className="page-root">
@@ -59,9 +64,14 @@ export default function NoticePage() {
 
         {/* 공지 리스트 */}
         <div>
-          {NOTICE_LIST.map((n, i) => (
+          {visiblePosts.length === 0 && (
+            <p style={{ textAlign: 'center', padding: '40px 20px', fontSize: '13px', color: '#bbb' }}>
+              등록된 공지사항이 없습니다.
+            </p>
+          )}
+          {visiblePosts.map(n => (
             <div
-              key={i}
+              key={n.id}
               style={{
                 display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '12px',
                 padding: '15px 20px', borderBottom: '1px solid #f0f0f0', cursor: 'pointer',
@@ -71,14 +81,14 @@ export default function NoticePage() {
                 fontSize: '13px', color: '#333', display: 'flex', alignItems: 'baseline', gap: '8px',
                 overflow: 'hidden', minWidth: 0,
               }}>
-                {n.badge && (
+                {n.category && n.category !== '전체' && (
                   <span style={{ fontSize: '11px', fontWeight: '700', color: 'var(--c-accent)', flexShrink: 0 }}>
-                    {n.badge}
+                    {n.category}
                   </span>
                 )}
                 <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{n.title}</span>
               </p>
-              <span style={{ fontSize: '11px', color: '#bbb', flexShrink: 0 }}>{n.date}</span>
+              <span style={{ fontSize: '11px', color: '#bbb', flexShrink: 0 }}>{n.date.toISOString().slice(0, 10)}</span>
             </div>
           ))}
         </div>
@@ -94,9 +104,9 @@ export default function NoticePage() {
           </button>
         </div>
 
-        {/* 검색 */}
+        {/* 검색 + 글쓰기 */}
         <div style={{ padding: '20px 20px 36px', borderTop: '1px solid #f5f5f5', marginTop: '16px' }}>
-          <div style={{ display: 'flex', gap: '6px' }}>
+          <div style={{ display: 'flex', gap: '6px', marginBottom: '10px' }}>
             <select value={period} onChange={e => setPeriod(e.target.value)} style={selectStyle}>
               <option>일주일</option>
               <option>1개월</option>
@@ -116,13 +126,17 @@ export default function NoticePage() {
                 fontSize: '12px', outline: 'none',
               }}
             />
-            <button style={{
-              padding: '10px 18px', background: '#fff', border: '1px solid #ddd',
-              borderRadius: '4px', fontSize: '12px', color: '#333', cursor: 'pointer', flexShrink: 0,
-            }}>
-              찾기
-            </button>
           </div>
+          <button
+            onClick={() => navigate(user ? '/notice/write' : '/login')}
+            style={{
+              width: '100%', padding: '13px 0',
+              background: '#f5f5f5', border: '1px solid #e5e5e5', borderRadius: '4px',
+              fontSize: '13px', color: '#333', cursor: 'pointer',
+            }}
+          >
+            글쓰기
+          </button>
         </div>
 
         <Footer />

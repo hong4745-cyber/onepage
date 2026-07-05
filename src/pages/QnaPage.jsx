@@ -1,20 +1,31 @@
-import { useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLock, faThumbtack } from '@fortawesome/free-solid-svg-icons'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import BoardTabs from '../components/BoardTabs'
+import { useAuth } from '../context/AuthContext'
+import { subscribeBoardPosts, filterPosts } from '../firebase/board'
 
 const PINNED = { title: '오배송&불량 안내사항', date: '2026-06-18', views: 53, author: '홍****' }
 
-const QNA_LIST = [
-  { title: '배송 소요 시간은 얼마나 걸리나요?', secret: true, date: '2026-06-04', views: 119, author: 'B&W' },
-  { title: '제품 배터리', secret: true, date: '2026-06-04', views: 53, author: 'B&W' },
-  { title: '배송 일정 문의', secret: true, date: '2026-06-04', views: 53, author: 'B&W' },
-]
-
 export default function QnaPage() {
+  const navigate = useNavigate()
+  const { user } = useAuth()
+  const [posts, setPosts] = useState([])
   const [category, setCategory] = useState('전체')
+  const [expandedId, setExpandedId] = useState(null)
+
+  useEffect(() => {
+    return subscribeBoardPosts('qna', setPosts, err => console.error('qna load failed', err))
+  }, [])
+
+  const visiblePosts = useMemo(() => filterPosts(posts, { category }), [posts, category])
+
+  function canViewContent(q) {
+    return !q.secret || (user && user.uid === q.authorId)
+  }
 
   return (
     <div className="page-root">
@@ -58,24 +69,54 @@ export default function QnaPage() {
             </p>
           </div>
 
-          {QNA_LIST.map((q, i) => (
-            <div key={i} style={{ padding: '14px 20px', borderBottom: '1px solid #f0f0f0', cursor: 'pointer' }}>
-              <p style={{ fontSize: '13px', color: '#333', display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '4px' }}>
-                {q.title}
-                {q.secret && <FontAwesomeIcon icon={faLock} style={{ color: '#bbb', fontSize: '10px' }} />}
-              </p>
-              <p style={{ fontSize: '11px', color: '#bbb' }}>
-                {q.date}&nbsp;&nbsp;조회 {q.views}&nbsp;&nbsp;{q.author}
-              </p>
-            </div>
-          ))}
+          {visiblePosts.length === 0 && (
+            <p style={{ textAlign: 'center', padding: '40px 20px', fontSize: '13px', color: '#bbb' }}>
+              등록된 문의가 없습니다.
+            </p>
+          )}
+
+          {visiblePosts.map(q => {
+            const expanded = expandedId === q.id
+            const viewable = canViewContent(q)
+            return (
+              <div key={q.id} style={{ borderBottom: '1px solid #f0f0f0' }}>
+                <div
+                  onClick={() => setExpandedId(expanded ? null : q.id)}
+                  style={{ padding: '14px 20px', cursor: 'pointer' }}
+                >
+                  <p style={{ fontSize: '13px', color: '#333', display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '4px' }}>
+                    {q.title}
+                    {q.secret && <FontAwesomeIcon icon={faLock} style={{ color: '#bbb', fontSize: '10px' }} />}
+                  </p>
+                  <p style={{ fontSize: '11px', color: '#bbb' }}>
+                    {q.date.toISOString().slice(0, 10)}&nbsp;&nbsp;{q.authorEmail}
+                  </p>
+                </div>
+                {expanded && (
+                  <div style={{ padding: '0 20px 16px', fontSize: '12px', color: viewable ? '#555' : '#bbb', lineHeight: 1.6 }}>
+                    {viewable ? q.content : '비밀글입니다. 작성자만 확인할 수 있습니다.'}
+                  </div>
+                )}
+              </div>
+            )
+          })}
         </div>
 
-        {/* 페이지네이션 */}
+        {/* 페이지네이션 + 글쓰기 */}
         <div style={{ padding: '40px 20px 8px' }}>
-          <div style={{ display: 'flex', justifyContent: 'center' }}>
+          <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '20px' }}>
             <span style={{ fontSize: '12px', fontWeight: '700', color: '#111', border: '1px solid #111', borderRadius: '4px', padding: '6px 14px' }}>1</span>
           </div>
+          <button
+            onClick={() => navigate(user ? '/qna/write' : '/login')}
+            style={{
+              width: '100%', padding: '13px 0',
+              background: '#f5f5f5', border: '1px solid #e5e5e5', borderRadius: '4px',
+              fontSize: '13px', color: '#333', cursor: 'pointer',
+            }}
+          >
+            글쓰기
+          </button>
         </div>
 
         <Footer />

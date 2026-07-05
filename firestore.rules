@@ -1,0 +1,43 @@
+rules_version = '2';
+
+// Firebase 콘솔 > Firestore Database > 규칙 탭에 이 내용을 붙여넣으세요.
+// 주의: secret(비밀글) 여부는 클라이언트 UI에서만 숨김 처리됩니다.
+// 문서 필드 단위 보안은 Firestore 규칙으로 표현할 수 없어, qna 문서의 content는
+// 읽기 권한이 있는 모든 사용자에게 전송됩니다 (진짜 비공개가 필요하면 Cloud Functions로
+// 우회 접근 로직을 만들어야 합니다).
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // 공지사항 / 이벤트: 누구나 읽기, 로그인 사용자만 쓰기(자신 명의로만)
+    match /notices/{postId} {
+      allow read: if true;
+      allow create: if request.auth != null
+        && request.resource.data.authorId == request.auth.uid;
+      allow update, delete: if request.auth != null
+        && resource.data.authorId == request.auth.uid;
+    }
+
+    match /events/{postId} {
+      allow read: if true;
+      // 이벤트는 관리자만 Firestore 콘솔에서 직접 등록 (클라이언트 쓰기 UI 없음)
+      allow write: if false;
+    }
+
+    // 리뷰 / 상품문의: 누구나 읽기, 로그인 사용자만 쓰기(자신 명의로만)
+    match /reviews/{postId} {
+      allow read: if true;
+      allow create: if request.auth != null
+        && request.resource.data.authorId == request.auth.uid;
+      allow update, delete: if request.auth != null
+        && resource.data.authorId == request.auth.uid;
+    }
+
+    match /qna/{postId} {
+      allow read: if true;
+      allow create: if request.auth != null
+        && request.resource.data.authorId == request.auth.uid;
+      allow update, delete: if request.auth != null
+        && resource.data.authorId == request.auth.uid;
+    }
+  }
+}

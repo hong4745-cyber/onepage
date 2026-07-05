@@ -54,7 +54,7 @@ function AccordionItem({ item, isActive, onMouseEnter, activeWidth, collapsedWid
           {item.items.map(sub => (
             <button
               key={sub.label}
-              onClick={() => navigate(sub.path)}
+              onClick={() => (sub.onClick ? sub.onClick() : navigate(sub.path))}
               style={{
                 background: 'none', border: 'none',
                 color: '#fff', fontSize: '13px',

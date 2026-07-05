@@ -3,6 +3,7 @@ import { MenuProvider } from './context/MenuContext'
 import { CartProvider } from './context/CartContext'
 import { WishlistProvider } from './context/WishlistContext'
 import { SearchProvider } from './context/SearchContext'
+import { AuthProvider } from './context/AuthContext'
 import Layout from './components/Layout'
 import ScrollToTop from './components/ScrollToTop'
 import HomePage from './pages/HomePage'
@@ -17,8 +18,12 @@ import MyPage from './pages/MyPage'
 import McLarenEditionPage from './pages/McLarenEditionPage'
 import PromotionsPage from './pages/PromotionsPage'
 import ReviewsPage from './pages/ReviewsPage'
+import ReviewWritePage from './pages/ReviewWritePage'
 import NoticePage from './pages/NoticePage'
+import NoticeWritePage from './pages/NoticeWritePage'
 import QnaPage from './pages/QnaPage'
+import QnaWritePage from './pages/QnaWritePage'
+import EventsPage from './pages/EventsPage'
 import WishlistPage from './pages/WishlistPage'
 import CartPage from './pages/CartPage'
 import CheckoutPage from './pages/CheckoutPage'
@@ -32,6 +37,7 @@ export default function App() {
   return (
     <BrowserRouter basename={import.meta.env.BASE_URL}>
       <ScrollToTop />
+      <AuthProvider>
       <CartProvider>
       <WishlistProvider>
       <SearchProvider>
@@ -46,9 +52,12 @@ export default function App() {
           <Route path="/special" element={<McLarenEditionPage />} />
           <Route path="/promotions" element={<PromotionsPage />} />
           <Route path="/notice" element={<NoticePage />} />
+          <Route path="/notice/write" element={<NoticeWritePage />} />
           <Route path="/reviews" element={<ReviewsPage />} />
+          <Route path="/reviews/write" element={<ReviewWritePage />} />
           <Route path="/qna" element={<QnaPage />} />
-          <Route path="/events" element={<EmptyPage title="이벤트" boardTabs />} />
+          <Route path="/qna/write" element={<QnaWritePage />} />
+          <Route path="/events" element={<EventsPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<EmptyPage title="회원가입" />} />
           <Route path="/wishlist" element={<WishlistPage />} />
@@ -66,6 +75,7 @@ export default function App() {
       </SearchProvider>
       </WishlistProvider>
       </CartProvider>
+      </AuthProvider>
     </BrowserRouter>
   )
 }

@@ -3,22 +3,57 @@ import { createPortal } from 'react-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faXmark, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons'
 import logoImg from '../assets/images/0_logo.png'
+import { useAuth } from '../context/AuthContext'
+
+function signupErrorMessage(err) {
+  console.error('[signup]', err)
+  switch (err.code) {
+    case 'auth/email-already-in-use': return '이미 가입된 이메일입니다.'
+    case 'auth/invalid-email': return '이메일 형식이 올바르지 않습니다.'
+    case 'auth/weak-password': return '비밀번호는 6자 이상이어야 합니다.'
+    case 'auth/popup-closed-by-user': return '로그인 창이 닫혔습니다. 다시 시도해주세요.'
+    case 'auth/unauthorized-domain': return `이 도메인은 Firebase에 승인되지 않았습니다. (${window.location.hostname})`
+    case 'auth/operation-not-allowed': return 'Google 로그인이 아직 활성화되지 않았습니다.'
+    default: return `회원가입에 실패했습니다. (${err.code || err.message})`
+  }
+}
 
 export default function SignupPopup({ onClose, onLoginClick }) {
+  const { signup, loginWithGoogle } = useAuth()
   const [email, setEmail] = useState('')
   const [pw, setPw] = useState('')
   const [pwConfirm, setPwConfirm] = useState('')
   const [showPw, setShowPw] = useState(false)
   const [showPwC, setShowPwC] = useState(false)
   const [agree, setAgree] = useState(false)
+  const [error, setError] = useState('')
+  const [submitting, setSubmitting] = useState(false)
 
   const pwMatch = pw === pwConfirm
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault()
     if (!pwMatch || !agree) return
-    alert('회원가입이 완료됐습니다!')
-    onClose()
+    setError('')
+    setSubmitting(true)
+    try {
+      await signup(email, pw)
+      onClose()
+    } catch (err) {
+      setError(signupErrorMessage(err))
+    } finally {
+      setSubmitting(false)
+    }
+  }
+
+  async function handleGoogleSignup() {
+    setError('')
+    try {
+      await loginWithGoogle()
+      onClose()
+    } catch (err) {
+      setError(signupErrorMessage(err))
+    }
   }
 
   return createPortal(
@@ -51,7 +86,7 @@ export default function SignupPopup({ onClose, onLoginClick }) {
         </div>
 
         {/* 구글 버튼 */}
-        <button style={{
+        <button type="button" onClick={handleGoogleSignup} style={{
           width: '100%', padding: '12px', borderRadius: '10px',
           border: '1.5px solid #e0e0e0', background: '#fff',
           display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px',
@@ -139,19 +174,25 @@ export default function SignupPopup({ onClose, onLoginClick }) {
             </span>
           </label>
 
+          {error && (
+            <p style={{ fontSize: '12px', color: '#e03131', marginBottom: '12px' }}>{error}</p>
+          )}
+
           {/* 가입 버튼 */}
           <button
             type="submit"
-            disabled={!agree || !pwMatch}
+            disabled={!agree || !pwMatch || submitting}
             style={{
               width: '100%', padding: '13px', borderRadius: '10px',
               background: agree && pwMatch ? 'var(--c-accent)' : '#ccc',
               color: '#fff', border: 'none',
-              fontSize: '14px', fontWeight: '700', cursor: agree && pwMatch ? 'pointer' : 'default',
+              fontSize: '14px', fontWeight: '700',
+              cursor: agree && pwMatch && !submitting ? 'pointer' : 'default',
+              opacity: submitting ? 0.6 : 1,
               transition: 'background 0.2s',
             }}
           >
-            회원가입
+            {submitting ? '가입 중...' : '회원가입'}
           </button>
         </form>
 

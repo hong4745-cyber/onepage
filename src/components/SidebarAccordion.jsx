@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useMenu } from '../context/MenuContext'
+import { useAuth } from '../context/AuthContext'
 import logoImg from '../assets/images/0_logo.png'
 import SignupPopup from './SignupPopup'
 import { InteractiveImageAccordion } from './ui/interactive-image-accordion'
@@ -20,16 +21,6 @@ const ACCORDION_ITEMS = [
       { label: '리뷰',     path: '/reviews' },
       { label: '상품문의', path: '/qna' },
       { label: '이벤트',   path: '/events' },
-    ],
-  },
-  {
-    id: 2,
-    title: '나의쇼핑',
-    imageUrl: imgMy,
-    items: [
-      { label: '로그인',   path: '/login' },
-      { label: '회원가입', path: '/signup' },
-      { label: '나의쇼핑', path: '/mypage' },
     ],
   },
   {
@@ -62,6 +53,25 @@ export default function SidebarAccordion() {
   const navigate = useNavigate()
   const [signupOpen, setSignupOpen] = useState(false)
   const { overlayOpen, setOverlayOpen } = useMenu()
+  const { user, logout } = useAuth()
+
+  const myShoppingItem = {
+    id: 2,
+    title: '나의쇼핑',
+    imageUrl: imgMy,
+    items: user
+      ? [
+          { label: '나의쇼핑', path: '/mypage' },
+          { label: '로그아웃', onClick: logout },
+        ]
+      : [
+          { label: '로그인',   path: '/login' },
+          { label: '회원가입', path: '/signup' },
+          { label: '나의쇼핑', path: '/mypage' },
+        ],
+  }
+
+  const accordionItems = [ACCORDION_ITEMS[0], myShoppingItem, ...ACCORDION_ITEMS.slice(1)]
 
   return (
     <aside className={`sidebar${overlayOpen ? ' sidebar--open' : ''}`}>
@@ -88,17 +98,28 @@ export default function SidebarAccordion() {
         />
         <p className="sidebar-tagline">특별하고 다양한 혜택 받으세요!</p>
         <div className="sidebar-auth-toolbar" role="toolbar" aria-label="회원 메뉴">
-          <button className="sidebar-auth-btn cursor-target" onClick={() => setSignupOpen(true)}>
-            회원가입
-          </button>
-          <button className="sidebar-auth-btn cursor-target" onClick={() => navigate('/login')}>
-            로그인
-          </button>
+          {user ? (
+            <>
+              <span className="sidebar-auth-email">{user.email}</span>
+              <button className="sidebar-auth-btn cursor-target" onClick={logout}>
+                로그아웃
+              </button>
+            </>
+          ) : (
+            <>
+              <button className="sidebar-auth-btn cursor-target" onClick={() => setSignupOpen(true)}>
+                회원가입
+              </button>
+              <button className="sidebar-auth-btn cursor-target" onClick={() => navigate('/login')}>
+                로그인
+              </button>
+            </>
+          )}
         </div>
       </div>
 
       <div style={{ padding: '36px 30px 35px' }}>
-        <InteractiveImageAccordion items={ACCORDION_ITEMS} />
+        <InteractiveImageAccordion items={accordionItems} />
       </div>
 
       {signupOpen && (

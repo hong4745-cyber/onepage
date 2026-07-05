@@ -7,6 +7,7 @@ import TopBanner from './TopBanner'
 import SearchOverlay from './SearchOverlay'
 import MagicRings from './MagicRings'
 import ThemeCompareSlider from './ThemeCompareSlider'
+import FloatingActions from './FloatingActions'
 import { useMenu } from '../context/MenuContext'
 
 const SIDEBAR_WIDTH = 400
@@ -84,6 +85,7 @@ export default function Layout({ children }) {
           {children}
           {!hideChrome && <BottomNav />}
         </div>
+        {!hideChrome && <FloatingActions />}
         <ThemeCompareSlider />
       </div>
     </div>
