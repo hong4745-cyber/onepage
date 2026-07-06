@@ -210,7 +210,7 @@
 
 ---
 
-# 1. 🎞 Hero Visual (`/`)
+# 1. 🎞 Hero Visual
 
 <p align="center">
 
@@ -235,7 +235,7 @@
 
 ---
 
-# 2. 🛍 상품 목록 (`/products`)
+# 2. 🛍 상품 목록
 
 <p align="center">
 
@@ -259,7 +259,7 @@
 
 ---
 
-# 3. 📦 상품 상세 페이지 (`/products/:id`)
+# 3. 📦 상품 상세 페이지
 
 <p align="center">
 
