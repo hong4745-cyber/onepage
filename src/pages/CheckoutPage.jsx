@@ -231,21 +231,39 @@ export default function CheckoutPage() {
       </div>
 
       {/* 결제 버튼 */}
-      <div style={{ padding: '12px 16px 16px', borderTop: '1px solid #f0f0f0', background: '#fff', flexShrink: 0 }}>
-        {payError && (
-          <p style={{ fontSize: '12px', color: '#e03131', marginBottom: '8px', textAlign: 'center' }}>{payError}</p>
-        )}
-        <button
-          onClick={handleSubmit}
-          disabled={paying}
-          style={{
-            width: '100%', padding: '15px', background: paying ? '#999' : 'var(--gradient-brand)',
-            color: '#fff', border: 'none', borderRadius: '10px',
-            fontSize: '15px', fontWeight: '700', cursor: paying ? 'wait' : 'pointer',
-          }}
-        >
-          {paying ? '결제 페이지 연결 중...' : `${finalPrice.toLocaleString()}원 결제하기`}
-        </button>
+      <div style={{ borderTop: '1px solid #f0f0f0', background: '#fff', flexShrink: 0 }}>
+        <div style={{ padding: '14px 16px 12px' }}>
+          {payError && (
+            <p style={{ fontSize: '12px', color: '#e03131', marginBottom: '8px', textAlign: 'center' }}>{payError}</p>
+          )}
+          <button
+            onClick={handleSubmit}
+            disabled={paying}
+            style={{
+              width: '100%', padding: '15px', background: paying ? '#999' : 'var(--gradient-brand)',
+              color: '#fff', border: 'none', borderRadius: '10px',
+              fontSize: '15px', fontWeight: '700', cursor: paying ? 'wait' : 'pointer',
+            }}
+          >
+            {paying ? '결제 페이지 연결 중...' : `${finalPrice.toLocaleString()}원 결제하기`}
+          </button>
+        </div>
+        {/* 신뢰 배지 — BottomNav FAB과의 시각적 분리 역할 */}
+        <div style={{
+          display: 'flex', justifyContent: 'center', gap: '20px',
+          padding: '14px 16px 20px',
+          borderTop: '1px solid #f5f5f5',
+        }}>
+          {[
+            ['🔒', '개인정보 보호'],
+            ['✓', '안전결제 보장'],
+            ['📋', '구매자 보호'],
+          ].map(([icon, label]) => (
+            <span key={label} style={{ display: 'flex', alignItems: 'center', gap: '4px', fontSize: '11px', color: '#999' }}>
+              <span style={{ fontSize: '12px' }}>{icon}</span>{label}
+            </span>
+          ))}
+        </div>
       </div>
     </div>
   )

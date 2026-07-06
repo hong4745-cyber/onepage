@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { useCart } from '../context/CartContext'
 import { useWishlist } from '../context/WishlistContext'
@@ -13,6 +13,8 @@ import Footer from '../components/Footer'
 import products from '../products.json'
 import specialProducts from '../specialProducts.json'
 import { resolveImage, resolveDetailImages } from '../utils/imageMap'
+import { saveRecentlyViewed } from '../utils/recentlyViewed'
+import ProductDetailDrawer from '../components/ProductDetailDrawer'
 
 const allProducts = [...products, ...specialProducts]
 
@@ -45,12 +47,25 @@ export default function ProductDetailPage() {
   const [activeImg, setActiveImg] = useState(0)
   const [activeTab, setActiveTab] = useState('detail')
   const [selectedColor, setSelectedColor] = useState(null)
+  const [colorOverrideImg, setColorOverrideImg] = useState(null)
   const [openAccordion, setOpenAccordion] = useState(null)
   const [added, setAdded] = useState(false)
   const [msg, setMsg] = useState('')
 
   const [imgPopup, setImgPopup] = useState(false)
   const [zoom, setZoom] = useState({ active: false, x: 50, y: 50 })
+  const [drawerProductId, setDrawerProductId] = useState(null)
+
+  useEffect(() => {
+    if (!product) return
+    saveRecentlyViewed({
+      id: product.id,
+      name: product.name,
+      image: resolveImage(product.image),
+      salePrice: product.salePrice,
+      price: product.price,
+    })
+  }, [product?.id])
 
   function handleZoomMove(e) {
     const rect = e.currentTarget.getBoundingClientRect()
@@ -86,6 +101,7 @@ export default function ProductDetailPage() {
   const mainImgSrc = resolveImage(product.image)
   const detailImgs = resolveDetailImages(product.image, product.detailFolder)
   const imgSlides = detailImgs.length > 0 ? detailImgs.slice(0, 4) : [mainImgSrc]
+  const displayImg = colorOverrideImg ?? imgSlides[activeImg]
   const related = allProducts.filter(p => p.category === product.category && p.id !== product.id).slice(0, 6)
   const colors = product.colors
   const totalPrice = selectedColor ? product.salePrice : 0
@@ -119,7 +135,7 @@ export default function ProductDetailPage() {
   function handleBuyNow() {
     if (!requireColor()) return
     addToCart(product)
-    navigate('/checkout')
+    window.open('/checkout', '_blank')
   }
 
   const tabs = [
@@ -140,7 +156,7 @@ export default function ProductDetailPage() {
             onClick={() => setImgPopup(true)}
           >
             <img
-              src={imgSlides[activeImg]}
+              src={displayImg}
               alt={product.name}
               style={{ width: '100%', height: '100%', objectFit: 'contain' }}
             />
@@ -237,7 +253,11 @@ export default function ProductDetailPage() {
                 <button
                   key={c.name}
                   title={c.name}
-                  onClick={() => { setSelectedColor(c.name); setMsg('') }}
+                  onClick={() => {
+                    setSelectedColor(c.name)
+                    setColorOverrideImg(c.image ? resolveImage(c.image) : null)
+                    setMsg('')
+                  }}
                   style={{
                     width: '28px', height: '28px', borderRadius: '6px',
                     background: c.hex, cursor: 'pointer',
@@ -355,7 +375,7 @@ export default function ProductDetailPage() {
                     return (
                       <div
                         key={p.id}
-                        onClick={() => { navigate(`/products/${p.id}`); window.scrollTo(0, 0) }}
+                        onClick={() => setDrawerProductId(p.id)}
                         style={{ width: '150px', flexShrink: 0, cursor: 'pointer' }}
                       >
                         {/* 이미지 + 아이콘 오버레이 */}
@@ -502,6 +522,13 @@ export default function ProductDetailPage() {
         <Footer />
       </div>
 
+      {drawerProductId && (
+        <ProductDetailDrawer
+          productId={drawerProductId}
+          onClose={() => setDrawerProductId(null)}
+        />
+      )}
+
       {/* ===== 이미지 팝업 (클릭 확대) ===== */}
       {imgPopup && (
         <div
@@ -536,7 +563,7 @@ export default function ProductDetailPage() {
             }}
           >
             <img
-              src={imgSlides[activeImg]}
+              src={displayImg}
               alt={product.name}
               style={{
                 display: 'block', maxWidth: '100%', maxHeight: '88vh',

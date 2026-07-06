@@ -5,6 +5,7 @@ import { faXmark } from '@fortawesome/free-solid-svg-icons'
 import { MdSearch } from 'react-icons/md'
 import { useSearch } from '../context/SearchContext'
 import { resolveImage } from '../utils/imageMap'
+import { searchScore } from '../utils/koreanSearch'
 import products from '../products.json'
 
 export default function SearchOverlay() {
@@ -16,7 +17,12 @@ export default function SearchOverlay() {
 
   const trimmed = query.trim()
   const results = trimmed.length > 0
-    ? products.filter(p => p.name.includes(trimmed) || p.category.includes(trimmed)).slice(0, 20)
+    ? products
+        .map(p => ({ p, score: searchScore(p, trimmed) }))
+        .filter(({ score }) => score > 0)
+        .sort((a, b) => b.score - a.score)
+        .map(({ p }) => p)
+        .slice(0, 20)
     : []
 
   function goTo(id) {

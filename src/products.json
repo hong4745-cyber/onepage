@@ -63,6 +63,11 @@
       {
         "name": "화이트",
         "hex": "#f0efeb"
+      },
+      {
+        "name": "네이비",
+        "hex": "#1c2b4a",
+        "image": "/images/product/color/Product_Headphone_color_02.jpg"
       }
     ],
     "connectivity": "블루투스",
@@ -121,6 +126,11 @@
       {
         "name": "그레이",
         "hex": "#9a9a9a"
+      },
+      {
+        "name": "크림",
+        "hex": "#f5f0eb",
+        "image": "/images/product/color/Product_Headphone_color_03.jpg"
       }
     ],
     "connectivity": "블루투스",
@@ -173,6 +183,11 @@
       {
         "name": "탄(브라운)",
         "hex": "#8a6a4a"
+      },
+      {
+        "name": "블랙",
+        "hex": "#1a1a1a",
+        "image": "/images/product/color/Product_Headphone_color_04.jpg"
       }
     ],
     "connectivity": "블루투스",
@@ -225,6 +240,11 @@
       {
         "name": "네이비",
         "hex": "#1e2a4a"
+      },
+      {
+        "name": "버건디",
+        "hex": "#7c1f35",
+        "image": "/images/product/color/Product_Headphone_color_05.jpg"
       }
     ],
     "connectivity": "블루투스",
@@ -277,6 +297,11 @@
       {
         "name": "블랙",
         "hex": "#1a1a1a"
+      },
+      {
+        "name": "모브핑크",
+        "hex": "#c8a4b4",
+        "image": "/images/product/color/Product_Earbud_color_01.jpg"
       }
     ],
     "connectivity": "블루투스",
@@ -329,6 +354,11 @@
       {
         "name": "화이트",
         "hex": "#f0efeb"
+      },
+      {
+        "name": "블랙",
+        "hex": "#1a1a1a",
+        "image": "/images/product/color/Product_Earbud_color_02.jpg"
       }
     ],
     "connectivity": "블루투스",
@@ -433,6 +463,11 @@
       {
         "name": "탄(브라운)",
         "hex": "#8a6a4a"
+      },
+      {
+        "name": "버건디",
+        "hex": "#6d1a28",
+        "image": "/images/product/color/Product_Earbud_color_04.jpg"
       }
     ],
     "connectivity": "블루투스",

@@ -84,22 +84,40 @@ export default function CartPage() {
 
       {/* 하단 결제 바 */}
       {cart.length > 0 && (
-        <div style={{ padding: '12px 16px 16px', borderTop: '1px solid #f0f0f0', background: '#fff', flexShrink: 0 }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
-            <span style={{ fontSize: '13px', color: '#666' }}>총 결제금액</span>
-            <span style={{ fontSize: '18px', fontWeight: '700', color: '#111' }}>
-              {totalPrice.toLocaleString()}원
-            </span>
+        <div style={{ borderTop: '1px solid #f0f0f0', background: '#fff', flexShrink: 0 }}>
+          <div style={{ padding: '14px 16px 12px' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
+              <span style={{ fontSize: '13px', color: '#666' }}>총 결제금액</span>
+              <span style={{ fontSize: '18px', fontWeight: '700', color: '#111' }}>
+                {totalPrice.toLocaleString()}원
+              </span>
+            </div>
+            <button
+              onClick={() => window.open('/checkout', '_blank')}
+              style={{
+                width: '100%', padding: '15px', background: '#111', color: '#fff',
+                border: 'none', borderRadius: '10px', fontSize: '15px', fontWeight: '700', cursor: 'pointer',
+              }}
+            >
+              구매하기 ({totalCount}개)
+            </button>
           </div>
-          <button
-            onClick={() => navigate('/checkout')}
-            style={{
-              width: '100%', padding: '15px', background: '#111', color: '#fff',
-              border: 'none', borderRadius: '10px', fontSize: '15px', fontWeight: '700', cursor: 'pointer',
-            }}
-          >
-            구매하기 ({totalCount}개)
-          </button>
+          {/* 신뢰 배지 — BottomNav FAB과의 시각적 분리 역할 */}
+          <div style={{
+            display: 'flex', justifyContent: 'center', gap: '20px',
+            padding: '14px 16px 20px',
+            borderTop: '1px solid #f5f5f5',
+          }}>
+            {[
+              ['🔒', 'SSL 안전결제'],
+              ['↩', '7일 이내 환불'],
+              ['🚚', '당일 발송'],
+            ].map(([icon, label]) => (
+              <span key={label} style={{ display: 'flex', alignItems: 'center', gap: '4px', fontSize: '11px', color: '#999' }}>
+                <span style={{ fontSize: '12px' }}>{icon}</span>{label}
+              </span>
+            ))}
+          </div>
         </div>
       )}
     </div>

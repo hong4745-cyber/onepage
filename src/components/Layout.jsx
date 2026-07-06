@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import SidebarAccordion from './SidebarAccordion'
 import BottomNav from './BottomNav'
@@ -10,23 +10,14 @@ import ThemeCompareSlider from './ThemeCompareSlider'
 import FloatingActions from './FloatingActions'
 import { useMenu } from '../context/MenuContext'
 
-const SIDEBAR_WIDTH = 400
 const RING_BASE_OFFSET_X = 0.1
 
 export default function Layout({ children }) {
   const { overlayOpen, setOverlayOpen } = useMenu()
   const { pathname } = useLocation()
-  const [viewportWidth, setViewportWidth] = useState(() => window.innerWidth)
-
   useEffect(() => {
     setOverlayOpen(false)
   }, [pathname])
-
-  useEffect(() => {
-    const onResize = () => setViewportWidth(window.innerWidth)
-    window.addEventListener('resize', onResize)
-    return () => window.removeEventListener('resize', onResize)
-  }, [])
 
   const handleBgClick = () => {
     setOverlayOpen(o => !o)
@@ -42,14 +33,22 @@ export default function Layout({ children }) {
   }, [overlayOpen])
 
   const hideChrome = pathname === '/login'
-  const isDesktop = viewportWidth > 600
-  const sidebarShiftFrac = overlayOpen && isDesktop ? (SIDEBAR_WIDTH / 2) / viewportWidth : 0
-  const ringOffsetX = RING_BASE_OFFSET_X + sidebarShiftFrac
 
   return (
     <div className="layout-wrapper">
       <TargetCursor targetSelector=".cursor-target" spinDuration={2} cursorColor="#ffffff" />
       <SidebarAccordion />
+      {!hideChrome && (
+        <button
+          className={`sidebar-hint-tab${overlayOpen ? ' sidebar-hint-tab--hidden' : ''}`}
+          onClick={() => setOverlayOpen(true)}
+          aria-label="메뉴 열기"
+        >
+          <svg width="7" height="12" viewBox="0 0 7 12" fill="none">
+            <polyline points="1,1 6,6 1,11" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+        </button>
+      )}
       <div className="layout-right-area">
         {/* MagicRings 배경 — 클릭하면 사이드바가 열림 */}
         <div className="magic-rings-bg" onClick={handleBgClick}>
@@ -75,7 +74,7 @@ export default function Layout({ children }) {
             hoverScale={1.15}
             parallax={0.04}
             clickBurst={true}
-            centerOffsetX={ringOffsetX}
+            centerOffsetX={RING_BASE_OFFSET_X}
           />
         </div>
 

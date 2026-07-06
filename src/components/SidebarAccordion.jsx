@@ -1,10 +1,12 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { FaInstagram, FaYoutube, FaFacebookF } from 'react-icons/fa'
 import { useMenu } from '../context/MenuContext'
 import { useAuth } from '../context/AuthContext'
 import logoImg from '../assets/images/0_logo.png'
 import SignupPopup from './SignupPopup'
 import { InteractiveImageAccordion } from './ui/interactive-image-accordion'
+import { getRecentlyViewed } from '../utils/recentlyViewed'
 
 import imgBrand   from '../assets/images/bg/main_Background.png'
 import imgProduct from '../assets/images/Product/Product_Headphone_01.jpg'
@@ -52,8 +54,13 @@ const ACCORDION_ITEMS = [
 export default function SidebarAccordion() {
   const navigate = useNavigate()
   const [signupOpen, setSignupOpen] = useState(false)
+  const [recentlyViewed, setRecentlyViewed] = useState([])
   const { overlayOpen, setOverlayOpen } = useMenu()
   const { user, logout } = useAuth()
+
+  useEffect(() => {
+    if (overlayOpen) setRecentlyViewed(getRecentlyViewed())
+  }, [overlayOpen])
 
   const myShoppingItem = {
     id: 2,
@@ -118,8 +125,49 @@ export default function SidebarAccordion() {
         </div>
       </div>
 
-      <div style={{ padding: '36px 30px 35px' }}>
+      <div style={{ padding: '36px 30px 24px' }}>
         <InteractiveImageAccordion items={accordionItems} />
+      </div>
+
+      <div style={{ flex: 1 }} />
+
+      {/* C. 최근 본 상품 */}
+      {recentlyViewed.length > 0 && (
+        <div className="sidebar-recently-viewed">
+          <p className="sidebar-rv-label">최근 본 상품</p>
+          <div className="sidebar-rv-list">
+            {recentlyViewed.map(p => (
+              <button
+                key={p.id}
+                className="sidebar-rv-item"
+                onClick={() => { navigate(`/products/${p.id}`); setOverlayOpen(false) }}
+              >
+                <img src={p.image} alt={p.name} className="sidebar-rv-img" />
+                <span className="sidebar-rv-name">{p.name}</span>
+                <span className="sidebar-rv-price">
+                  {(p.salePrice || p.price).toLocaleString()}원
+                </span>
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* A. 브랜드 카피 + 소셜 링크 */}
+      <div className="sidebar-brand-footer">
+        <p className="sidebar-brand-tagline">"Hear More of What You Love"</p>
+        <div className="sidebar-social-row">
+          <a href="https://www.instagram.com/bowersandwilkins" target="_blank" rel="noreferrer" className="sidebar-social-link" aria-label="Instagram">
+            <FaInstagram />
+          </a>
+          <a href="https://www.youtube.com/@BowersWilkins" target="_blank" rel="noreferrer" className="sidebar-social-link" aria-label="YouTube">
+            <FaYoutube />
+          </a>
+          <a href="https://www.facebook.com/BowersWilkins" target="_blank" rel="noreferrer" className="sidebar-social-link" aria-label="Facebook">
+            <FaFacebookF />
+          </a>
+        </div>
+        <p className="sidebar-copyright">© 2025 Bowers &amp; Wilkins Korea</p>
       </div>
 
       {signupOpen && (

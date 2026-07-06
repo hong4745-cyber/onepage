@@ -593,11 +593,12 @@ export default function HomePage() {
                       style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                     />
                     <button onClick={e => { e.stopPropagation(); toggleWishlist(p) }} style={{
-                      position: 'absolute', bottom: '10px', right: '10px',
-                      width: '30px', height: '30px', borderRadius: '50%',
-                      background: 'rgba(255,255,255,0.9)', border: 'none',
+                      position: 'absolute', bottom: '14px', right: '14px',
+                      width: '44px', height: '44px', borderRadius: '50%',
+                      background: 'rgba(255,255,255,0.92)', border: 'none',
+                      boxShadow: '0 2px 8px rgba(0,0,0,0.12)',
                       display: 'flex', alignItems: 'center', justifyContent: 'center',
-                      fontSize: '13px', color: isWished(p.id) ? 'var(--c-accent)' : '#aaa', cursor: 'pointer',
+                      fontSize: '20px', color: isWished(p.id) ? 'var(--c-accent)' : '#aaa', cursor: 'pointer',
                     }}>
                       {isWished(p.id) ? <FontAwesomeIcon icon={faHeartSolid} /> : <FaRegHeart />}
                     </button>
