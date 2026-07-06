@@ -188,10 +188,11 @@
 
 # 🔗 프로젝트 링크
 
-| 구분 | 링크 |
-|------|------|
+| Resource | Link |
+|----------|------|
 | 🌐 Live Demo | https://onepage-khaki.vercel.app/ |
-| 📂 Repository | https://github.com/hong4745-cyber/onepage |
+| 💻 GitHub Repository | https://github.com/hong4745-cyber/onepage |
+| 📄 Project Documentation | [View PDF](https://github.com/user-attachments/files/29692864/Bowers_Wilkins_Project.pdf) |
 
 ---
 
