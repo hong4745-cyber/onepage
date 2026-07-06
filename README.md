@@ -171,6 +171,7 @@
 - Git
 - GitHub
 - Vercel
+- Figma
 
 ---
 
