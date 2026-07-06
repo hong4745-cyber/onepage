@@ -293,9 +293,7 @@
 
 <p align="center">
 
-<!-- Product List -->
-
-<!-- 이미지 추가 예정 -->
+<img width="601" height="954" alt="상품 목록" src="https://github.com/user-attachments/assets/09aaade8-9dc2-469f-9dea-b558a917784c" />
 
 </p>
 
@@ -319,9 +317,7 @@
 
 <p align="center">
 
-<!-- Product Detail -->
-
-<!-- 이미지 추가 예정 -->
+<img src="https://github.com/user-attachments/assets/fbda9e7d-4cc4-412d-80bc-b71d1ac05be4" width="70%" alt="상품 상세 페이지" />
 
 </p>
 
@@ -346,9 +342,7 @@
 
 <p align="center">
 
-<!-- Search -->
-
-<!-- 이미지 추가 예정 -->
+<img src="https://github.com/user-attachments/assets/1d4c9579-b038-496c-b93d-1fcf63041b23" width="70%" alt="Search Overlay" />
 
 </p>
 
@@ -356,14 +350,15 @@
 
 - 어디서든 상품 검색 가능
 - 상품명과 카테고리 검색
-- 입력 즉시 결과 표시
+- 입력 즉시 검색 결과 표시
+- 검색 결과를 클릭하여 해당 상품으로 바로 이동
 
 ### 💻 구현 내용
 
-- Search Context 구성
-- 실시간 검색(Filter)
-- Overlay UI 구현
-- 검색 결과 즉시 렌더링
+- Search Context를 활용한 전역 검색 상태 관리
+- 상품명과 카테고리를 대상으로 실시간 필터링 구현
+- Overlay UI를 통해 현재 페이지를 벗어나지 않고 검색 가능
+- 입력값 변경 시 검색 결과를 즉시 렌더링하여 사용자 편의성 향상
 
 ---
 
@@ -371,27 +366,25 @@
 
 <p align="center">
 
-<!-- Cart -->
-
-<!-- 이미지 추가 예정 -->
+<img src="https://github.com/user-attachments/assets/64fa4e74-bf04-4bd6-8b77-7acdde02e237" width="48%" alt="장바구니" />
+&nbsp;
+<img src="https://github.com/user-attachments/assets/95b4abb0-0594-44ab-aa1b-56890cb4c423" width="48%" alt="위시리스트" />
 
 </p>
 
 ### ✨ 주요 기능
 
-- 상품 담기
-- 수량 변경
-- 위시리스트 추가
+- 상품을 장바구니 및 위시리스트에 추가
+- 상품 수량 변경 및 삭제
+- 총 결제 금액 자동 계산
 - 새로고침 후에도 데이터 유지
 
 ### 💻 구현 내용
 
-- Cart Context 구현
-- Wishlist Context 구현
-- Local Storage 연동
-- 상품 수량 계산
-- 총 결제 금액 자동 계산
-- 페이지 이동 후에도 상태 유지
+- Cart Context와 Wishlist Context를 활용한 전역 상태 관리
+- Local Storage를 연동하여 장바구니 및 위시리스트 데이터 유지
+- 상품 수량 변경 시 총 결제 금액을 실시간으로 계산
+- 페이지 이동 및 새로고침 이후에도 상태가 유지되도록 구현
 
 ---
 
@@ -399,25 +392,28 @@
 
 <p align="center">
 
-<!-- Checkout -->
-<!-- 이미지 추가 예정 -->
+<img src="https://github.com/user-attachments/assets/9869860d-524f-466b-852f-f9e37bc3a642" width="31%" alt="Checkout" />
+&nbsp;
+<img src="https://github.com/user-attachments/assets/a696e1a2-3e5e-48f4-8219-4d5004425c9f" width="31%" alt="Polar.sh 결제" />
+&nbsp;
+<img src="https://github.com/user-attachments/assets/e4cb1b44-a988-4ae6-a382-85492dd4be5c" width="31%" alt="주문 완료" />
 
 </p>
 
 ### ✨ 주요 기능
 
-- 장바구니 상품 자동 연동
-- 실제 결제 시스템(Polar.sh) 연결
-- 결제 완료 후 주문 완료 페이지 이동
-- 결제 상품 및 금액 자동 계산
+- 장바구니 상품을 Checkout 페이지로 자동 연동
+- Polar.sh를 통한 실제 결제 시스템 연결
+- 결제 완료 후 주문 완료 페이지로 자동 이동
+- 결제 상품 및 총 금액 자동 계산
 
 ### 💻 구현 내용
 
-- Polar.sh API 연동
-- Checkout 데이터 자동 생성
-- 환경 변수(.env)를 활용한 API Key 관리
-- 서버를 통해 안전하게 결제 요청 처리
-- 결제 성공 시 주문 완료 페이지로 이동
+- Polar.sh API를 연동하여 실제 결제 프로세스 구현
+- Checkout 데이터를 자동 생성하여 결제 페이지에 전달
+- 환경 변수(`.env`)를 활용해 API Key 및 Secret Key를 안전하게 관리
+- 서버를 통해 결제 요청을 처리하여 보안성을 강화
+- 결제 완료 후 주문 완료 페이지로 이동하고 결제 결과를 반영
 
 ---
 
@@ -425,26 +421,37 @@
 
 <p align="center">
 
-<!-- Board -->
-<!-- 이미지 추가 예정 -->
+<img src="https://github.com/user-attachments/assets/d73e91b0-85e6-4fec-a5b0-e4bbc15fc685" width="48%" alt="공지사항 게시판" />
+&nbsp;
+<img src="https://github.com/user-attachments/assets/fc03bb14-0ecd-4330-a890-77360700e63f" width="48%" alt="리뷰 게시판" />
 
+<br><br>
+
+<img src="https://github.com/user-attachments/assets/b52d2a90-5d5b-40f5-bf30-4d4b02ee53f1" width="48%" alt="Q&A 게시판" />
+&nbsp;
+<img src="https://github.com/user-attachments/assets/c581d7e5-d386-4999-984f-1c24fd0d750d" width="48%" alt="게시글 작성" />
+
+</p>
+
+<p align="center">
+<sub>Notice · Review · Q&A · Write Post</sub>
 </p>
 
 ### ✨ 주요 기능
 
-- 공지사항
-- 리뷰
-- Q&A
-- 이벤트 게시판
-- 실시간 데이터 반영
+- 공지사항, 리뷰, Q&A, 이벤트 게시판 제공
+- Firestore 기반 실시간 게시글 관리
+- 게시글 검색 및 필터 기능 지원
+- 로그인 사용자만 게시글 작성 가능
+- 관리자 권한을 통한 이벤트 게시글 관리
 
 ### 💻 구현 내용
 
-- Firebase Firestore CRUD
-- 게시글 검색 및 필터
-- 리뷰 자동 분류
-- 로그인 사용자만 글쓰기 가능
-- 관리자 전용 이벤트 등록
+- Firebase Firestore를 활용한 게시판 CRUD 구현
+- 공지사항 검색 및 카테고리 필터 기능 구현
+- 리뷰 이미지 유무에 따른 자동 분류 기능 구현
+- Firebase Authentication과 연동하여 로그인 사용자만 글쓰기 가능하도록 구현
+- 관리자 권한에 따라 이벤트 게시글 등록 및 관리 기능 구현
 
 ---
 
@@ -452,25 +459,30 @@
 
 <p align="center">
 
-<!-- Login -->
-<!-- 이미지 추가 예정 -->
+<img src="https://github.com/user-attachments/assets/b26309fd-26f3-4d44-b80b-13500c8b655a" width="48%" alt="로그인" />
+&nbsp;
+<img src="https://github.com/user-attachments/assets/894f3b68-d42e-408e-818b-1cdcc0bdcfb2" width="48%" alt="회원가입" />
 
+</p>
+
+<p align="center">
+<sub>Login · Sign Up</sub>
 </p>
 
 ### ✨ 주요 기능
 
-- 이메일 회원가입
-- 이메일 로그인
-- Google 로그인
-- 로그인 상태 유지
+- 이메일 회원가입 및 로그인
+- Google 계정을 통한 간편 로그인
+- 로그인 상태 자동 유지
+- 사용자 인증에 따른 UI 변경
 
 ### 💻 구현 내용
 
-- Firebase Authentication
-- Google OAuth 로그인
-- 로그인 상태 감지
-- 사용자 정보 Firestore 저장
-- 로그인 상태에 따른 UI 변경
+- Firebase Authentication을 활용한 이메일 회원가입 및 로그인 구현
+- Google OAuth를 연동하여 소셜 로그인 기능 구현
+- 로그인 상태를 실시간으로 감지하여 사용자 인증 상태 유지
+- Firestore에 사용자 정보를 저장하고 관리
+- 로그인 여부에 따라 Header 및 사용자 메뉴를 동적으로 변경
 
 ---
 
@@ -478,23 +490,29 @@
 
 <p align="center">
 
-<!-- Dark Mode -->
-<!-- 이미지 추가 예정 -->
+<img src="https://github.com/user-attachments/assets/23e45959-ccb9-4a0c-955b-0c87bc46269b" width="48%" alt="Light Mode" />
+&nbsp;
+<img src="https://github.com/user-attachments/assets/93978ec3-9a55-4b46-b955-fbf686fd5a31" width="48%" alt="Dark Mode" />
 
+</p>
+
+<p align="center">
+<sub>Light Mode · Dark Mode</sub>
 </p>
 
 ### ✨ 주요 기능
 
-- 버튼 한 번으로 테마 전환
-- 콘텐츠 영역만 색상 변경
+- 버튼 한 번으로 라이트 모드와 다크 모드 전환
+- 콘텐츠 영역만 테마 변경
 - 이미지와 영상은 원본 색상 유지
+- 페이지 전반에 일관된 테마 적용
 
 ### 💻 구현 내용
 
-- CSS Filter 기반 테마 전환
-- 이미지 이중 반전 처리
-- 공통 컴포넌트 예외 처리
-- Theme 상태 관리
+- CSS Filter를 활용한 다크모드 구현
+- 이미지와 영상은 이중 반전 처리하여 원본 색상 유지
+- 공통 컴포넌트는 필터 적용 대상에서 제외
+- Theme 상태를 전역으로 관리하여 모든 페이지에 일관되게 적용
 
 ---
 
