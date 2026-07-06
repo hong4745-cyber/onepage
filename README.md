@@ -163,7 +163,7 @@
 
 <p>
 
-<img src="https://skillicons.dev/icons?i=vscode,git,github,vercel"/>
+<img src="https://skillicons.dev/icons?i=vscode,git,github,vercel,figma"/>
 
 </p>
 
