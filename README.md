@@ -4,21 +4,12 @@
 
 <p align="center">
 
-<!-- Hero Image -->
-<!-- 메인 이미지 추가 예정 -->
+<img src="https://github.com/user-attachments/assets/cf331154-bd23-4fbd-8d31-a8a59d305447" width="90%" alt="Bowers & Wilkins Main Preview" />
 
 </p>
 
 <p align="center">
-
-<!-- Desktop Preview -->
-<!-- 이미지 추가 예정 -->
-
-&nbsp;
-
-<!-- Mobile Preview -->
-<!-- 이미지 추가 예정 -->
-
+<sub>Desktop Main Preview</sub>
 </p>
 
 ---
@@ -55,48 +46,6 @@
 - Firebase를 활용한 사용자 인증 및 데이터 관리
 - 실제 결제 시스템 연동 경험
 - 사용자 중심의 인터랙션과 반응형 UI 구현
-
----
-
-# 🖼️ Before / After
-
-## 🔹 Before
-
-<p align="center">
-
-<!-- Before Image -->
-<!-- 이미지 추가 예정 -->
-
-</p>
-
-<p align="center">
-<sub>👆 이미지를 클릭하면 원본 크기로 볼 수 있습니다.</sub>
-</p>
-
----
-
-## 🔹 After
-
-<p align="center">
-
-<!-- After Image -->
-<!-- 이미지 추가 예정 -->
-
-</p>
-
-<p align="center">
-<sub>👆 이미지를 클릭하면 원본 크기로 볼 수 있습니다.</sub>
-</p>
-
----
-
-# ⚠️ 주의사항
-
-> 본 프로젝트는 **학습 및 포트폴리오 목적**으로 제작되었습니다.
-
-- 기존 **Bowers & Wilkins** 브랜드를 참고하여 UI/UX를 리뉴얼한 프로젝트입니다.
-- 실제 쇼핑몰 구조를 학습하기 위해 제작되었으며 상업적 목적은 없습니다.
-- 모든 상표 및 브랜드의 권리는 해당 소유자에게 있습니다.
 
 ---
 
@@ -170,17 +119,17 @@
 
 ---
 
-## ⚙ State Management
+## ⚙️ State Management
 
 - Context API
 - Cart Context
 - Wishlist Context
 - Search Context
-- Menu Context
+- Theme Context
 
 ---
 
-## 🌏 API
+## 🌐 API
 
 <p>
 
@@ -229,9 +178,9 @@
 
 | AI | 활용 내용 |
 |----|----------|
-| ChatGPT | 프로젝트 기획, UI/UX 개선, README 작성 |
+| ChatGPT | 프로젝트 기획, UI/UX 개선, 코드 리뷰 및 README 작성 |
 | Claude Code | 코드 분석 및 리팩토링 |
-| Gemini | 아이디어 조사 및 기능 검토 |
+| Gemini | 기능 조사 및 구현 아이디어 검토 |
 
 > AI가 생성한 결과를 그대로 사용하는 것이 아니라 프로젝트 목적에 맞게 수정·검증 후 직접 구현했습니다.
 
@@ -258,34 +207,30 @@
 
 # 🚀 주요 기능
 
-> 💡 아래 영역은 GIF 또는 이미지가 들어갈 자리입니다.
->
-> **PC / Mobile 이미지 또는 GIF**를 추가하는 것을 추천합니다.
-
 ---
 
 # 1. 🎞 Hero Visual (`/`)
 
 <p align="center">
 
-<!-- Hero GIF -->
-
-<!-- 이미지 추가 예정 -->
+<img src="https://github.com/user-attachments/assets/fadbac93-12e4-4370-a93c-89e555e07f8f" width="45%" alt="Hero Visual" />
 
 </p>
 
 ### ✨ 주요 기능
 
-- 브랜드 아이덴티티를 강조하는 Hero Visual을 제공합니다.
-- 프로모션 콘텐츠와 대표 상품을 직관적으로 전달합니다.
-- 브랜드의 프리미엄 이미지를 강조하는 인터랙션을 적용했습니다.
+- 브랜드 아이덴티티를 강조하는 메인 랜딩 화면
+- 대표 제품과 핵심 메시지 제공
+- CTA 버튼을 통한 상품 페이지 이동
+- 몰입감을 높이는 인터랙션 적용
 
 ### 💻 구현 내용
 
 - React 컴포넌트 기반 Hero Section 구현
-- GSAP 기반 화면 진입 애니메이션
+- GSAP를 활용한 진입 애니메이션 적용
+- Three.js 기반 3D Background 효과 구현
+- React Router를 활용한 CTA 버튼 이동
 - 반응형 레이아웃 적용
-- CTA 버튼을 통한 상품 페이지 이동
 
 ---
 
@@ -293,7 +238,7 @@
 
 <p align="center">
 
-<img width="601" height="954" alt="상품 목록" src="https://github.com/user-attachments/assets/09aaade8-9dc2-469f-9dea-b558a917784c" />
+<img src="https://github.com/user-attachments/assets/09aaade8-9dc2-469f-9dea-b558a917784c" width="70%" alt="상품 목록" />
 
 </p>
 
@@ -325,12 +270,13 @@
 
 - 상품 상세 정보 제공
 - 색상 옵션 선택
-- 리뷰 확인
+- 리뷰 및 평점 확인
 - 할인 가격 및 재고 확인
+- 장바구니 및 위시리스트 바로 추가
 
 ### 💻 구현 내용
 
-- 동적 라우팅(Dynamic Route)
+- Dynamic Route를 활용한 상품 상세 페이지 구현
 - 상품 데이터 자동 매핑
 - 색상별 이미지 변경
 - 리뷰 데이터 렌더링
@@ -372,6 +318,10 @@
 
 </p>
 
+<p align="center">
+<sub>Cart · Wishlist</sub>
+</p>
+
 ### ✨ 주요 기능
 
 - 상품을 장바구니 및 위시리스트에 추가
@@ -394,10 +344,14 @@
 
 <img src="https://github.com/user-attachments/assets/9869860d-524f-466b-852f-f9e37bc3a642" width="31%" alt="Checkout" />
 &nbsp;
-<img src="https://github.com/user-attachments/assets/a696e1a2-3e5e-48f4-8219-4d5004425c9f" width="31%" alt="Polar.sh 결제" />
+<img src="https://github.com/user-attachments/assets/a696e1a2-3e5e-48f4-8219-4d5004425c9f" width="31%" alt="Polar.sh Payment" />
 &nbsp;
-<img src="https://github.com/user-attachments/assets/e4cb1b44-a988-4ae6-a382-85492dd4be5c" width="31%" alt="주문 완료" />
+<img src="https://github.com/user-attachments/assets/e4cb1b44-a988-4ae6-a382-85492dd4be5c" width="31%" alt="Order Complete" />
 
+</p>
+
+<p align="center">
+<sub>Checkout → Polar.sh Payment → Order Complete</sub>
 </p>
 
 ### ✨ 주요 기능
@@ -441,17 +395,17 @@
 
 - 공지사항, 리뷰, Q&A, 이벤트 게시판 제공
 - Firestore 기반 실시간 게시글 관리
-- 게시글 검색 및 필터 기능 지원
+- 게시글 검색 및 카테고리 필터
 - 로그인 사용자만 게시글 작성 가능
-- 관리자 권한을 통한 이벤트 게시글 관리
+- 관리자 권한에 따른 이벤트 게시글 관리
 
 ### 💻 구현 내용
 
 - Firebase Firestore를 활용한 게시판 CRUD 구현
 - 공지사항 검색 및 카테고리 필터 기능 구현
 - 리뷰 이미지 유무에 따른 자동 분류 기능 구현
-- Firebase Authentication과 연동하여 로그인 사용자만 글쓰기 가능하도록 구현
-- 관리자 권한에 따라 이벤트 게시글 등록 및 관리 기능 구현
+- Firebase Authentication과 연동하여 로그인 사용자만 글쓰기 가능
+- 관리자 권한에 따른 이벤트 게시글 등록 및 관리 기능 구현
 
 ---
 
@@ -481,7 +435,7 @@
 - Firebase Authentication을 활용한 이메일 회원가입 및 로그인 구현
 - Google OAuth를 연동하여 소셜 로그인 기능 구현
 - 로그인 상태를 실시간으로 감지하여 사용자 인증 상태 유지
-- Firestore에 사용자 정보를 저장하고 관리
+- Firestore에 사용자 정보를 저장 및 관리
 - 로그인 여부에 따라 Header 및 사용자 메뉴를 동적으로 변경
 
 ---
@@ -542,10 +496,6 @@
 
 # 💡 핵심 구현 내용
 
-프로젝트에서 단순히 화면을 구현하는 것을 넘어, **사용자 경험(UX), 컴포넌트 재사용성, 상태 관리, 실제 서비스 구조**를 고려하여 구현했습니다.
-
----
-
 ## ⚛️ React
 
 - React 19 기반 SPA
@@ -557,78 +507,46 @@
 
 ---
 
-## 📦 State Management
+## ⚙️ State Management
 
-Context API를 활용하여 애플리케이션 전역 상태를 관리했습니다.
-
-### 구현 기능
-
+- Context API 기반 전역 상태 관리
 - Cart Context
 - Wishlist Context
 - Search Context
-- Menu Context
-
-### 특징
-
-- 페이지 이동 후에도 상태 유지
-- 컴포넌트 간 Props Drilling 최소화
-- 전역 상태 관리 구조 적용
+- Theme Context
+- Props Drilling 최소화
 
 ---
 
-## 🛒 Commerce
-
-실제 쇼핑몰 구매 프로세스를 구현했습니다.
-
-### 구현 기능
+## 🛍 Commerce
 
 - 상품 목록
 - 상품 상세
-- 카테고리
-- BEST / NEW / SALE 필터
+- 카테고리 필터
 - 상품 검색
 - 장바구니
 - 위시리스트
-- 체크아웃
+- Checkout
 - 주문 완료
 
 ---
 
 ## 🔥 Firebase
 
-### Authentication
-
-- 이메일 로그인
-- Google 로그인
-- 로그인 상태 유지
-
-### Firestore
-
-- 공지사항
-- 리뷰
-- Q&A
-- 이벤트 게시판
-
-### 구현 기능
-
-- 게시글 CRUD
+- Authentication
+- Firestore
+- 게시판 CRUD
 - 실시간 데이터 반영
-- 관리자 권한 분리
-- 로그인 사용자 인증
+- Google 로그인
 
 ---
 
 ## 💳 Payment
 
-Polar.sh API를 활용하여 실제 결제 프로세스를 구현했습니다.
-
-### 구현 기능
-
+- Polar.sh API 연동
 - Checkout 생성
-- 결제 페이지 이동
-- 결제 완료 처리
+- 실제 결제 프로세스 구현
 - 환경 변수 기반 Secret Key 관리
-- 브라우저와 서버 역할 분리
 
 ---
 
@@ -636,7 +554,6 @@ Polar.sh API를 활용하여 실제 결제 프로세스를 구현했습니다.
 
 - 프리미엄 브랜드 감성 반영
 - 디자인 시스템 구축
-- CSS Custom Properties 활용
 - 반응형 레이아웃
 - 컴포넌트 기반 UI 설계
 
@@ -653,8 +570,6 @@ Polar.sh API를 활용하여 실제 결제 프로세스를 구현했습니다.
 - Hero Animation
 - 3D Background
 - Hover Interaction
-- Accordion Animation
-- Cursor Interaction
 - Scroll Animation
 
 ---
