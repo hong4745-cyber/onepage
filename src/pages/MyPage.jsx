@@ -1,19 +1,20 @@
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 
 const ORDER_STATUS = [
-  { label: '입금전',    count: 0 },
-  { label: '결제완료',  count: 1 },
-  { label: '배송준비중', count: 0 },
-  { label: '배송중',   count: 1 },
-  { label: '배송완료',  count: 3 },
+  { label: '입금전',    count: 0, status: '입금전' },
+  { label: '결제완료',  count: 1, status: '결제완료' },
+  { label: '배송준비중', count: 0, status: '배송준비중' },
+  { label: '배송중',   count: 1, status: '배송중' },
+  { label: '배송완료',  count: 3, status: '배송완료' },
 ]
 
 const CANCEL_STATUS = [
-  { label: '취소',  count: 0 },
-  { label: '반품',  count: 1 },
-  { label: '교환',  count: 0 },
+  { label: '취소',  count: 0, status: '취소' },
+  { label: '반품',  count: 1, status: '반품' },
+  { label: '교환',  count: 0, status: '교환' },
 ]
 
 const MY_MENU = [
@@ -25,6 +26,7 @@ const MY_MENU = [
 
 export default function MyPage() {
   const navigate = useNavigate()
+  const [hovered, setHovered] = useState(null)
 
   return (
     <div style={{ paddingBottom: '80px' }}>
@@ -41,10 +43,18 @@ export default function MyPage() {
 
           <div style={{ display: 'flex', borderTop: '1px solid #f0f0f0', marginTop: '12px' }}>
             {ORDER_STATUS.map((s, i) => (
-              <div key={s.label} style={{
-                flex: 1, textAlign: 'center', padding: '16px 0',
-                position: 'relative',
-              }}>
+              <div
+                key={s.label}
+                onClick={() => navigate(`/orders?status=${encodeURIComponent(s.status)}`)}
+                onMouseEnter={() => setHovered(`order-${s.status}`)}
+                onMouseLeave={() => setHovered(null)}
+                style={{
+                  flex: 1, textAlign: 'center', padding: '16px 0',
+                  position: 'relative', cursor: 'pointer', borderRadius: '8px',
+                  background: hovered === `order-${s.status}` ? '#f5f7ff' : 'transparent',
+                  transition: 'background 0.15s',
+                }}
+              >
                 <p style={{ fontSize: '18px', fontWeight: '700', color: s.count > 0 ? 'var(--c-accent)' : '#111', marginBottom: '6px' }}>
                   {s.count}
                 </p>
@@ -71,9 +81,18 @@ export default function MyPage() {
 
           <div style={{ display: 'flex', borderTop: '1px solid #f0f0f0', marginTop: '12px' }}>
             {CANCEL_STATUS.map(s => (
-              <div key={s.label} style={{
-                flex: 1, textAlign: 'center', padding: '16px 0',
-              }}>
+              <div
+                key={s.label}
+                onClick={() => navigate(`/orders?status=${encodeURIComponent(s.status)}`)}
+                onMouseEnter={() => setHovered(`cancel-${s.status}`)}
+                onMouseLeave={() => setHovered(null)}
+                style={{
+                  flex: 1, textAlign: 'center', padding: '16px 0',
+                  cursor: 'pointer', borderRadius: '8px',
+                  background: hovered === `cancel-${s.status}` ? '#fff5f5' : 'transparent',
+                  transition: 'background 0.15s',
+                }}
+              >
                 <p style={{ fontSize: '18px', fontWeight: '700', color: s.count > 0 ? '#e03131' : '#111', marginBottom: '6px' }}>
                   {s.count}
                 </p>

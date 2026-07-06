@@ -140,25 +140,25 @@
   left: 0;
   top: 50%;
   transform: translateY(-50%);
-  width: 20px;
-  height: 56px;
+  width: 32px;
+  height: 80px;
   background: #fff;
   border: none;
-  border-radius: 0 10px 10px 0;
-  box-shadow: 2px 2px 12px rgba(0,0,0,0.14);
+  border-radius: 0 16px 16px 0;
+  box-shadow: 3px 2px 14px rgba(0,0,0,0.16);
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   z-index: 499;
-  color: #bbb;
+  color: #999;
   padding: 0;
   transition: width 0.2s ease, color 0.2s ease, opacity 0.25s ease;
 }
 
 .sidebar-hint-tab:hover {
-  width: 30px;
-  color: #666;
+  width: 42px;
+  color: #555;
 }
 
 .sidebar-hint-tab--hidden {

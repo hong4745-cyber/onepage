@@ -1,6 +1,6 @@
 import Header from '../components/Header'
 import Footer from '../components/Footer'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useSearchParams } from 'react-router-dom'
 import products from '../products.json'
 import { resolveImage } from '../utils/imageMap'
 
@@ -23,13 +23,44 @@ const STATUS_COLOR = {
 
 export default function MyOrdersPage() {
   const navigate = useNavigate()
+  const [searchParams, setSearchParams] = useSearchParams()
+  const activeStatus = searchParams.get('status')
+  const filtered = activeStatus ? ORDERS.filter(o => o.status === activeStatus) : ORDERS
 
   return (
     <div className="page-root">
       <Header showBack title="주문내역" />
       <div className="page-scroll">
         <div style={{ padding: '16px' }}>
-          {ORDERS.map(order => {
+
+          {/* 상태 필터 칩 */}
+          {activeStatus && (
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '14px' }}>
+              <span style={{
+                display: 'inline-flex', alignItems: 'center', gap: '6px',
+                padding: '5px 12px', borderRadius: '20px',
+                background: '#f0f4ff', border: '1px solid #d0dbff',
+                fontSize: '12px', fontWeight: '600', color: '#094089',
+              }}>
+                {activeStatus}
+                <button
+                  onClick={() => setSearchParams({})}
+                  style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0, lineHeight: 1, color: '#094089', fontSize: '14px' }}
+                >×</button>
+              </span>
+              <span style={{ fontSize: '11px', color: '#aaa' }}>
+                {filtered.length}건
+              </span>
+            </div>
+          )}
+
+          {filtered.length === 0 && (
+            <p style={{ textAlign: 'center', fontSize: '13px', color: '#bbb', padding: '40px 0' }}>
+              해당 상태의 주문이 없습니다.
+            </p>
+          )}
+
+          {filtered.map(order => {
             const product = products.find(p => p.id === order.productId)
             if (!product) return null
             return (

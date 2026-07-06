@@ -44,8 +44,8 @@ export default function Layout({ children }) {
           onClick={() => setOverlayOpen(true)}
           aria-label="메뉴 열기"
         >
-          <svg width="7" height="12" viewBox="0 0 7 12" fill="none">
-            <polyline points="1,1 6,6 1,11" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+          <svg width="10" height="18" viewBox="0 0 7 12" fill="none">
+            <polyline points="1,1 6,6 1,11" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
           </svg>
         </button>
       )}
