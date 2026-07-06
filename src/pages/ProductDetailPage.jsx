@@ -5,7 +5,6 @@ import { useWishlist } from '../context/WishlistContext'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar, faXmark, faTruckFast, faChevronDown, faChevronUp, faHeart as faHeartSolid } from '@fortawesome/free-solid-svg-icons'
 import { faStar as faStarEmpty } from '@fortawesome/free-regular-svg-icons'
-import { RiKakaoTalkFill } from 'react-icons/ri'
 import { LuShoppingCart } from 'react-icons/lu'
 import { FaRegHeart } from 'react-icons/fa'
 import Header from '../components/Header'
@@ -17,9 +16,6 @@ import { saveRecentlyViewed } from '../utils/recentlyViewed'
 import ProductDetailDrawer from '../components/ProductDetailDrawer'
 
 const allProducts = [...products, ...specialProducts]
-
-// TODO: 실제 B&W 카카오톡 채널 ID로 교체
-const KAKAO_CHANNEL_URL = 'https://pf.kakao.com/_XXXXX'
 
 const INFO_ACCORDIONS = [
   {
@@ -315,26 +311,6 @@ export default function ProductDetailPage() {
               구매하기
             </button>
           </div>
-
-          {/* 카카오 채널 */}
-          <button
-            onClick={() => window.open(KAKAO_CHANNEL_URL, '_blank', 'noopener,noreferrer')}
-            style={{
-              display: 'flex', alignItems: 'center', gap: '10px', width: '100%',
-              background: '#f4f5f7', border: 'none', borderRadius: '8px', padding: '13px 16px', marginTop: '12px',
-              cursor: 'pointer', textAlign: 'left',
-            }}
-          >
-            <span style={{
-              width: '26px', height: '26px', borderRadius: '50%', background: '#FEE500', flexShrink: 0,
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-            }}>
-              <RiKakaoTalkFill style={{ color: '#3c1e1e', fontSize: '16px' }} />
-            </span>
-            <p style={{ fontSize: '13px', color: '#333' }}>
-              카카오톡 채널 추가하고 <b>추가 할인</b> 받기
-            </p>
-          </button>
         </div>
 
         {/* ===== 탭 ===== */}
