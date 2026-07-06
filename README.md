@@ -516,28 +516,27 @@
 
 ---
 
-# 10. 🚀 Floating Shortcut
+# 10. 🚀 Floating Quick Navigation
 
 <p align="center">
 
-<!-- Floating -->
-<!-- 이미지 추가 예정 -->
+<img src="https://github.com/user-attachments/assets/16ca189f-1054-4518-916e-ba854135c86c" width="45%" alt="Floating Quick Navigation" />
 
 </p>
 
 ### ✨ 주요 기능
 
-- 카테고리 이동
-- 장바구니 바로가기
-- 맨 위로 이동
-- 모든 페이지에서 공통 사용
+- 카테고리별 상품 페이지 바로 이동
+- 장바구니 페이지 바로가기
+- 페이지 최상단으로 즉시 이동
+- 모든 페이지에서 동일한 위치에 고정되어 빠른 탐색 지원
 
 ### 💻 구현 내용
 
-- React 공통 컴포넌트
-- Context API 연동
-- Scroll 이벤트 활용
-- 재사용 가능한 UI 설계
+- `position: fixed`를 활용한 고정 UI 구현
+- React Router를 이용한 카테고리 및 페이지 이동
+- Top 버튼을 통해 현재 페이지의 최상단으로 스크롤 이동
+- 공통 컴포넌트로 설계하여 모든 페이지에서 재사용 가능
 
 ---
 
